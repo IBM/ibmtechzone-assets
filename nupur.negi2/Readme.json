@@ -1,0 +1,28 @@
+{
+    "id": "102",
+    "userName" : "nupur.negi2",
+    "header": {
+        "title": "Get cp4d Services",
+        "description": "List all services from cp4d cluster"
+    },
+    "preRequisites": {
+        "fields": [
+            {
+                "type": "text",
+                "label": "OC Login"
+            },
+            {
+                "type": "text",
+                "label": "Project Name"
+            }
+        ],
+        "requiredFields": [
+            [
+                "oc_login",
+                "project_name"
+            ]
+        ]
+    },
+    "fileName": "get-services.sh",
+    "type": "bash"
+}
