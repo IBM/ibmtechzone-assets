@@ -1,0 +1,28 @@
+{
+    "id": "101",
+    "userName": "aishwarya0315"
+    "header": {
+        "title": "Get OpenShift Pods",
+        "description": "List all pods from openshift cluster"
+    },
+    "preRequisites": {
+        "fields": [
+            {
+                "type": "text",
+                "label": "OC Login"
+            },
+            {
+                "type": "text",
+                "label": "Project Name"
+            }
+        ],
+        "requiredFields": [
+            [
+                "oc_login",
+                "project_name"
+            ]
+        ]
+    },
+    "fileName": "get-pods.sh",
+    "type": "bash"
+}
