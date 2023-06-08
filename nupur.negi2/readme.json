@@ -2,10 +2,8 @@
     "id": "102",
     "author" : "nupur.negi2",
     "category": "CP4D",
-    "header": {
-        "title": "Get cp4d Services",
-        "description": "List all services from cp4d cluster"
-    },
+    "title": "Get cp4d Services",
+    "description": "List all services from cp4d cluster",
     "preRequisites": {
         "fields": [
             {
