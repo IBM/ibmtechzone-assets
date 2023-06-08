@@ -1,6 +1,7 @@
 {
     "id": "101",
-    "userName": "aishwarya0315",
+    "author": "aishwarya0315",
+    "category": "Openshift",
     "header": {
         "title": "Get OpenShift Pods",
         "description": "List all pods from openshift cluster"
@@ -21,7 +22,8 @@
                 "oc_login",
                 "project_name"
             ]
-        ]
+        ],
+        "installDependencyCommands": ["pip3 install pandas", "apt-get install jq -y"]
     },
     "fileName": "get-pods.sh",
     "type": "bash"
