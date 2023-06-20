@@ -1,0 +1,1 @@
+{"id":"bqdnawvovf","title":"get List of services","author":"test-author","category":"CP4D","description":"get List of services","type":"bash","fileName":"bqdnawvovf.sh","preRequisites":{"fields":[{"type":"text","label":"oc_login"},{"type":"text","label":"cp4d_project_name"}],"requiredFields":[["oc_login","cp4d_project_name"]],"installDependencyCommands":[""]}}
