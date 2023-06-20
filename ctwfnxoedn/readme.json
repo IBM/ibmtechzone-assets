@@ -1,0 +1,1 @@
+{"id":"ctwfnxoedn","title":"list services test2","author":"test-author","category":"CP4D","description":"list services test2","type":"bash","fileName":"ctwfnxoedn.sh","preRequisites":{"fields":[{"type":"text","label":"oc_login"},{"type":"text","label":"cp4d_project_name"}],"requiredFields":[["oc_login","cp4d_project_name"]],"installDependencyCommands":[""]}}
