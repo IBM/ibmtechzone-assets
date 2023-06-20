@@ -1,1 +1,0 @@
-{"id":"36ecdc41da","title":"List Installed Services","author":"test-author","category":"CP4D","description":"List installed CP4D services","type":"bash","fileName":"36ecdc41da.sh","preRequisites":{"fields":[{"type":"text","label":"OC Login"},{"type":"text","label":"CP4D Project Name"}],"requiredFields":[["oc_login","cp4d_project_name"]],"installDependencyCommands":[""]}}

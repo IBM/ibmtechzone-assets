@@ -1,1 +1,0 @@
-{"id":"c323b29329","title":"Get List Of services","author":"test-author","category":"CP4D","description":"Get List Of services","type":"bash","fileName":"c323b29329.sh","preRequisites":{"fields":[{"type":"text","label":"oc_login"},{"type":"text","label":"cp4d_project_name"}],"requiredFields":[["oc_login","cp4d_project_name"]],"installDependencyCommands":[""]}}
