@@ -1,0 +1,1 @@
+{"id":"budgsskjow","title":"Get list of services installed in CP4D","author":"Rajesh","category":"CP4D","description":"Get list of services installed in CP4D","type":"bash","fileName":"budgsskjow.sh","preRequisites":{"fields":[{"type":"text","label":"OC Login"}],"requiredFields":[["oc_login"]],"installDependencyCommands":[""]}}
