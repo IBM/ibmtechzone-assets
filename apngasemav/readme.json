@@ -1,0 +1,1 @@
+{"id":"apngasemav","title":"CP4D Deploy Status","author":"Girish Padmanabhan","category":"CP4D","description":"This script will list down the status of all the cartridges installed on the cluster","type":"bash","fileName":"apngasemav.sh","preRequisites":{"fields":[{"type":"text","label":"OC Login"}],"requiredFields":[["oc_login"]],"installDependencyCommands":[""]}}
