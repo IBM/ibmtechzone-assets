@@ -21,7 +21,7 @@ timeout=60
 
 while [ $ready_nodes -ne $total_nodes ]
 do
-    oc get nodes | awk 'BEGIN{print "+--------------------------+"}{printf "| %-15s | %s |\n", $1, $2}END{print "+--------------------------+"}' | column -t -s ""
+    oc get nodes | awk 'BEGIN{print "+--------------------------+"}{printf "| %-15s | %s |\n", $1, $2}END{print "+--------------------------+"}'
     node_status=$(oc get nodes --no-headers | awk '{print $2}')
     ready_nodes=$(echo "$node_status" | grep -c "^Ready$")
     total_nodes=$(echo "$node_status" | wc -l)
