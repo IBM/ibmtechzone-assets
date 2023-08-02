@@ -4,7 +4,8 @@ from ibm_watson_machine_learning.metanames import GenTextParamsMetaNames as GenP
 from ibm_watson_machine_learning.foundation_models.utils.enums import ModelTypes, DecodingMethods
 
 # To display example params enter
-print(GenParams().get_example_values())
+# print(GenParams().get_example_values())
+print("Original value:"+os.environ["mysquareroot"])
 
 generate_params = {
     GenParams.MAX_NEW_TOKENS: 25
