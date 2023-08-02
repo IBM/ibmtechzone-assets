@@ -1,0 +1,1 @@
+{"id":"nrlkctaftg","title":"Simple PySpark Pi estimation","author":"Deepak Rangarao","category":"Openshift","description":"Simple PySpark Pi estimation","type":"python","fileName":"nrlkctaftg.py","preRequisites":{"fields":[{"type":"text","label":"OC Login"},{"type":"text","label":"num_samples"}],"requiredFields":[["oc_login","num_samples"]],"installDependencyCommands":[""]}}
