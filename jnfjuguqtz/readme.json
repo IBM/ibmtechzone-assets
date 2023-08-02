@@ -1,0 +1,1 @@
+{"id":"jnfjuguqtz","title":"Simple PySpark Pi estimation","author":"Deepak Rangarao","category":"Openshift","description":"Simple PySpark Pi estimation","type":"pyspark","fileName":"jnfjuguqtz.py","preRequisites":{"fields":[{"type":"text","label":"num_samples"}],"requiredFields":[["num_samples"]],"installDependencyCommands":[""]}}
