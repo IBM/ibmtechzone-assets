@@ -26,4 +26,4 @@ model = Model(
 q = "The square root of x is the cube root of y. What is y to the power of 2, if x = 4?"
 generated_response = model.generate(prompt=q)
 print(generated_response['results'][0]['generated_text'])
-os.environ['mysquareroot'] =int(generated_response['results'][0]['generated_text'])
+os.environ['mysquareroot'] = int(generated_response['results'][0]['generated_text'].split("=")[1])
