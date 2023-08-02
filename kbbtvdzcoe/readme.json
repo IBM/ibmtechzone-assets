@@ -1,0 +1,1 @@
+{"id":"kbbtvdzcoe","title":"Add 2 numbers","author":"Sriram","category":"Openshift","description":"Add 2 numbers","type":"python","fileName":"kbbtvdzcoe.py","preRequisites":{"fields":[{"type":"text","label":"OC Login"},{"type":"text","label":"y"},{"type":"text","label":"x"}],"requiredFields":[["oc_login","y","x"]],"installDependencyCommands":["pip3 install numpy"]}}
