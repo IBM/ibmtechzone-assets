@@ -12,7 +12,7 @@ generate_params = {
 API_KEY = os.environ["apikey"]
 URL = os.environ["url"]
 PROJECT_ID = os.environ["project_id"]
-MYSQUAREROOT = os.environ['mysquareroot']
+MYSQUAREROOT = 4
 
 model = Model(
     model_id=ModelTypes.FLAN_UL2,
