@@ -30,4 +30,4 @@ else :
     q = "Answer the following question by reasoning step by step.  The cafeteria had 23 apples. If they used 20 for lunch, and bought 6 more, how many apple do they have?"
     
 generated_response = model.generate(prompt=q)
-print(generated_response['results'][0]['generated_text'])
+print("WatsonX.AI says ... " + generated_response['results'][0]['generated_text'])
