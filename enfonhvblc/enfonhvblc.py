@@ -1,33 +1,37 @@
-import os
 from ibm_watson_machine_learning.foundation_models import Model
 from ibm_watson_machine_learning.metanames import GenTextParamsMetaNames as GenParams
 from ibm_watson_machine_learning.foundation_models.utils.enums import ModelTypes, DecodingMethods
+import os
 
 # To display example params enter
-print(GenParams().get_example_values())
+#print(GenParams().get_example_values())
+API_KEY = os.getenv('apikey')
+WATSONXAI_URL = os.getenv('watsonxai_url')
+PROJECT_ID = os.getenv('project_id')
+
+MODEL_NAME = os.getenv('model_name')
+PROMPT_QUESTION = os.getenv('prompt_question')
+if PROMPT_QUESTION is None:
+  PROMPT_FILE_NAME = os.getenv('prompt_file')
+  print(PROMPT_FILE_NAME)
+  PROMPT_FILE = open(PROMPT_FILE_NAME,"r")
+  PROMPT_QUESTION = PROMPT_FILE.read()
+  print(PROMPT_QUESTION)
+  PROMPT_FILE.close()
 
 generate_params = {
     GenParams.MAX_NEW_TOKENS: 25
 }
-API_KEY = os.environ["apikey"]
-URL = os.environ["url"]
-PROJECT_ID = os.environ["project_id"]
-MYSQUAREROOT = 4
 
 model = Model(
     model_id=ModelTypes.FLAN_UL2,
     params=generate_params,
     credentials={
         "apikey": API_KEY,
-        "url": URL
+        "url": WATSONXAI_URL
     },
     project_id=PROJECT_ID
     )
 
-if MYSQUAREROOT == 4 :
-    q = "Premise:  At my age you will probably have learnt one lesson. Hypothesis:  It's not certain how many lessons you'll learn by your thirties. Does the premise entail the hypothesis?"
-else :
-    q = "Answer the following question by reasoning step by step.  The cafeteria had 23 apples. If they used 20 for lunch, and bought 6 more, how many apple do they have?"
-    
-generated_response = model.generate(prompt=q)
-print("WatsonX.AI says ... " + generated_response['results'][0]['generated_text'])
+generated_response = model.generate(prompt=PROMPT_QUESTION)
+print(generated_response['results'][0]['generated_text'])
