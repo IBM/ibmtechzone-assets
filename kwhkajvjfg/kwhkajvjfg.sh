@@ -1,17 +1,12 @@
 #!/bin/bash
-mkdir data
+mkdir -p data
 cd data
 CWD="$(pwd)"
-wget ${WGET_URL}
-for file in "$CWD"; do
-      if [ -d $file ]
-      then
-              # do something directory-ish
-      else
-              if [ "$file" == "*.zip" ]       #  this is the snag
-              then
-                     # do something txt-ish
-                     unzip $file
-              fi
-      fi
-done;
+wget $wget_url
+for f in "$CWD"/*
+do
+    if [ -f *.zip ]; 
+    then
+        unzip $f
+    fi
+done
