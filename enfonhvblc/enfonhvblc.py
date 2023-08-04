@@ -8,9 +8,9 @@ import os
 API_KEY = os.getenv('apikey')
 WATSONXAI_URL = os.getenv('watsonxai_url')
 PROJECT_ID = os.getenv('project_id')
-
 MODEL_NAME = os.getenv('model_name')
 PROMPT_QUESTION = os.getenv('prompt_question')
+
 if PROMPT_QUESTION is None:
   PROMPT_FILE_NAME = os.getenv('prompt_file')
   print(PROMPT_FILE_NAME)
@@ -24,7 +24,7 @@ generate_params = {
 }
 
 model = Model(
-    model_id=ModelTypes.FLAN_UL2,
+    model_id=MODEL_NAME,
     params=generate_params,
     credentials={
         "apikey": API_KEY,
