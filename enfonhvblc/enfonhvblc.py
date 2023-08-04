@@ -13,10 +13,8 @@ PROMPT_QUESTION = os.getenv('prompt_question')
 
 if PROMPT_QUESTION is None:
   PROMPT_FILE_NAME = os.getenv('prompt_file')
-  print(PROMPT_FILE_NAME)
   PROMPT_FILE = open(PROMPT_FILE_NAME,"r")
   PROMPT_QUESTION = PROMPT_FILE.read()
-  print(PROMPT_QUESTION)
   PROMPT_FILE.close()
 
 generate_params = {
