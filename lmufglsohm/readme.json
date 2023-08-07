@@ -1,0 +1,1 @@
+{"id":"lmufglsohm","title":"Generate some sample data","author":"Ayal Steinberg","category":"watsonx.ai","description":"Generate some sample data","type":"python","fileName":"lmufglsohm.py","preRequisites":{"fields":[{"type":"text","label":"num_records"}],"requiredFields":[["num_records"]],"installDependencyCommands":["pip3 install faker"]}}
