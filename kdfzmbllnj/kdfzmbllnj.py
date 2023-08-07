@@ -1,5 +1,6 @@
 import requests
 import json
+import os
 
 STEPZEN_AUTH = os.environ["stepzen_auth"]
 STEPZEN_URL = os.environ["stepzen_url"]
