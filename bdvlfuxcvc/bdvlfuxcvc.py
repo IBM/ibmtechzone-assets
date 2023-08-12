@@ -40,14 +40,15 @@ def prompt_and_score(test_data, prompt_text):
     print('f1_micro_score', f1_score(area, results, average='micro'))
     print("\n=====================================\n")
 
-test_data = pd.read_csv("prompts/"+object_key)
+test_data = pd.read_csv("data/"+object_key)
 test_data=test_data.head(3)
 
-prompt_files = os.listdir("prompts/")
+prompt_files = os.listdir("data/")
 for i in range(0,len(prompt_files)):
-    with open("prompts/"+prompt_files[i],'r') as file:
-        promptStr = file.read()
-        print("\nCurrently evaluating prompt: "+prompt_files[i]+"\n")
-        prompt_and_score(test_data,promptStr)
+    if prompt_files[i].endswith(".txt"):
+        with open("data/"+prompt_files[i],'r') as file:
+            promptStr = file.read()
+            print("\nCurrently evaluating prompt: "+prompt_files[i]+"\n")
+            prompt_and_score(test_data,promptStr)
 
 
