@@ -1,0 +1,1 @@
+{"id":"guoklibmiz","title":"Deploy RAG app","author":"Catherine.Cao@ibm.com","category":"watsonx.ai","description":"Deploy RAG app test","type":"bash","fileName":"guoklibmiz.sh","preRequisites":{"fields":[{"type":"text","label":"wget_url"}],"requiredFields":[["wget_url"]],"installDependencyCommands":[""]}}
