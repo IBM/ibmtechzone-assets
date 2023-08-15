@@ -41,7 +41,7 @@ def prompt_and_score(test_data, prompt_text):
     print("\n=====================================\n")
 
 test_data = pd.read_csv("data/"+object_key)
-test_data=test_data.head(3)
+test_data=test_data.head(10)
 
 prompt_files = os.listdir("data/")
 for i in range(0,len(prompt_files)):
