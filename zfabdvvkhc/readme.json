@@ -1,0 +1,1 @@
+{"id":"zfabdvvkhc","title":"Deploy Streamlit app v2","author":"catherine.cao@ibm.com","category":"watsonx.ai","description":"Deploy Streamlit app v2","type":"bash","fileName":"zfabdvvkhc.sh","preRequisites":{"fields":[{"type":"text","label":"git_account"}],"requiredFields":[["git_account"]],"installDependencyCommands":[""]}}
