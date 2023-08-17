@@ -1,0 +1,1 @@
+{"id":"ojudtuvhve","title":"Multi File Asset","author":"Suyash","category":"watsonx.data","description":"This asset contains multiple files.","type":"python","fileName":"multi-file-asset/first.py","preRequisites":{"fields":[{"type":"text","label":"msg"}],"requiredFields":[["msg"]],"installDependencyCommands":[""]}}
