@@ -1,0 +1,1 @@
+{"id":"jrmpibcxci","title":"Test App","category":"watsonx.ai","description":"Test App","type":"bash","fileName":"jrmpibcxci.sh","preRequisites":{"fields":[{"type":"text","label":"fdsf"}],"requiredFields":[["fdsf"]],"installDependencyCommands":[""]}}
