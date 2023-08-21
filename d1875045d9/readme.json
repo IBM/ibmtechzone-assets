@@ -1,0 +1,1 @@
+{"id":"d1875045d9","title":"Test Title","author":"test-author","category":"CP4I","description":"This is a test description","fileName": "d1875045d8.py","type":"python","preRequisites":{"fields":[{"label":"pre 1","type":"text"},{"label":"pre 2","type":"password"}],"requiredFields":[["pre_1","pre_2"]],"installDependencyCommands":["pip install pandas","apt-get jq -y"]}}
