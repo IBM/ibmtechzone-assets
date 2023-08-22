@@ -1,0 +1,19 @@
+---
+- name: Generate Password
+  hosts: localhost
+  gather_facts: false
+  vars:
+    _p_password_segments: "{{ lookup('env','number_of_segments') }}"
+    _p_segment_length: "{{ lookup('env','each_segment_length') }}" 
+    
+  tasks:
+    - name: Generate password segments
+      set_fact:
+        password_segments: "{{ password_segments | default([]) + [lookup('password', '/dev/null length=' + _p_segment_length | string + ' chars=ascii_letters')] }}"
+      loop: "{{ range(_p_password_segments | int) }}"
+      
+    - name: Format password
+      set_fact:
+        final_pwd: "{{ password_segments | join('-') }}"
+    - debug:
+        msg: "{{ final_pwd }}"
