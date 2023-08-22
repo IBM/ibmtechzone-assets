@@ -1,1 +1,0 @@
-{"id":"xlvtfdjewx","title":"Test demo","author":"Rajesh","category":"CP4D","description":"This is for testing userId change","type":"bash","fileName":"xlvtfdjewx.sh","userId":"","preRequisites":{"fields":[{"type":"text","label":"input1"}],"requiredFields":[["input1"]],"installDependencyCommands":[""]}}
