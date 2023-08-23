@@ -1,0 +1,1 @@
+{"id":"psjfdcukga","title":"Test","author":"Catherine Cao","category":"watsonx.ai","description":"test","type":"bash","fileName":"psjfdcukga.sh","userId":"d7858ed7-5ace-493f-a0b6-5db324510e69","preRequisites":{"fields":[{"type":"text","label":"test"}],"requiredFields":[["test"]],"installDependencyCommands":[""]}}
