@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 from sqlalchemy import create_engine
 
 CONN_STRING = os.environ["conn_string"]
