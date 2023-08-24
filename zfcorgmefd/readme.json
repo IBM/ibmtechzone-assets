@@ -1,0 +1,1 @@
+{"id":"zfcorgmefd","title":"Check Cloud Pak for Data Operators","author":"Deepak Rangarao","category":"Openshift","description":"Check Cloud Pak for Data Operators, requires the oc login as a parameter.","type":"bash","fileName":"zfcorgmefd.sh","preRequisites":{"fields":[{"type":"text","label":"OC Login"}],"requiredFields":[["oc_login"]],"installDependencyCommands":[""]}}
