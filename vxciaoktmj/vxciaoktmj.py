@@ -7,14 +7,11 @@ NUM_RECORDS = int(os.environ["num_records"])
 
 #Create faker object
 fake = Faker()
-f = open("demofile2.txt", "a")
+f = open("customers.csv", "a")
+f.write("Name,Email,Address,Country,URL")
 
 for x in range(NUM_RECORDS):
   #Print dummy data
-  f.write("Name:"+fake.name())
-  f.write("Email:"+fake.email())
-  f.write("Address:"+fake.address())
-  f.write("Country:"+fake.country())
-  f.write("URL:"+fake.url())
+  f.write(fake.name()+","+fake.email()+","+fake.address()+","+fake.country()+","+fake.url())
   
 f.close()
