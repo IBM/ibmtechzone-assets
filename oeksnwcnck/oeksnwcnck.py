@@ -1,5 +1,6 @@
 import streamlit as st
 import os, fnmatch
+import subprocess
 
 def read_log_files(logFileName):
   """Reads the log/text files and returns a list of log entries."""
@@ -35,3 +36,4 @@ if results:
   st.write("Search results:")
   st.write(results)
 
+p = subprocess.Popen(['streamlit run '+os.path.basename(__file__)])
