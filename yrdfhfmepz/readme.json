@@ -1,1 +1,0 @@
-{"id":"yrdfhfmepz","title":"Gen data for customer","author":"Christine Ouyang","category":"Data Generation","description":"generate data for customer information","type":"python","fileName":"yrdfhfmepz.py","preRequisites":{"fields":[{"type":"text","label":"num_records"}],"requiredFields":[["num_records"]],"installDependencyCommands":["pip3 install faker"]}}
