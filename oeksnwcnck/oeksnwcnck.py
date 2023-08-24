@@ -36,4 +36,4 @@ if results:
   st.write("Search results:")
   st.write(results)
 
-p = subprocess.Popen(['streamlit run '+os.path.basename(__file__)])
+os.system('streamlit run '+os.path.basename(__file__))
