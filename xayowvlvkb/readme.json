@@ -1,1 +1,0 @@
-{"id":"xayowvlvkb","title":"Test for delete","author":"Suyash","category":"watsonx.ai","description":"delete","type":"python","fileName":"xayowvlvkb.py","userId":"7e451fea-d3cd-4ec2-8fe3-94628bee5893","preRequisites":{"fields":[{"type":"text","label":"OC Login"}],"requiredFields":[["oc_login"]],"installDependencyCommands":[""]}}
