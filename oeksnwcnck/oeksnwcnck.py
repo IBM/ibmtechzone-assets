@@ -17,8 +17,7 @@ def search_log_entries(query):
   return results
 
 st.title("Log Viewer, search logs/text file")
-FILE_PATTERN = os.environ["file_pattern"]
-fileList = [file for file in fnmatch.filter(os.listdir("data"),FILE_PATTERN)]
+fileList = [file for file in fnmatch.filter(os.listdir("data"),'*.log')]
 
 sel_filetered_file=st.selectbox("Select log file",options=fileList)
 # Display the log entries
