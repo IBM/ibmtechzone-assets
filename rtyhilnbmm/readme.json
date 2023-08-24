@@ -1,1 +1,0 @@
-{"id":"rtyhilnbmm","title":"Generate fake names","author":"Michael Grevers","category":"watsonx.ai","description":"Generate fake names","type":"python","fileName":"rtyhilnbmm.py","preRequisites":{"fields":[{"type":"text","label":"number_of_names"}],"requiredFields":[["number_of_names"]],"installDependencyCommands":["pip3 install faker"]}}

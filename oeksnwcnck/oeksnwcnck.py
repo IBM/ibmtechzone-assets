@@ -2,9 +2,9 @@ import streamlit as st
 import os, fnmatch
 
 def read_log_files(logFileName):
-  """Reads the log files and returns a list of log entries."""
+  """Reads the log/text files and returns a list of log entries."""
   log_entries = []
-  with open(f"logs/"+logFileName, "r") as f:
+  with open(f"data/"+logFileName, "r") as f:
     log_entries.extend(f.readlines())
   return log_entries
 
@@ -16,9 +16,9 @@ def search_log_entries(query):
       results.append(entry)
   return results
 
-st.title("Log Viewer, search logs")
+st.title("Log Viewer, search logs/text file")
 FILE_PATTERN = os.environ["file_pattern"]
-fileList = [file for file in fnmatch.filter(os.listdir("logs"),FILE_PATTERN)]
+fileList = [file for file in fnmatch.filter(os.listdir("data"),FILE_PATTERN)]
 
 sel_filetered_file=st.selectbox("Select log file",options=fileList)
 # Display the log entries
