@@ -1,0 +1,1 @@
+oc get po -n $cp4d_project_name
