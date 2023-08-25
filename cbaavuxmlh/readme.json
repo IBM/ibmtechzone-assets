@@ -1,1 +1,0 @@
-{"id":"cbaavuxmlh","title":"test delete","author":"Nupur","category":"watsonx.ai","description":"test delete","type":"bash","fileName":"cbaavuxmlh.sh","userId":"490475a6-a209-4d0b-846c-53f2d6db3d77","preRequisites":{"fields":[{"type":"text","label":"test"}],"requiredFields":[["test"]],"installDependencyCommands":[""]}}
