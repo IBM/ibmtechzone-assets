@@ -1,0 +1,1 @@
+{"id":"pnabqnjhrq","title":"test delete 2","author":"Rajesh","category":"WKS","description":"test delete 2","type":"bash","fileName":"pnabqnjhrq.sh","userId":"fad35186-3af1-4a4c-963f-13e0e28db13d","preRequisites":{"fields":[{"type":"text","label":"OC Login"}],"requiredFields":[["oc_login"]],"installDependencyCommands":[""]}}
