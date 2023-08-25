@@ -1,1 +1,0 @@
-{"id":"jbvtjtuoiw","title":"test delete","author":"Rajesh","category":"watsonx.ai","description":"this is for testing delete","type":"bash","fileName":"jbvtjtuoiw.sh","userId":"fad35186-3af1-4a4c-963f-13e0e28db13d","preRequisites":{"fields":[{"type":"text","label":"OC Login"}],"requiredFields":[["oc_login"]],"installDependencyCommands":[""]}}
