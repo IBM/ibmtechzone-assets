@@ -1,0 +1,1 @@
+{"id":"agvpzaruuc","title":"test delete","author":"Rajesh","category":"CP4D","description":"test delete","type":"bash","fileName":"agvpzaruuc.sh","userId":"fad35186-3af1-4a4c-963f-13e0e28db13d","preRequisites":{"fields":[{"type":"text","label":"OC Login"}],"requiredFields":[["oc_login"]],"installDependencyCommands":[""]}}
