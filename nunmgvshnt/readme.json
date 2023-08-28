@@ -1,0 +1,1 @@
+{"id":"nunmgvshnt","title":"test tile","author":"Suyash","category":"Data Generation","description":"aaaa","type":"pyspark","fileName":"nunmgvshnt.py","userId":"7e451fea-d3cd-4ec2-8fe3-94628bee5893","preRequisites":{"fields":[{"type":"text","label":"fg"}],"requiredFields":[["fg"]],"installDependencyCommands":[""]}}
