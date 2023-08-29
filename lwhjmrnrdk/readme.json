@@ -1,0 +1,1 @@
+{"id":"lwhjmrnrdk","title":"Hello PRM","author":"Girish","category":"Openshift","description":"Hello PRM","type":"bash","fileName":"lwhjmrnrdk.sh","userId":"07913f9c-77d4-402c-aa64-7a03f0538381","preRequisites":{"fields":[{"type":"text","label":"greeting"}],"requiredFields":[["greeting"]],"installDependencyCommands":[""]}}
