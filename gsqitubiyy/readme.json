@@ -1,0 +1,1 @@
+{"id":"gsqitubiyy","title":"Code server","author":"Rajesh","category":"CP4D","description":"Code server","type":"bash","fileName":"code-server-deploy.sh","userId":"794f0983-fdbb-41da-ab44-e14b23c3a9ff","preRequisites":{"fields":[{"type":"text","label":"product-id"},{"type":"text","label":"oc-login"}],"requiredFields":[["product-id","oc-login"]],"installDependencyCommands":[""]}}
