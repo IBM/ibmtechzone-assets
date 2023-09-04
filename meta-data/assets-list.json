@@ -1,0 +1,516 @@
+[
+  {
+    "id": "a2206d4841",
+    "title": "Print 1 to n numbers",
+    "author": "test-author",
+    "category": "CP4D",
+    "description": "Print 1 to n numbers taking n as an argument",
+    "type": "bash",
+    "fileName": "a2206d4841.sh",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "n"
+        }
+      ],
+      "requiredFields": [
+        [
+          "n"
+        ]
+      ],
+      "installDependencyCommands": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": "acbb244b5c",
+    "title": "Assset From UI",
+    "author": "test-author",
+    "category": "CP4D",
+    "description": "This asset was uploaded from UI",
+    "type": "python",
+    "fileName": "acbb244b5c.py",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "password",
+          "label": "Pre Requisite 1"
+        },
+        {
+          "type": "text",
+          "label": "Pre Requisite 2"
+        }
+      ],
+      "requiredFields": [
+        [
+          "pre_requisite_1",
+          "pre_requisite_2"
+        ]
+      ],
+      "installDependencyCommands": [
+        "pip3 install pandas"
+      ]
+    }
+  },
+  {
+    "id": "ahltfejoni",
+    "title": "Get openshift cluster node status",
+    "author": "Nupur",
+    "category": "Openshift",
+    "description": "This script checks the status of cluster nodes until all nodes are in the \"Ready\" state, displays the status of nodes and waits for a maximum of 60 seconds before timing out.",
+    "type": "bash",
+    "fileName": "ahltfejoni.sh",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "OC Login"
+        }
+      ],
+      "requiredFields": [
+        [
+          "oc_login"
+        ]
+      ],
+      "installDependencyCommands": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": "almifbbhfb",
+    "title": "Deploy Streamlit App",
+    "author": "Girish",
+    "category": "watsonx.ai",
+    "description": "Deploy Streamlit App",
+    "type": "bash",
+    "fileName": "almifbbhfb.sh",
+    "userId": "07913f9c-77d4-402c-aa64-7a03f0538381",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "app_url"
+        },
+        {
+          "type": "text",
+          "label": "app_name"
+        },
+        {
+          "type": "text",
+          "label": "path_to_requirements_file"
+        },
+        {
+          "type": "text",
+          "label": "path_to_requirements_main_file"
+        },
+        {
+          "type": "text",
+          "label": "branch"
+        }
+      ],
+      "requiredFields": [
+        [
+          "app_url",
+          "app_name",
+          "path_to_requirements_file",
+          "path_to_requirements_main_file",
+          "branch"
+        ]
+      ],
+      "installDependencyCommands": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": "bqdnawvovf",
+    "title": "get List of services",
+    "author": "test-author",
+    "category": "CP4D",
+    "description": "get List of services",
+    "type": "bash",
+    "fileName": "bqdnawvovf.sh",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "oc_login"
+        },
+        {
+          "type": "text",
+          "label": "cp4d_project_name"
+        }
+      ],
+      "requiredFields": [
+        [
+          "oc_login",
+          "cp4d_project_name"
+        ]
+      ],
+      "installDependencyCommands": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": "ciimqntwve",
+    "title": "Get list of services in CP4D",
+    "author": "Rajesh",
+    "category": "CP4D",
+    "description": "Get list of services in CP4D",
+    "type": "bash",
+    "fileName": "ciimqntwve.sh",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "OC Login"
+        }
+      ],
+      "requiredFields": [
+        [
+          "oc_login"
+        ]
+      ],
+      "installDependencyCommands": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": "e0f9dbd408",
+    "title": "List Pods",
+    "author": "test-author",
+    "category": "Watson",
+    "description": "List pods from openshift project",
+    "type": "bash",
+    "fileName": "e0f9dbd408.sh",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "OC Login"
+        },
+        {
+          "type": "text",
+          "label": "Project Name"
+        }
+      ],
+      "requiredFields": [
+        [
+          "oc_login",
+          "project_name"
+        ]
+      ],
+      "installDependencyCommands": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": "fvjodiskvn",
+    "title": "Code-server",
+    "author": "Rajesh",
+    "category": "CP4D",
+    "description": "code-server",
+    "type": "bash",
+    "fileName": "code-server-deploy.sh",
+    "userId": "fad35186-3af1-4a4c-963f-13e0e28db13d",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "product_id"
+        },
+        {
+          "type": "text",
+          "label": "oc_login"
+        }
+      ],
+      "requiredFields": [
+        [
+          "product_id",
+          "oc_login"
+        ]
+      ],
+      "installDependencyCommands": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": "jnfjuguqtz",
+    "title": "Simple PySpark Pi estimation",
+    "author": "Deepak Rangarao",
+    "category": "Openshift",
+    "description": "Simple PySpark Pi estimation",
+    "type": "pyspark",
+    "fileName": "jnfjuguqtz.py",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "num_samples"
+        }
+      ],
+      "requiredFields": [
+        [
+          "num_samples"
+        ]
+      ],
+      "installDependencyCommands": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": "kjuplapoui",
+    "title": "Hello World",
+    "author": "Girish Padmanabhan",
+    "category": "watsonx.ai",
+    "description": "Hello World",
+    "type": "bash",
+    "fileName": "kjuplapoui.sh",
+    "userId": "07913f9c-77d4-402c-aa64-7a03f0538381",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "greeting"
+        }
+      ],
+      "requiredFields": [
+        [
+          "greeting"
+        ]
+      ],
+      "installDependencyCommands": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": "klugcvaqop",
+    "title": "Download file from Github",
+    "author": "Deepak Rangarao",
+    "category": "Data Generation",
+    "description": "Download file from Github",
+    "type": "python",
+    "fileName": "klugcvaqop.py",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "raw_file_url"
+        },
+        {
+          "type": "text",
+          "label": "output_file_name"
+        }
+      ],
+      "requiredFields": [
+        [
+          "raw_file_url",
+          "output_file_name"
+        ]
+      ],
+      "installDependencyCommands": [
+        "pip3 install requests"
+      ]
+    }
+  },
+  {
+    "id": "lwhjmrnrdk",
+    "title": "Hello PRM",
+    "author": "Girish",
+    "category": "Openshift",
+    "description": "Hello PRM",
+    "type": "bash",
+    "fileName": "lwhjmrnrdk.sh",
+    "userId": "07913f9c-77d4-402c-aa64-7a03f0538381",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "greeting"
+        }
+      ],
+      "requiredFields": [
+        [
+          "greeting"
+        ]
+      ],
+      "installDependencyCommands": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": "mhrrrvfopu",
+    "title": "Load data from file",
+    "author": "Deepak Rangarao",
+    "category": "watsonx.data",
+    "description": "Load data from file",
+    "type": "pyspark",
+    "fileName": "mhrrrvfopu.py",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "data_file_name"
+        }
+      ],
+      "requiredFields": [
+        [
+          "data_file_name"
+        ]
+      ],
+      "installDependencyCommands": [
+        "pip3 install ast",
+        "pip3 install time",
+        "pip3 install sys"
+      ]
+    }
+  },
+  {
+    "id": "nfvqtckpwm",
+    "title": "Get openshift cluster node status",
+    "author": "Nupur",
+    "category": "CP4D",
+    "description": "This script checks the status of cluster nodes until all nodes are in the \"Ready\" state, displays the status of nodes in a formatted table-like structure and waits for a maximum of 60 seconds before timing out.",
+    "type": "bash",
+    "fileName": "nfvqtckpwm.sh",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "oc_login"
+        }
+      ],
+      "requiredFields": [
+        [
+          "oc_login"
+        ]
+      ],
+      "installDependencyCommands": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": "ojudtuvhve",
+    "title": "Multi File Asset",
+    "author": "Suyash",
+    "category": "watsonx.data",
+    "description": "This asset contains multiple files.",
+    "type": "python",
+    "fileName": "multi-file-asset/first.py",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "msg"
+        }
+      ],
+      "requiredFields": [
+        [
+          "msg"
+        ]
+      ],
+      "installDependencyCommands": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": "psjfdcukga",
+    "title": "Test",
+    "author": "Catherine Cao",
+    "category": "watsonx.ai",
+    "description": "test",
+    "type": "bash",
+    "fileName": "psjfdcukga.sh",
+    "userId": "d7858ed7-5ace-493f-a0b6-5db324510e69",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "test"
+        }
+      ],
+      "requiredFields": [
+        [
+          "test"
+        ]
+      ],
+      "installDependencyCommands": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": "txalzrcdrr",
+    "title": "Generate dash-formatted password with Ansible",
+    "author": "Aishwarya",
+    "category": "CP4D",
+    "description": "Given the number of segments and the length of each segment, generate a password consisting of these segments that are dash separated in Ansible.",
+    "type": "ansible",
+    "fileName": "txalzrcdrr.yml",
+    "userId": "9deb2783-a1ae-4c77-8e99-d8954753505c",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "number_of_segments"
+        },
+        {
+          "type": "text",
+          "label": "each_segment_length"
+        }
+      ],
+      "requiredFields": [
+        [
+          "number_of_segments",
+          "each_segment_length"
+        ]
+      ],
+      "installDependencyCommands": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": "zvqspswmde",
+    "title": "Test Params",
+    "author": "Suyash",
+    "category": "Data Generation",
+    "description": "Asset to test params",
+    "type": "bash",
+    "fileName": "zvqspswmde.sh",
+    "userId": "7e451fea-d3cd-4ec2-8fe3-94628bee5893",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "Input 1"
+        },
+        {
+          "type": "text",
+          "label": "Input 2"
+        }
+      ],
+      "requiredFields": [
+        [
+          "input_1",
+          "input_2"
+        ]
+      ],
+      "installDependencyCommands": [
+        ""
+      ]
+    }
+  }
+]
