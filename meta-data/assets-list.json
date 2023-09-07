@@ -481,5 +481,6 @@
         ""
       ]
     }
-  }
+  },
+  "{\n    \"id\":\"d2206d4841\",\n    \"title\":\"Print 1 to n numbers\",\n    \"author\":\"test-author\",\n    \"category\":\"CP4D\",\n    \"description\":\"Print 1 to n numbers taking n as an argument\",\n    \"type\":\"bash\",\n    \"fileName\":\"d2206d4841.sh\",\n    \"preRequisites\":{\n        \"fields\":[{\"type\":\"text\",\"label\":\"n\"}],\n        \"requiredFields\":[[\"n\"]],\n        \"installDependencyCommands\":[\"\"]\n    },\n    \"userId\":\"490475a6-a209-4d0b-846c-53f2d6db3d77\"\n}"
 ]
