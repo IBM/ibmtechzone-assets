@@ -1,1 +1,0 @@
-{"id":"gkhqqiqtjs","title":"test delete","author":"Rajesh","category":"watsonx.ai","description":"test delete","type":"bash","fileName":"gkhqqiqtjs.sh","userId":"fad35186-3af1-4a4c-963f-13e0e28db13d","preRequisites":{"fields":[{"type":"text","label":"OC Login"}],"requiredFields":[["oc_login"]],"installDependencyCommands":[""]}}
