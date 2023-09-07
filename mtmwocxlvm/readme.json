@@ -1,0 +1,1 @@
+{"id":"mtmwocxlvm","title":"Simple streamlit app","author":"DEEPAK","category":"watsonx.ai","description":"Simple streamlit app","type":"python","fileName":"mtmwocxlvm.py","userId":"d3d93d9b-2be1-4370-a2c6-00498a82bf99","preRequisites":{"fields":[{"type":"text","label":"whoami"}],"requiredFields":[["whoami"]],"installDependencyCommands":["pip3 install streamlit"]}}
