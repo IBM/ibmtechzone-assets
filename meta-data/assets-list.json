@@ -507,5 +507,36 @@
       ]
     },
     "userId": "490475a6-a209-4d0b-846c-53f2d6db3d77"
+  },
+  {
+    "id": "uaafbocalk",
+    "title": "Test 1",
+    "author": "Suyash",
+    "category": "watsonx.ai",
+    "description": "Code as text",
+    "type": "ansible",
+    "fileName": "uaafbocalk.yml",
+    "userId": "7e451fea-d3cd-4ec2-8fe3-94628bee5893",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "OC Login"
+        },
+        {
+          "type": "text",
+          "label": "dddd"
+        }
+      ],
+      "requiredFields": [
+        [
+          "oc_login",
+          "dddd"
+        ]
+      ],
+      "installDependencyCommands": [
+        ""
+      ]
+    }
   }
 ]
