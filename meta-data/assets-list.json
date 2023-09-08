@@ -507,31 +507,5 @@
       ]
     },
     "userId": "490475a6-a209-4d0b-846c-53f2d6db3d77"
-  },
-  {
-    "id": "mutgttqeae",
-    "title": "Test delete",
-    "author": "Rajesh",
-    "category": "Data Generation",
-    "description": "Test delete",
-    "type": "bash",
-    "fileName": "mutgttqeae.sh",
-    "userId": "fad35186-3af1-4a4c-963f-13e0e28db13d",
-    "preRequisites": {
-      "fields": [
-        {
-          "type": "text",
-          "label": "OC Login"
-        }
-      ],
-      "requiredFields": [
-        [
-          "oc_login"
-        ]
-      ],
-      "installDependencyCommands": [
-        ""
-      ]
-    }
   }
 ]
