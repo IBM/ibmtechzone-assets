@@ -1,0 +1,1 @@
+{"id":"bdlqdsunip","title":"Test 2 ","author":"Suyash","category":"watsonx.governance","description":"File upload","type":"python","fileName":"bdlqdsunip.py","userId":"7e451fea-d3cd-4ec2-8fe3-94628bee5893","preRequisites":{"fields":[{"type":"text","label":"OC Login"}],"requiredFields":[["oc_login"]],"installDependencyCommands":["fff"]}}
