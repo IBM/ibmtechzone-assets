@@ -509,32 +509,6 @@
     "userId": "490475a6-a209-4d0b-846c-53f2d6db3d77"
   },
   {
-    "id": "raxixviofg",
-    "title": "fgfgfh",
-    "author": "Suyash",
-    "category": "watsonx.data",
-    "description": "hfhfhfhfh",
-    "type": "javascript",
-    "fileName": "raxixviofg.js",
-    "userId": "7e451fea-d3cd-4ec2-8fe3-94628bee5893",
-    "preRequisites": {
-      "fields": [
-        {
-          "type": "text",
-          "label": "g"
-        }
-      ],
-      "requiredFields": [
-        [
-          "g"
-        ]
-      ],
-      "installDependencyCommands": [
-        ""
-      ]
-    }
-  },
-  {
     "id": "rexgefjgvx",
     "title": "ddv",
     "author": "Suyash",
