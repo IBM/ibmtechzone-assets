@@ -1,1 +1,0 @@
-{"id":"dzqvamyzip","title":"test delete","author":"Rajesh Kumar","category":"watsonx.ai","description":"Test elete","type":"bash","fileName":"dzqvamyzip.sh","userId":"fad35186-3af1-4a4c-963f-13e0e28db13d","preRequisites":{"fields":[{"type":"text","label":"test1"}],"requiredFields":[["test1"]],"installDependencyCommands":[""]}}
