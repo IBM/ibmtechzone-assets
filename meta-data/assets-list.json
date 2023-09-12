@@ -507,5 +507,31 @@
       ]
     },
     "userId": "490475a6-a209-4d0b-846c-53f2d6db3d77"
+  },
+  {
+    "id": "uqrshrdpap",
+    "title": "test tile",
+    "author": "Suyash Gupte",
+    "category": "watsonx.data",
+    "description": "kbkmgbk",
+    "type": "pyspark",
+    "fileName": "uqrshrdpap.py",
+    "userId": "7e451fea-d3cd-4ec2-8fe3-94628bee5893",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "gfgfg"
+        }
+      ],
+      "requiredFields": [
+        [
+          "gfgfg"
+        ]
+      ],
+      "installDependencyCommands": [
+        ""
+      ]
+    }
   }
 ]
