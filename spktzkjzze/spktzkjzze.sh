@@ -1,12 +1,12 @@
 CWD="$(pwd)"
 
-git clone -b "$branch" "$app_url"
+git clone -b "$branch" "$app_url":streamlit
 
 while ps | grep -q "[ ]$$[ ]$"; do
 sleep 1
 done
 
-cd "$app_name"
+cd streamlit
 #python3 -m venv demoapp
 #source demoapp/bin/activate
 pip install -r "$path_to_requirements_file"
