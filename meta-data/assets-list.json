@@ -496,10 +496,6 @@
         },
         {
           "type": "text",
-          "label": "app_name"
-        },
-        {
-          "type": "text",
           "label": "path_to_requirements_file"
         },
         {
