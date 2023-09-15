@@ -625,31 +625,5 @@
         ""
       ]
     }
-  },
-  {
-    "id": "ntyihgugvf",
-    "title": "test delete",
-    "author": "Rajesh Boda",
-    "category": "watsonx.ai",
-    "description": "test delete",
-    "type": "bash",
-    "fileName": "ntyihgugvf.sh",
-    "userId": "794f0983-fdbb-41da-ab44-e14b23c3a9ff",
-    "preRequisites": {
-      "fields": [
-        {
-          "type": "text",
-          "label": "OC Login"
-        }
-      ],
-      "requiredFields": [
-        [
-          "oc_login"
-        ]
-      ],
-      "installDependencyCommands": [
-        ""
-      ]
-    }
   }
 ]
