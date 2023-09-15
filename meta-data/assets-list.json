@@ -1,0 +1,629 @@
+[
+  {
+    "id": "bdvlfuxcvc",
+    "title": "Test multiple prompts against WatsonX.AI FLAN UL2 model ",
+    "author": "Deepak Rangarao",
+    "category": "watsonx.ai",
+    "description": "NOTE: This should be used in conjunction with the WGET to download files task. Upload a zip file to box/any location with multiple text files and 1 text file for the test data to use, each having a prompt you want to test. Now invoke this task as a 2nd step to read each of the prompt files and execute the prompt against the chosen model and display a F1  score compared to test dataset.",
+    "type": "python",
+    "fileName": "bdvlfuxcvc.py",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "watsonxai_endpoint"
+        },
+        {
+          "type": "text",
+          "label": "ibmcloud_apikey"
+        },
+        {
+          "type": "text",
+          "label": "project_id"
+        }
+      ],
+      "requiredFields": [
+        [
+          "watsonxai_endpoint",
+          "ibmcloud_apikey",
+          "project_id"
+        ]
+      ],
+      "installDependencyCommands": [
+        "pip3 install os",
+        "pip3 install pandas",
+        "pip3 install ibm_watson_machine_learning",
+        "pip3 install scikit-learn"
+      ]
+    }
+  },
+  {
+    "id": "budgsskjow",
+    "title": "Get list of services installed in CP4D",
+    "author": "Rajesh",
+    "category": "CP4D",
+    "description": "Get list of services installed in CP4D",
+    "type": "bash",
+    "fileName": "budgsskjow.sh",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "OC Login"
+        }
+      ],
+      "requiredFields": [
+        [
+          "oc_login"
+        ]
+      ],
+      "installDependencyCommands": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": "egrysskfep",
+    "title": "Cleanup your CP4D Instance",
+    "author": "Girish Padmanabhan",
+    "category": "CP4D",
+    "description": "This asset would clean up your Cloud Pak for Data instance from the specified Open Shift cluster. This would include  all the resources associated with the operator and instance namespaces",
+    "type": "bash",
+    "fileName": "egrysskfep.sh",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "OC Login"
+        },
+        {
+          "type": "text",
+          "label": "CP4D Instance Namespace"
+        }
+      ],
+      "requiredFields": [
+        [
+          "oc_login",
+          "cp4d_instance_namespace"
+        ]
+      ],
+      "installDependencyCommands": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": "enfonhvblc",
+    "title": "Prompting IBM and Open Source models with WatsonX.AI",
+    "author": "Deepak Rangarao",
+    "category": "watsonx.ai",
+    "description": "Prompting Open Source FLAN model with WatsonX.AI, supported model ids: ibm/mpt-7b-instruct2, google/flan-ul2, eleutherai/gpt-neox-20b, google/flan-t5-xxl, bigscience/mt0-xxl",
+    "type": "python",
+    "fileName": "enfonhvblc.py",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "apikey"
+        },
+        {
+          "type": "text",
+          "label": "watsonxai_url"
+        },
+        {
+          "type": "text",
+          "label": "project_id"
+        },
+        {
+          "type": "text",
+          "label": "model_name"
+        },
+        {
+          "type": "text",
+          "label": "prompt_question"
+        },
+        {
+          "type": "text",
+          "label": "prompt_file"
+        }
+      ],
+      "requiredFields": [
+        [
+          "apikey",
+          "watsonxai_url",
+          "project_id",
+          "model_name"
+        ]
+      ],
+      "installDependencyCommands": [
+        "pip3 install ibm_watson_machine_learning;pip3 install os"
+      ]
+    }
+  },
+  {
+    "id": "huwsmgcvcs",
+    "title": "Load data to mysql",
+    "author": "Deepak Rangarao",
+    "category": "Data Generation",
+    "description": "Load data to mysql, required parameters include\n1) Input data file\n2) MySQL connection string\n3) New table to be created/appended",
+    "type": "python",
+    "fileName": "huwsmgcvcs.py",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "conn_string"
+        },
+        {
+          "type": "text",
+          "label": "input_data_file"
+        },
+        {
+          "type": "text",
+          "label": "table_name"
+        }
+      ],
+      "requiredFields": [
+        [
+          "conn_string",
+          "input_data_file",
+          "table_name"
+        ]
+      ],
+      "installDependencyCommands": [
+        "pip3 install pandas;pip3 install sqlalchemy;pip3 install mysql-connector-python"
+      ]
+    }
+  },
+  {
+    "id": "iphgftvmqg",
+    "title": "Get Openshift Cluster Node Status",
+    "author": "Nupur Negi",
+    "category": "Openshift",
+    "description": "This script checks the status of cluster nodes until all nodes are in the 'Ready' state, displays the status of nodes and waits for a maximum of 60 seconds before timing out.",
+    "type": "bash",
+    "fileName": "iphgftvmqg.sh",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "OC Login"
+        }
+      ],
+      "requiredFields": [
+        [
+          "oc_login"
+        ]
+      ],
+      "installDependencyCommands": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": "jnimozvfyo",
+    "title": "Check Catalog Operator",
+    "author": "Deepak Rangarao",
+    "category": "Openshift",
+    "description": "Check the OLM objects for any issues with the Catalog Operator",
+    "type": "bash",
+    "fileName": "jnimozvfyo.sh",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "OC Login"
+        }
+      ],
+      "requiredFields": [
+        [
+          "oc_login"
+        ]
+      ],
+      "installDependencyCommands": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": "jpwikatqzb",
+    "title": "Access WatsonX.Data using Apache Spark",
+    "author": "Deepak Rangarao",
+    "category": "watsonx.data",
+    "description": "Access WatsonX.Data using Apache Spark, you will provide details to connect to the WatsonX.Data instance which will automatically update the spark config and you should be able to interactively use either PySpark or spark-sql to connect to and query WatsonX.Data. ",
+    "type": "pyspark",
+    "fileName": "jpwikatqzb.py",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "app_name"
+        }
+      ],
+      "requiredFields": [
+        [
+          "app_name"
+        ]
+      ],
+      "installDependencyCommands": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": "kdfzmbllnj",
+    "title": "Get CRM information using Stepzen",
+    "author": "Deepak Rangarao",
+    "category": "watsonx.data",
+    "description": "Get CRM information using Stepzen",
+    "type": "python",
+    "fileName": "kdfzmbllnj.py",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "stepzen_auth"
+        },
+        {
+          "type": "text",
+          "label": "stepzen_url"
+        },
+        {
+          "type": "text",
+          "label": "stepzen_query"
+        }
+      ],
+      "requiredFields": [
+        [
+          "stepzen_auth",
+          "stepzen_url",
+          "stepzen_query"
+        ]
+      ],
+      "installDependencyCommands": [
+        "pip3 install urllib3==1.26.6",
+        "pip3 install requests",
+        "pip3 install json"
+      ]
+    }
+  },
+  {
+    "id": "kwhkajvjfg",
+    "title": "Download file using WGET",
+    "author": "Deepak Rangarao",
+    "category": "watsonx.data",
+    "description": "Download file using WGET, check to see if it is a zip file and unzip if needed.",
+    "type": "bash",
+    "fileName": "kwhkajvjfg.sh",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "wget_url"
+        }
+      ],
+      "requiredFields": [
+        [
+          "wget_url"
+        ]
+      ],
+      "installDependencyCommands": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": "kxybylxlaa",
+    "title": "Get Openshift node status",
+    "author": "Deepak Rangarao",
+    "category": "Openshift",
+    "description": "Get Openshift node status and save results to a file in the data directory. This task requires 1 parameter the oc login for the openshift cluster.",
+    "type": "bash",
+    "fileName": "kxybylxlaa.sh",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "OC Login"
+        }
+      ],
+      "requiredFields": [
+        [
+          "oc_login"
+        ]
+      ],
+      "installDependencyCommands": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": "mtmwocxlvm",
+    "title": "Simple streamlit app",
+    "author": "DEEPAK",
+    "category": "watsonx.ai",
+    "description": "Simple streamlit app",
+    "type": "python",
+    "fileName": "mtmwocxlvm.py",
+    "userId": "d3d93d9b-2be1-4370-a2c6-00498a82bf99",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "whoami"
+        }
+      ],
+      "requiredFields": [
+        [
+          "whoami"
+        ]
+      ],
+      "installDependencyCommands": [
+        "pip3 install streamlit"
+      ]
+    }
+  },
+  {
+    "id": "oeksnwcnck",
+    "title": "View and search files in a folder",
+    "author": "Deepak Rangarao",
+    "category": "Openshift",
+    "description": "View and search files in a folder called logs. One input parameter to identify file pattern (Ex: *.log will pick all files with an extension .log). ",
+    "type": "python",
+    "fileName": "oeksnwcnck.py",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "file_pattern"
+        }
+      ],
+      "requiredFields": [
+        [
+          "file_pattern"
+        ]
+      ],
+      "installDependencyCommands": [
+        "pip3 install streamlit",
+        "pip3 install os",
+        "pip3 install fnmatch"
+      ]
+    }
+  },
+  {
+    "id": "okivtsewst",
+    "title": "Check OCP pods",
+    "author": "Khanh",
+    "category": "Openshift",
+    "description": "Check OCP pods",
+    "type": "bash",
+    "fileName": "okivtsewst.sh",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "OC Login"
+        },
+        {
+          "type": "text",
+          "label": "cp4d_project_name"
+        }
+      ],
+      "requiredFields": [
+        [
+          "oc_login",
+          "cp4d_project_name"
+        ]
+      ],
+      "installDependencyCommands": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": "podztkfggi",
+    "title": "Faker based customer data generation",
+    "author": "Sarah Esmail",
+    "category": "Data Generation",
+    "description": "Faker based customer data generation",
+    "type": "python",
+    "fileName": "podztkfggi.py",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "num_records"
+        }
+      ],
+      "requiredFields": [
+        [
+          "num_records"
+        ]
+      ],
+      "installDependencyCommands": [
+        "pip3 install faker",
+        "pip3 install os"
+      ]
+    }
+  },
+  {
+    "id": "qhjiwzkkoi",
+    "title": "Summary statistics of dataset",
+    "author": "Deepak Rangarao",
+    "category": "Data Generation",
+    "description": "Summary statistics of dataset, requires the following input parameters\n1) Connection string\n2) Table name",
+    "type": "python",
+    "fileName": "qhjiwzkkoi.py",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "conn_string"
+        },
+        {
+          "type": "text",
+          "label": "table_name"
+        }
+      ],
+      "requiredFields": [
+        [
+          "conn_string",
+          "table_name"
+        ]
+      ],
+      "installDependencyCommands": [
+        "pip3 install pandas",
+        "pip3 install pandas_profiling",
+        "pip3 install streamlit",
+        "pip3 install sqlalchemy",
+        "pip3 install streamlit_pandas_profiling",
+        "pip3 install mysql-connector-python"
+      ]
+    }
+  },
+  {
+    "id": "rmyxmmaebd",
+    "title": "Get geolocation based on address",
+    "author": "Deepak Rangarao",
+    "category": "watsonx.data",
+    "description": "Get geolocation based on address",
+    "type": "python",
+    "fileName": "rmyxmmaebd.py",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "address_info"
+        }
+      ],
+      "requiredFields": [
+        [
+          "address_info"
+        ]
+      ],
+      "installDependencyCommands": [
+        "pip3 install geopy"
+      ]
+    }
+  },
+  {
+    "id": "spktzkjzze",
+    "title": "Deploy Streamlit app v4",
+    "author": "catherine.cao@ibm.com",
+    "category": "watsonx.ai",
+    "description": "test 4",
+    "type": "bash",
+    "fileName": "spktzkjzze.sh",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "app_url"
+        },
+        {
+          "type": "text",
+          "label": "app_name"
+        },
+        {
+          "type": "text",
+          "label": "path_to_requirements_file"
+        },
+        {
+          "type": "text",
+          "label": "path_to_requirements_main_file"
+        },
+        {
+          "type": "text",
+          "label": "branch"
+        }
+      ],
+      "requiredFields": [
+        [
+          "app_url",
+          "app_name",
+          "path_to_requirements_file",
+          "path_to_requirements_main_file",
+          "branch"
+        ]
+      ],
+      "installDependencyCommands": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": "vxciaoktmj",
+    "title": "Generate sample customer data",
+    "author": "Deepak Rangarao",
+    "category": "Data Generation",
+    "description": "Using Python Faker module to generate sample customer data",
+    "type": "python",
+    "fileName": "vxciaoktmj.py",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "num_records"
+        }
+      ],
+      "requiredFields": [
+        [
+          "num_records"
+        ]
+      ],
+      "installDependencyCommands": [
+        "pip3 install Faker"
+      ]
+    }
+  },
+  {
+    "id": "zfcorgmefd",
+    "title": "Check Cloud Pak for Data Operators",
+    "author": "Deepak Rangarao",
+    "category": "Openshift",
+    "description": "Check Cloud Pak for Data Operators, requires the oc login as a parameter.",
+    "type": "bash",
+    "fileName": "zfcorgmefd.sh",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "OC Login"
+        }
+      ],
+      "requiredFields": [
+        [
+          "oc_login"
+        ]
+      ],
+      "installDependencyCommands": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": "zsjxqjlmkp",
+    "title": "Get Openshift Operator status",
+    "author": "Deepak Rangarao",
+    "category": "Openshift",
+    "description": "Get Openshift Operator status, this requires the OC LOGIN as an input parameter.",
+    "type": "bash",
+    "fileName": "zsjxqjlmkp.sh",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "OC Login"
+        }
+      ],
+      "requiredFields": [
+        [
+          "oc_login"
+        ]
+      ],
+      "installDependencyCommands": [
+        ""
+      ]
+    }
+  }
+]
