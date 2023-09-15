@@ -510,7 +510,6 @@
       "requiredFields": [
         [
           "app_url",
-          "app_name",
           "path_to_requirements_file",
           "path_to_requirements_main_file",
           "branch"
