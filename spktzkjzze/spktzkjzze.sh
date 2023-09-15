@@ -1,6 +1,6 @@
 CWD="$(pwd)"
 
-git clone -b "$branch" "$app_url":streamlit
+git clone -b "$branch" "$app_url" streamlit
 
 while ps | grep -q "[ ]$$[ ]$"; do
 sleep 1
