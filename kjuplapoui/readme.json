@@ -1,1 +1,0 @@
-{"id":"kjuplapoui","title":"Hello World","author":"Girish Padmanabhan","category":"watsonx.ai","description":"Hello World","type":"bash","fileName":"kjuplapoui.sh","userId":"07913f9c-77d4-402c-aa64-7a03f0538381","preRequisites":{"fields":[{"type":"text","label":"greeting"}],"requiredFields":[["greeting"]],"installDependencyCommands":[""]}}
