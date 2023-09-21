@@ -1,0 +1,1 @@
+{"id":"xnqiuyefof","title":"jos customer generation","author":"Rangarao Deepak","category":"watsonx.data","description":"xxx","type":"python","fileName":"xnqiuyefof.py","userId":"85563d2a-96ba-4a98-8cca-e58a9ab6398e","preRequisites":{"fields":[{"type":"text","label":"num_records"}],"requiredFields":[["num_records"]],"installDependencyCommands":["pip3 install faker"]}}
