@@ -799,5 +799,31 @@
         "kkk"
       ]
     }
+  },
+  {
+    "id": "kdgfrqyiis",
+    "title": "Edit",
+    "author": "Suyash Gupte",
+    "category": "watsonx.data",
+    "description": "eeqee",
+    "type": "python",
+    "fileName": "kdgfrqyiis.py",
+    "userId": "7e451fea-d3cd-4ec2-8fe3-94628bee5893",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "v"
+        }
+      ],
+      "requiredFields": [
+        [
+          "v"
+        ]
+      ],
+      "installDependencyCommands": [
+        ""
+      ]
+    }
   }
 ]
