@@ -237,6 +237,32 @@
     }
   },
   {
+    "id": "filaepptvc",
+    "title": "test 1",
+    "author": "Suyash Gupte",
+    "category": "watsonx.data",
+    "description": "sdsff",
+    "type": "pyspark",
+    "fileName": "filaepptvc.py",
+    "userId": "7e451fea-d3cd-4ec2-8fe3-94628bee5893",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "OC Login"
+        }
+      ],
+      "requiredFields": [
+        [
+          "oc_login"
+        ]
+      ],
+      "installDependencyCommands": [
+        ""
+      ]
+    }
+  },
+  {
     "id": "fvjodiskvn",
     "title": "Code-server",
     "author": "Rajesh",
@@ -259,6 +285,32 @@
       "requiredFields": [
         [
           "product_id",
+          "oc_login"
+        ]
+      ],
+      "installDependencyCommands": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": "hbvvbpsuvn",
+    "title": "test tile",
+    "author": "Suyash Gupte",
+    "category": "watsonx.data",
+    "description": "tes",
+    "type": "python",
+    "fileName": "jfwkicnbwh.py",
+    "userId": "7e451fea-d3cd-4ec2-8fe3-94628bee5893",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "OC Login"
+        }
+      ],
+      "requiredFields": [
+        [
           "oc_login"
         ]
       ],
@@ -350,6 +402,35 @@
     }
   },
   {
+    "id": "ncgvegjdwo",
+    "title": "Edit Asset",
+    "author": "Suyash Gupte",
+    "category": "watsonx.governance",
+    "description": "Will edit this later",
+    "type": "python",
+    "fileName": "ncgvegjdwo.py",
+    "userId": "7e451fea-d3cd-4ec2-8fe3-94628bee5893",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "edit 1"
+        }
+      ],
+      "requiredFields": [
+        [
+          "edit_1"
+        ]
+      ],
+      "installDependencyCommands": [
+        "test1",
+        "test2",
+        "test3",
+        ""
+      ]
+    }
+  },
+  {
     "id": "nfvqtckpwm",
     "title": "Get openshift cluster node status",
     "author": "Nupur",
@@ -422,6 +503,38 @@
       ],
       "installDependencyCommands": [
         ""
+      ]
+    }
+  },
+  {
+    "id": "rgbsvmdgiv",
+    "title": "Non Zip Asset",
+    "author": "Suyash Gupte",
+    "category": "watsonx.data",
+    "description": "Edit title",
+    "type": "python",
+    "fileName": "rgbsvmdgiv.py",
+    "userId": "7e451fea-d3cd-4ec2-8fe3-94628bee5893",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "OC Login"
+        },
+        {
+          "type": "text",
+          "label": "test"
+        }
+      ],
+      "requiredFields": [
+        [
+          "oc_login",
+          "test"
+        ]
+      ],
+      "installDependencyCommands": [
+        "hello",
+        "hello"
       ]
     }
   },
