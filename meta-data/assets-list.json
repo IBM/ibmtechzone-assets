@@ -547,7 +547,7 @@
     "category": "watsonx.ai",
     "description": "Description",
     "type": "python",
-    "fileName": "multi-file-asset/first.py",
+    "fileName": "multi-file-asset/second.py",
     "userId": "7e451fea-d3cd-4ec2-8fe3-94628bee5893",
     "preRequisites": {
       "fields": [
