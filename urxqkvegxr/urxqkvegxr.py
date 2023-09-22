@@ -1,5 +1,3 @@
-import os
-from second import imported_function
-
-print("This was printed in first file!")
-imported_function(os.environ["msg"])
+def imported_function(msg):
+    print(msg)
+    print("This message was printed from second file")
