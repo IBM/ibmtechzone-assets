@@ -1,0 +1,1 @@
+{"id":"ncgvegjdwo","title":"Edit Asset","author":"Suyash Gupte","category":"watsonx.governance","description":"Will edit this later","type":"python","fileName":"ncgvegjdwo.py","userId":"7e451fea-d3cd-4ec2-8fe3-94628bee5893","preRequisites":{"fields":[{"type":"text","label":"edit 1"}],"requiredFields":[["edit_1"]],"installDependencyCommands":["test1","test2","test3",""]}}
