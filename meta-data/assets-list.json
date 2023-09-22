@@ -507,5 +507,37 @@
         "pip3 install faker"
       ]
     }
+  },
+  {
+    "id": "urxqkvegxr",
+    "title": "Non Zip Edit",
+    "author": "Suyash Gupte",
+    "category": "watsonx.ai",
+    "description": "This description will be edited",
+    "type": "python",
+    "fileName": "urxqkvegxr.py",
+    "userId": "7e451fea-d3cd-4ec2-8fe3-94628bee5893",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "OC Login"
+        },
+        {
+          "type": "text",
+          "label": "fhfh"
+        }
+      ],
+      "requiredFields": [
+        [
+          "oc_login",
+          "fhfh"
+        ]
+      ],
+      "installDependencyCommands": [
+        "hello",
+        "heelo1"
+      ]
+    }
   }
 ]
