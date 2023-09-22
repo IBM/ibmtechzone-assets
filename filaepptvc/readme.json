@@ -1,0 +1,1 @@
+{"id":"filaepptvc","title":"test 1","author":"Suyash Gupte","category":"watsonx.data","description":"sdsff","type":"pyspark","fileName":"filaepptvc.py","userId":"7e451fea-d3cd-4ec2-8fe3-94628bee5893","preRequisites":{"fields":[{"type":"text","label":"OC Login"}],"requiredFields":[["oc_login"]],"installDependencyCommands":[""]}}
