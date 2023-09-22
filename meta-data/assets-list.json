@@ -510,7 +510,7 @@
   },
   {
     "id": "urxqkvegxr",
-    "title": "Non Zip Edit",
+    "title": "Non Zip Edited",
     "author": "Suyash Gupte",
     "category": "watsonx.ai",
     "description": "This description is edited",
@@ -525,13 +525,13 @@
         },
         {
           "type": "text",
-          "label": "fhfh"
+          "label": "test"
         }
       ],
       "requiredFields": [
         [
           "oc_login",
-          "fhfh"
+          "test"
         ]
       ],
       "installDependencyCommands": [
