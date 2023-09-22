@@ -268,34 +268,6 @@
     }
   },
   {
-    "id": "hbvvbpsuvn",
-    "title": "Edit Demo",
-    "author": "Suyash Gupte",
-    "category": "watsonx.data",
-    "description": "Will edit this later",
-    "type": "python",
-    "fileName": "hbvvbpsuvn.py",
-    "userId": "7e451fea-d3cd-4ec2-8fe3-94628bee5893",
-    "preRequisites": {
-      "fields": [
-        {
-          "type": "text",
-          "label": "edit"
-        }
-      ],
-      "requiredFields": [
-        [
-          "edit"
-        ]
-      ],
-      "installDependencyCommands": [
-        "hello",
-        "anc",
-        "hj"
-      ]
-    }
-  },
-  {
     "id": "jnfjuguqtz",
     "title": "Simple PySpark Pi estimation",
     "author": "Deepak Rangarao",
