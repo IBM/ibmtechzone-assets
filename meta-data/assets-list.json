@@ -582,7 +582,7 @@
     "title": "Test delete",
     "author": "Rajesh Kumar",
     "category": "watsonx.ai",
-    "description": "test delete",
+    "description": "test delete description",
     "type": "bash",
     "fileName": "apfbrmjylr.sh",
     "userId": "fad35186-3af1-4a4c-963f-13e0e28db13d",
