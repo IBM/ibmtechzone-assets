@@ -659,5 +659,31 @@
         ""
       ]
     }
+  },
+  {
+    "id": "xschnmjkaj",
+    "title": "Fix Db2 Certificates",
+    "author": "Joseph Kozhaya",
+    "category": "CP4D",
+    "description": "Bash script to fix db2 certificates by running a script to refresh certs.",
+    "type": "bash",
+    "fileName": "xschnmjkaj.sh",
+    "userId": "34c4a076-b45e-4ff4-8dc3-f0bcee20ece5",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "OC Login"
+        }
+      ],
+      "requiredFields": [
+        [
+          "oc_login"
+        ]
+      ],
+      "installDependencyCommands": [
+        ""
+      ]
+    }
   }
 ]
