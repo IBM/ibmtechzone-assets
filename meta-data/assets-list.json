@@ -633,5 +633,31 @@
         ""
       ]
     }
+  },
+  {
+    "id": "becutczryh",
+    "title": "Refresh Db2 certs",
+    "author": "Joseph Kozhaya",
+    "category": "CP4D",
+    "description": "Simple script to refresh db2 certificates. This is specific example for db2u pod for OpenPages on Cloud Pak for Data but the approach works for any db2u pod.",
+    "type": "bash",
+    "fileName": "becutczryh.sh",
+    "userId": "34c4a076-b45e-4ff4-8dc3-f0bcee20ece5",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "OC Login"
+        }
+      ],
+      "requiredFields": [
+        [
+          "oc_login"
+        ]
+      ],
+      "installDependencyCommands": [
+        ""
+      ]
+    }
   }
 ]
