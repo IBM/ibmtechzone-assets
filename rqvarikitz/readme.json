@@ -1,1 +1,0 @@
-{"id":"rqvarikitz","title":"test delete","author":"Rajesh Boda","category":"watsonx.ai","description":"This is for testing delete","type":"bash","fileName":"rqvarikitz.sh","userId":"dca7d5cf-5f72-489d-86d2-ff719b53e87e","preRequisites":{"fields":[{"type":"text","label":"OC Login"}],"requiredFields":[["oc_login"]],"installDependencyCommands":[""]}}
