@@ -602,5 +602,36 @@
         ""
       ]
     }
+  },
+  {
+    "id": "lncptjmtcn",
+    "title": "Code-server",
+    "author": "Rajesh Kumar",
+    "category": "CP4D",
+    "description": "Code-server",
+    "type": "bash",
+    "fileName": "code-server-deploy.sh",
+    "userId": "fad35186-3af1-4a4c-963f-13e0e28db13d",
+    "preRequisites": {
+      "fields": [
+        {
+          "type": "text",
+          "label": "product_id"
+        },
+        {
+          "type": "text",
+          "label": "oc_login"
+        }
+      ],
+      "requiredFields": [
+        [
+          "product_id",
+          "oc_login"
+        ]
+      ],
+      "installDependencyCommands": [
+        ""
+      ]
+    }
   }
 ]
