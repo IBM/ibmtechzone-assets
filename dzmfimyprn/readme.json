@@ -1,0 +1,1 @@
+{"id":"dzmfimyprn","title":"test delete","author":"Rajesh Boda","category":"CP4D","description":"test delete","type":"bash","fileName":"dzmfimyprn.sh","userId":"dca7d5cf-5f72-489d-86d2-ff719b53e87e","preRequisites":{"fields":[{"type":"text","label":"OC Login"}],"requiredFields":[["oc_login"]],"installDependencyCommands":[""]}}
