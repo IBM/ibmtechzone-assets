@@ -1,0 +1,17 @@
+{
+    "id":"d2206d4833",
+    "title":"Print 1 to n numbers",
+    "author":"test-author",
+    "category":"CP4D",
+    "description":"Print 1 to n numbers taking n as an argument",
+    "type":"bash",
+    "assetURL": "https://github.com/nupurnegi/CodackAutomation.git",
+    "fileName":"d2206d4833.sh",
+    "source":"git",
+    "preRequisites":{
+        "fields":[{"type":"text","label":"n"}],
+        "requiredFields":[["n"]],
+        "installDependencyCommands":["npm install"]
+    },
+    "userId":"490475a6-a209-4d0b-846c-53f2d6db3d77"
+}
