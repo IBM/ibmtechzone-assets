@@ -8,7 +8,7 @@ s3_options = {
     'key': ACCESS_KEY,
     'secret': SECRET_KEY,
     'client_kwargs': {
-        'endpoint_url': 'http://your-custom-endpoint:port'
+        'endpoint_url': S3_ENDPOINT
     }
 }
 df = dd.read_csv('s3://'+BUCKET_NAME+'/*.csv', storage_options=s3_options)
