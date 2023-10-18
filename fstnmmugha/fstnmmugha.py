@@ -14,4 +14,5 @@ s3_options = {
     }
 }
 df = dd.read_csv('s3://'+BUCKET_NAME+'/*.csv', storage_options=s3_options)
-df.compute().to_csv('s3://'+TARGET_BUCKET_NAME+'/combined.csv', index=False)
+df.compute().to_csv('combined.csv', index=False)
+# df.compute().to_csv('s3://'+TARGET_BUCKET_NAME+'/combined.csv', index=False)
