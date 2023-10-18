@@ -1,4 +1,5 @@
 import dask.dataframe as dd
+import os
 ACCESS_KEY = os.environ["access_key"]
 SECRET_KEY = os.environ["secret_key"]
 BUCKET_NAME = os.environ["bucket_name"]
