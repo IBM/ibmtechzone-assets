@@ -1,0 +1,29 @@
+{
+  "id": "edrbsnyups",
+  "title": "Test Git Asset",
+  "author": "Girish Padmanabhan",
+  "category": "watsonx.ai",
+  "description": "Git Asset",
+  "type": "bash",
+  "fileName": "Home.sh",
+  "source": "git",
+  "assetURL": "https://github.ibm.com/pgirish/RAG-app",
+  "userId": "07913f9c-77d4-402c-aa64-7a03f0538381",
+  "preRequisites": {
+    "fields": [
+      {
+        "type": "text",
+        "label": "requirements.txt"
+      }
+    ],
+    "requiredFields": [
+      [
+        "requirements.txt"
+      ]
+    ],
+    "installDependencyCommands": [
+      ""
+    ]
+  },
+  "timestamp": "2023-10-20 10:11:22"
+}
