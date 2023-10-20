@@ -1,1 +1,32 @@
-{"id":"e0f9dbd408","title":"List Pods","author":"test-author","category":"Watson","description":"List pods from openshift project","type":"bash","fileName":"e0f9dbd408.sh","preRequisites":{"fields":[{"type":"text","label":"OC Login"},{"type":"text","label":"Project Name"}],"requiredFields":[["oc_login","project_name"]],"installDependencyCommands":[""]}}
+{
+  "id": "e0f9dbd408",
+  "title": "List Pods",
+  "author": "Girish Padmanabhan",
+  "category": "Watson",
+  "description": "List pods from openshift project",
+  "type": "bash",
+  "fileName": "e0f9dbd408.sh",
+  "userId": "07913f9c-77d4-402c-aa64-7a03f0538381",
+  "preRequisites": {
+    "fields": [
+      {
+        "type": "text",
+        "label": "OC Login"
+      },
+      {
+        "type": "text",
+        "label": "Project Name"
+      }
+    ],
+    "requiredFields": [
+      [
+        "oc_login",
+        "project_name"
+      ]
+    ],
+    "installDependencyCommands": [
+      ""
+    ]
+  },
+  "timestamp": "2023-06-20 07:56:07 "
+}

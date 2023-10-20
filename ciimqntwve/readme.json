@@ -1,1 +1,27 @@
-{"id":"ciimqntwve","title":"Get list of services in CP4D","author":"Rajesh","category":"CP4D","description":"Get list of services in CP4D","type":"bash","fileName":"ciimqntwve.sh","preRequisites":{"fields":[{"type":"text","label":"OC Login"}],"requiredFields":[["oc_login"]],"installDependencyCommands":[""]}}
+{
+  "id": "ciimqntwve",
+  "title": "Get list of services in CP4D",
+  "author": "Rajesh Kumar",
+  "category": "CP4D",
+  "description": "Get list of services in CP4D",
+  "type": "bash",
+  "fileName": "ciimqntwve.sh",
+  "userId": "fad35186-3af1-4a4c-963f-13e0e28db13d",
+  "preRequisites": {
+    "fields": [
+      {
+        "type": "text",
+        "label": "OC Login"
+      }
+    ],
+    "requiredFields": [
+      [
+        "oc_login"
+      ]
+    ],
+    "installDependencyCommands": [
+      ""
+    ]
+  },
+  "timestamp": "2023-07-07 06:01:11 "
+}

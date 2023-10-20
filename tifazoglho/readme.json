@@ -1,1 +1,34 @@
-{"id":"tifazoglho","title":"Git Strealit App","author":"Girish Padmanabhan","category":"watsonx.ai","description":"Streamlit application via Git link","type":"python","fileName":"./Home.py","source":"git","assetURL":"https://github.ibm.com/pgirish/RAG-app","userId":"07913f9c-77d4-402c-aa64-7a03f0538381","preRequisites":{"fields":[{"type":"text","label":"requitements_file"},{"type":"text","label":"branch"}],"requiredFields":[["requitements_file","branch"]],"installDependencyCommands":[""]}}
+{
+  "id": "tifazoglho",
+  "title": "Git Strealit App",
+  "author": "Girish Padmanabhan",
+  "category": "watsonx.ai",
+  "description": "Streamlit application via Git link",
+  "type": "python",
+  "fileName": "./Home.py",
+  "source": "git",
+  "assetURL": "https://github.ibm.com/pgirish/RAG-app",
+  "userId": "07913f9c-77d4-402c-aa64-7a03f0538381",
+  "preRequisites": {
+    "fields": [
+      {
+        "type": "text",
+        "label": "requitements_file"
+      },
+      {
+        "type": "text",
+        "label": "branch"
+      }
+    ],
+    "requiredFields": [
+      [
+        "requitements_file",
+        "branch"
+      ]
+    ],
+    "installDependencyCommands": [
+      ""
+    ]
+  },
+  "timestamp": "2023-10-12 05:22:43 "
+}

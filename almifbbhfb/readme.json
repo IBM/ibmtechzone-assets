@@ -1,1 +1,47 @@
-{"id":"almifbbhfb","title":"Deploy Streamlit App","author":"Girish","category":"watsonx.ai","description":"Deploy Streamlit App","type":"bash","fileName":"almifbbhfb.sh","userId":"07913f9c-77d4-402c-aa64-7a03f0538381","preRequisites":{"fields":[{"type":"text","label":"app_url"},{"type":"text","label":"app_name"},{"type":"text","label":"path_to_requirements_file"},{"type":"text","label":"path_to_requirements_main_file"},{"type":"text","label":"branch"}],"requiredFields":[["app_url","app_name","path_to_requirements_file","path_to_requirements_main_file","branch"]],"installDependencyCommands":[""]}}
+{
+  "id": "almifbbhfb",
+  "title": "Deploy Streamlit App",
+  "author": "Girish",
+  "category": "watsonx.ai",
+  "description": "Deploy Streamlit App",
+  "type": "bash",
+  "fileName": "almifbbhfb.sh",
+  "userId": "07913f9c-77d4-402c-aa64-7a03f0538381",
+  "preRequisites": {
+    "fields": [
+      {
+        "type": "text",
+        "label": "app_url"
+      },
+      {
+        "type": "text",
+        "label": "app_name"
+      },
+      {
+        "type": "text",
+        "label": "path_to_requirements_file"
+      },
+      {
+        "type": "text",
+        "label": "path_to_requirements_main_file"
+      },
+      {
+        "type": "text",
+        "label": "branch"
+      }
+    ],
+    "requiredFields": [
+      [
+        "app_url",
+        "app_name",
+        "path_to_requirements_file",
+        "path_to_requirements_main_file",
+        "branch"
+      ]
+    ],
+    "installDependencyCommands": [
+      ""
+    ]
+  },
+  "timestamp": "2023-09-12 16:36:07 "
+}

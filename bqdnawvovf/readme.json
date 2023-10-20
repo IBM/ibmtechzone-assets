@@ -1,1 +1,32 @@
-{"id":"bqdnawvovf","title":"get List of services","author":"test-author","category":"CP4D","description":"get List of services","type":"bash","fileName":"bqdnawvovf.sh","preRequisites":{"fields":[{"type":"text","label":"oc_login"},{"type":"text","label":"cp4d_project_name"}],"requiredFields":[["oc_login","cp4d_project_name"]],"installDependencyCommands":[""]}}
+{
+  "id": "bqdnawvovf",
+  "title": "get List of services",
+  "author": "Girish Padmanabhan",
+  "category": "CP4D",
+  "description": "get List of services",
+  "type": "bash",
+  "fileName": "bqdnawvovf.sh",
+  "userId": "07913f9c-77d4-402c-aa64-7a03f0538381",
+  "preRequisites": {
+    "fields": [
+      {
+        "type": "text",
+        "label": "oc_login"
+      },
+      {
+        "type": "text",
+        "label": "cp4d_project_name"
+      }
+    ],
+    "requiredFields": [
+      [
+        "oc_login",
+        "cp4d_project_name"
+      ]
+    ],
+    "installDependencyCommands": [
+      ""
+    ]
+  },
+  "timestamp": "2023-06-20 15:47:08 "
+}

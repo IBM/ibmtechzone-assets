@@ -1,1 +1,29 @@
-{"id":"mhrrrvfopu","title":"Load data from file","author":"Deepak Rangarao","category":"watsonx.data","description":"Load data from file","type":"pyspark","fileName":"mhrrrvfopu.py","preRequisites":{"fields":[{"type":"text","label":"data_file_name"}],"requiredFields":[["data_file_name"]],"installDependencyCommands":["pip3 install ast","pip3 install time","pip3 install sys"]}}
+{
+  "id": "mhrrrvfopu",
+  "title": "Load data from file",
+  "author": "Deepak Rangarao",
+  "category": "watsonx.data",
+  "description": "Load data from file",
+  "type": "pyspark",
+  "fileName": "mhrrrvfopu.py",
+  "userId": "85563d2a-96ba-4a98-8cca-e58a9ab6398e",
+  "preRequisites": {
+    "fields": [
+      {
+        "type": "text",
+        "label": "data_file_name"
+      }
+    ],
+    "requiredFields": [
+      [
+        "data_file_name"
+      ]
+    ],
+    "installDependencyCommands": [
+      "pip3 install ast",
+      "pip3 install time",
+      "pip3 install sys"
+    ]
+  },
+  "timestamp": "2023-08-03 08:02:19 "
+}

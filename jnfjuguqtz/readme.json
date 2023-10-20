@@ -1,1 +1,27 @@
-{"id":"jnfjuguqtz","title":"Simple PySpark Pi estimation","author":"Deepak Rangarao","category":"Openshift","description":"Simple PySpark Pi estimation","type":"pyspark","fileName":"jnfjuguqtz.py","preRequisites":{"fields":[{"type":"text","label":"num_samples"}],"requiredFields":[["num_samples"]],"installDependencyCommands":[""]}}
+{
+  "id": "jnfjuguqtz",
+  "title": "Simple PySpark Pi estimation",
+  "author": "Deepak Rangarao",
+  "category": "Openshift",
+  "description": "Simple PySpark Pi estimation",
+  "type": "pyspark",
+  "fileName": "jnfjuguqtz.py",
+  "userId": "85563d2a-96ba-4a98-8cca-e58a9ab6398e",
+  "preRequisites": {
+    "fields": [
+      {
+        "type": "text",
+        "label": "num_samples"
+      }
+    ],
+    "requiredFields": [
+      [
+        "num_samples"
+      ]
+    ],
+    "installDependencyCommands": [
+      ""
+    ]
+  },
+  "timestamp": "2023-08-02 17:15:43 "
+}
