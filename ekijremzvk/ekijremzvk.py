@@ -9,9 +9,9 @@ app = Flask(__name__)
 # load environment variable from .env file
 load_dotenv()
 
-service_endpoint=os.environ["COS_SERVICE_ENDPOINT"]
-cos_access_key_id=os.environ["COS_ACCESS_KEY"]
-cos_secret_access_key=os.environ["COS_SECRET_KEY"]
+service_endpoint=os.environ["cos_service_endpoint"]
+cos_access_key_id=os.environ["cos_access_key"]
+cos_secret_access_key=os.environ["cos_secret_key"]
 
 cos_client = boto3.client('s3',
                           endpoint_url = service_endpoint,
