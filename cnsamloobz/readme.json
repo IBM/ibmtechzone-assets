@@ -1,0 +1,41 @@
+{
+  "id": "cnsamloobz",
+  "title": "List COS Buckets",
+  "author": "Joseph Kozhaya",
+  "category": "watsonx.data",
+  "description": "Sample Python code to list all buckets in cloud object storage.\nTo use this, you need to have credentials to IBM COS instance which were generated to include HMAC credentials.",
+  "type": "python",
+  "fileName": "https://github.com/joe4k/cos_utilities/blob/main/getCOSbuckets.py",
+  "source": "git",
+  "assetURL": "https://github.com/joe4k/cos_utilities",
+  "userId": "34c4a076-b45e-4ff4-8dc3-f0bcee20ece5",
+  "preRequisites": {
+    "fields": [
+      {
+        "type": "text",
+        "label": "COS_SERVICE_ENDPOINT"
+      },
+      {
+        "type": "text",
+        "label": "COS_ACCESS_KEY"
+      },
+      {
+        "type": "password",
+        "label": "COS_SECRET_KEY"
+      }
+    ],
+    "requiredFields": [
+      [
+        "cos_service_endpoint",
+        "cos_access_key",
+        "cos_secret_key"
+      ]
+    ],
+    "installDependencyCommands": [
+      "python -m venv .venv",
+      " . .venv/bin/activate",
+      " pip install -r requirements.txt"
+    ]
+  },
+  "timestamp": "1698258336000"
+}
