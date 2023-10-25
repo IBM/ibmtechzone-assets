@@ -1,1 +1,26 @@
-{"id":"zsjxqjlmkp","title":"Get Openshift Operator status","author":"Deepak Rangarao","category":"Openshift","description":"Get Openshift Operator status, this requires the OC LOGIN as an input parameter.","type":"bash","fileName":"zsjxqjlmkp.sh","preRequisites":{"fields":[{"type":"text","label":"OC Login"}],"requiredFields":[["oc_login"]],"installDependencyCommands":[""]}}
+{
+  "id": "zsjxqjlmkp",
+  "title": "Get Openshift Operator status",
+  "author": "Deepak Rangarao",
+  "category": "Openshift",
+  "description": "Get Openshift Operator status, this requires the OC LOGIN as an input parameter.",
+  "type": "bash",
+  "fileName": "zsjxqjlmkp.sh",
+  "preRequisites": {
+    "fields": [
+      {
+        "type": "text",
+        "label": "OC Login"
+      }
+    ],
+    "requiredFields": [
+      [
+        "oc_login"
+      ]
+    ],
+    "installDependencyCommands": [
+      ""
+    ]
+  },
+  "timestamp": "1692839489000"
+}

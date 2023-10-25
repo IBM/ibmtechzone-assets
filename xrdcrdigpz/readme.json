@@ -1,1 +1,27 @@
-{"id":"xrdcrdigpz","title":"Fake customer data","author":"DEEPAK RANGARAO","category":"watsonx.data","description":"Fake customer data","type":"python","fileName":"xrdcrdigpz.py","userId":"5e224805-db45-45c4-8bb1-994e09ed1933","preRequisites":{"fields":[{"type":"text","label":"num_records"}],"requiredFields":[["num_records"]],"installDependencyCommands":["pip3 install faker"]}}
+{
+  "id": "xrdcrdigpz",
+  "title": "Fake customer data",
+  "author": "DEEPAK RANGARAO",
+  "category": "watsonx.data",
+  "description": "Fake customer data",
+  "type": "python",
+  "fileName": "xrdcrdigpz.py",
+  "userId": "5e224805-db45-45c4-8bb1-994e09ed1933",
+  "preRequisites": {
+    "fields": [
+      {
+        "type": "text",
+        "label": "num_records"
+      }
+    ],
+    "requiredFields": [
+      [
+        "num_records"
+      ]
+    ],
+    "installDependencyCommands": [
+      "pip3 install faker"
+    ]
+  },
+  "timestamp": "1696003304000"
+}

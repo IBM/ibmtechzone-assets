@@ -1,1 +1,26 @@
-{"id":"iphgftvmqg","title":"Get Openshift Cluster Node Status","author":"Nupur Negi","category":"Openshift","description":"This script checks the status of cluster nodes until all nodes are in the 'Ready' state, displays the status of nodes and waits for a maximum of 60 seconds before timing out.","type":"bash","fileName":"iphgftvmqg.sh","preRequisites":{"fields":[{"type":"text","label":"OC Login"}],"requiredFields":[["oc_login"]],"installDependencyCommands":[""]}}
+{
+  "id": "iphgftvmqg",
+  "title": "Get Openshift Cluster Node Status",
+  "author": "Nupur Negi",
+  "category": "Openshift",
+  "description": "This script checks the status of cluster nodes until all nodes are in the 'Ready' state, displays the status of nodes and waits for a maximum of 60 seconds before timing out.",
+  "type": "bash",
+  "fileName": "iphgftvmqg.sh",
+  "preRequisites": {
+    "fields": [
+      {
+        "type": "text",
+        "label": "OC Login"
+      }
+    ],
+    "requiredFields": [
+      [
+        "oc_login"
+      ]
+    ],
+    "installDependencyCommands": [
+      ""
+    ]
+  },
+  "timestamp": "1690540781000"
+}
