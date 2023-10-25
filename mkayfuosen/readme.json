@@ -1,0 +1,29 @@
+{
+  "id": "mkayfuosen",
+  "title": "test_upload2",
+  "author": "Nupur Negi",
+  "category": "watsonx.ai",
+  "description": "test",
+  "type": "bash",
+  "fileName": "mkayfuosen.sh",
+  "source": "local",
+  "assetURL": "",
+  "userId": "490475a6-a209-4d0b-846c-53f2d6db3d77",
+  "preRequisites": {
+    "fields": [
+      {
+        "type": "text",
+        "label": "input"
+      }
+    ],
+    "requiredFields": [
+      [
+        "input"
+      ]
+    ],
+    "installDependencyCommands": [
+      ""
+    ]
+  },
+  "timestamp": "1698246732000"
+}
