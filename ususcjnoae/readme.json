@@ -1,0 +1,49 @@
+{
+  "id": "ususcjnoae",
+  "title": "S3 - Install AWS CLI",
+  "author": "Rangarao Deepak",
+  "category": "watsonx.data",
+  "description": "S3 - Install AWS CLI, this task can be used in conjunction with other tasks",
+  "type": "bash",
+  "fileName": "s3ops/install_aws_cli.sh",
+  "source": "git",
+  "assetURL": "https://github.com/drangar/assethub.git",
+  "userId": "85563d2a-96ba-4a98-8cca-e58a9ab6398e",
+  "preRequisites": {
+    "fields": [
+      {
+        "type": "text",
+        "label": "S3_ACCESS_KEY"
+      },
+      {
+        "type": "text",
+        "label": "S3_SECRET_KEY"
+      },
+      {
+        "type": "text",
+        "label": "S3_REGION"
+      },
+      {
+        "type": "text",
+        "label": "S3_ENDPOINT"
+      },
+      {
+        "type": "text",
+        "label": "S3_BUCKET"
+      }
+    ],
+    "requiredFields": [
+      [
+        "s3_access_key",
+        "s3_secret_key",
+        "s3_region",
+        "s3_endpoint",
+        "s3_bucket"
+      ]
+    ],
+    "installDependencyCommands": [
+      ""
+    ]
+  },
+  "timestamp": "1698277315000"
+}
