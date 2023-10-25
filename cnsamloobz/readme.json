@@ -5,7 +5,7 @@
   "category": "watsonx.data",
   "description": "Sample Python code to list all buckets in cloud object storage.\nTo use this, you need to have credentials to IBM COS instance which were generated to include HMAC credentials.",
   "type": "python",
-  "fileName": "https://github.com/joe4k/cos_utilities/blob/main/getCOSbuckets.py",
+  "fileName": "/getCOSbuckets.py",
   "source": "git",
   "assetURL": "https://github.com/joe4k/cos_utilities",
   "userId": "34c4a076-b45e-4ff4-8dc3-f0bcee20ece5",
@@ -37,5 +37,5 @@
       " pip install -r requirements.txt"
     ]
   },
-  "timestamp": "1698258336000"
+  "timestamp": "1698260214000"
 }
