@@ -1,1 +1,27 @@
-{"id":"budgsskjow","title":"Get list of services installed in CP4D","author":"Rajesh","category":"CP4D","description":"Get list of services installed in CP4D","type":"bash","fileName":"budgsskjow.sh","userId": "dca7d5cf-5f72-489d-86d2-ff719b53e87e","preRequisites":{"fields":[{"type":"text","label":"OC Login"}],"requiredFields":[["oc_login"]],"installDependencyCommands":[""]}}
+{
+  "id": "budgsskjow",
+  "title": "Get list of services installed in CP4D",
+  "author": "Rajesh",
+  "category": "CP4D",
+  "description": "Get list of services installed in CP4D",
+  "type": "bash",
+  "fileName": "budgsskjow.sh",
+  "userId": "dca7d5cf-5f72-489d-86d2-ff719b53e87e",
+  "preRequisites": {
+    "fields": [
+      {
+        "type": "text",
+        "label": "OC Login"
+      }
+    ],
+    "requiredFields": [
+      [
+        "oc_login"
+      ]
+    ],
+    "installDependencyCommands": [
+      ""
+    ]
+  },
+  "timestamp": "1688692449000"
+}

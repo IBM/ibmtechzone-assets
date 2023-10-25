@@ -1,1 +1,31 @@
-{"id":"okivtsewst","title":"Check OCP pods","author":"Khanh","category":"Openshift","description":"Check OCP pods","type":"bash","fileName":"okivtsewst.sh","preRequisites":{"fields":[{"type":"text","label":"OC Login"},{"type":"text","label":"cp4d_project_name"}],"requiredFields":[["oc_login","cp4d_project_name"]],"installDependencyCommands":[""]}}
+{
+  "id": "okivtsewst",
+  "title": "Check OCP pods",
+  "author": "Khanh",
+  "category": "Openshift",
+  "description": "Check OCP pods",
+  "type": "bash",
+  "fileName": "okivtsewst.sh",
+  "preRequisites": {
+    "fields": [
+      {
+        "type": "text",
+        "label": "OC Login"
+      },
+      {
+        "type": "text",
+        "label": "cp4d_project_name"
+      }
+    ],
+    "requiredFields": [
+      [
+        "oc_login",
+        "cp4d_project_name"
+      ]
+    ],
+    "installDependencyCommands": [
+      ""
+    ]
+  },
+  "timestamp": "1692963554000"
+}

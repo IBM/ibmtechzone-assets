@@ -1,1 +1,29 @@
-{"id":"oeksnwcnck","title":"View and search files in a folder","author":"Deepak Rangarao","category":"Openshift","description":"View and search files in a folder called logs. One input parameter to identify file pattern (Ex: *.log will pick all files with an extension .log). ","type":"python","fileName":"oeksnwcnck.py","userId": "5e224805-db45-45c4-8bb1-994e09ed1933","preRequisites":{"fields":[{"type":"text","label":"file_pattern"}],"requiredFields":[["file_pattern"]],"installDependencyCommands":["pip3 install streamlit","pip3 install os","pip3 install fnmatch"]}}
+{
+  "id": "oeksnwcnck",
+  "title": "View and search files in a folder",
+  "author": "Deepak Rangarao",
+  "category": "Openshift",
+  "description": "View and search files in a folder called logs. One input parameter to identify file pattern (Ex: *.log will pick all files with an extension .log). ",
+  "type": "python",
+  "fileName": "oeksnwcnck.py",
+  "userId": "5e224805-db45-45c4-8bb1-994e09ed1933",
+  "preRequisites": {
+    "fields": [
+      {
+        "type": "text",
+        "label": "file_pattern"
+      }
+    ],
+    "requiredFields": [
+      [
+        "file_pattern"
+      ]
+    ],
+    "installDependencyCommands": [
+      "pip3 install streamlit",
+      "pip3 install os",
+      "pip3 install fnmatch"
+    ]
+  },
+  "timestamp": "1692839112000"
+}

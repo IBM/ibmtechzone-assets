@@ -1,1 +1,27 @@
-{"id":"vxciaoktmj","title":"Generate sample customer data","author":"Deepak Rangarao","category":"Data Generation","description":"Using Python Faker module to generate sample customer data","type":"python","fileName":"vxciaoktmj.py","userId": "5e224805-db45-45c4-8bb1-994e09ed1933","preRequisites":{"fields":[{"type":"text","label":"num_records"}],"requiredFields":[["num_records"]],"installDependencyCommands":["pip3 install Faker"]}}
+{
+  "id": "vxciaoktmj",
+  "title": "Generate sample customer data",
+  "author": "Deepak Rangarao",
+  "category": "Data Generation",
+  "description": "Using Python Faker module to generate sample customer data",
+  "type": "python",
+  "fileName": "vxciaoktmj.py",
+  "userId": "5e224805-db45-45c4-8bb1-994e09ed1933",
+  "preRequisites": {
+    "fields": [
+      {
+        "type": "text",
+        "label": "num_records"
+      }
+    ],
+    "requiredFields": [
+      [
+        "num_records"
+      ]
+    ],
+    "installDependencyCommands": [
+      "pip3 install Faker"
+    ]
+  },
+  "timestamp": "1692844597000"
+}
