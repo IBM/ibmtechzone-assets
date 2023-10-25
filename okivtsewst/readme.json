@@ -6,7 +6,7 @@
   "description": "Check OCP pods",
   "type": "bash",
   "fileName": "okivtsewst.sh",
-  "userId": "default",
+  "userId": "964de1f2-e0ec-4f7e-8834-3b9e5ae1af2c",
   "preRequisites": {
     "fields": [
       {
