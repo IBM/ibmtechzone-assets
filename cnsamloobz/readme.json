@@ -34,8 +34,8 @@
     "installDependencyCommands": [
       "python -m venv .venv",
       " . .venv/bin/activate",
-      " pip install -r requirements.txt"
+      " pip install -r cos_utilities/requirements.txt"
     ]
   },
-  "timestamp": "1698260214000"
+  "timestamp": "1698260878000"
 }
