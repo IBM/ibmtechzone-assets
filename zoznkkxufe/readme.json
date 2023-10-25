@@ -1,1 +1,54 @@
-{"id":"zoznkkxufe","title":"Load WatsonX Data from Local File","author":"DEEPAK RANGARAO","category":"watsonx.data","description":"Load WatsonX Data from Local File","type":"pyspark","fileName":"zoznkkxufe.py","source":"local","assetURL":"","userId":"5e224805-db45-45c4-8bb1-994e09ed1933","preRequisites":{"fields":[{"type":"text","label":"source_file"},{"type":"text","label":"thrift_url"},{"type":"text","label":"ibmlhapi_key"},{"type":"text","label":"iceberg_bucket"},{"type":"text","label":"target_schema"},{"type":"text","label":"target_table"}],"requiredFields":[["source_file","thrift_url","ibmlhapi_key","iceberg_bucket","target_schema","target_table"]],"installDependencyCommands":[""]}}
+{
+  "id": "zoznkkxufe",
+  "title": "Load WatsonX Data from Local File",
+  "author": "DEEPAK RANGARAO",
+  "category": "watsonx.data",
+  "description": "Load WatsonX Data from Local File",
+  "type": "pyspark",
+  "fileName": "zoznkkxufe.py",
+  "source": "local",
+  "assetURL": "",
+  "userId": "5e224805-db45-45c4-8bb1-994e09ed1933",
+  "preRequisites": {
+    "fields": [
+      {
+        "type": "text",
+        "label": "source_file"
+      },
+      {
+        "type": "text",
+        "label": "thrift_url"
+      },
+      {
+        "type": "text",
+        "label": "ibmlhapi_key"
+      },
+      {
+        "type": "text",
+        "label": "iceberg_bucket"
+      },
+      {
+        "type": "text",
+        "label": "target_schema"
+      },
+      {
+        "type": "text",
+        "label": "target_table"
+      }
+    ],
+    "requiredFields": [
+      [
+        "source_file",
+        "thrift_url",
+        "ibmlhapi_key",
+        "iceberg_bucket",
+        "target_schema",
+        "target_table"
+      ]
+    ],
+    "installDependencyCommands": [
+      ""
+    ]
+  },
+  "timestamp": "1697650489000"
+}

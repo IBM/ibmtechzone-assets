@@ -1,1 +1,26 @@
-{"id":"jnimozvfyo","title":"Check Catalog Operator","author":"Deepak Rangarao","category":"Openshift","description":"Check the OLM objects for any issues with the Catalog Operator","type":"bash","fileName":"jnimozvfyo.sh","preRequisites":{"fields":[{"type":"text","label":"OC Login"}],"requiredFields":[["oc_login"]],"installDependencyCommands":[""]}}
+{
+  "id": "jnimozvfyo",
+  "title": "Check Catalog Operator",
+  "author": "Deepak Rangarao",
+  "category": "Openshift",
+  "description": "Check the OLM objects for any issues with the Catalog Operator",
+  "type": "bash",
+  "fileName": "jnimozvfyo.sh",
+  "preRequisites": {
+    "fields": [
+      {
+        "type": "text",
+        "label": "OC Login"
+      }
+    ],
+    "requiredFields": [
+      [
+        "oc_login"
+      ]
+    ],
+    "installDependencyCommands": [
+      ""
+    ]
+  },
+  "timestamp": "1692817706000"
+}
