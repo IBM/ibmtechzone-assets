@@ -6,6 +6,7 @@
   "description": "View and search files in a folder called logs. One input parameter to identify file pattern (Ex: *.log will pick all files with an extension .log). ",
   "type": "python",
   "fileName": "oeksnwcnck.py",
+  "userId": "5e224805-db45-45c4-8bb1-994e09ed1933",
   "preRequisites": {
     "fields": [
       {

@@ -6,6 +6,7 @@
   "description": "Access WatsonX.Data using Apache Spark, you will provide details to connect to the WatsonX.Data instance which will automatically update the spark config and you should be able to interactively use either PySpark or spark-sql to connect to and query WatsonX.Data. ",
   "type": "pyspark",
   "fileName": "jpwikatqzb.py",
+  "userId": "5e224805-db45-45c4-8bb1-994e09ed1933",
   "preRequisites": {
     "fields": [
       {

@@ -6,6 +6,7 @@
   "description": "Get Openshift node status and save results to a file in the data directory. This task requires 1 parameter the oc login for the openshift cluster.",
   "type": "bash",
   "fileName": "kxybylxlaa.sh",
+  "userId": "5e224805-db45-45c4-8bb1-994e09ed1933",
   "preRequisites": {
     "fields": [
       {

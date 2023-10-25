@@ -6,6 +6,7 @@
   "description": "Check Cloud Pak for Data Operators, requires the oc login as a parameter.",
   "type": "bash",
   "fileName": "zfcorgmefd.sh",
+  "userId": "5e224805-db45-45c4-8bb1-994e09ed1933",
   "preRequisites": {
     "fields": [
       {

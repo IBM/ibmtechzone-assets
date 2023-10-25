@@ -6,6 +6,7 @@
   "description": "Get list of services installed in CP4D",
   "type": "bash",
   "fileName": "budgsskjow.sh",
+  "userId": "dca7d5cf-5f72-489d-86d2-ff719b53e87e",
   "preRequisites": {
     "fields": [
       {

@@ -6,6 +6,7 @@
   "description": "Load data to mysql, required parameters include\n1) Input data file\n2) MySQL connection string\n3) New table to be created/appended",
   "type": "python",
   "fileName": "huwsmgcvcs.py",
+  "userId": "5e224805-db45-45c4-8bb1-994e09ed1933",
   "preRequisites": {
     "fields": [
       {

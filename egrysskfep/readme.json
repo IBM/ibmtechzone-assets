@@ -6,6 +6,7 @@
   "description": "This asset would clean up your Cloud Pak for Data instance from the specified Open Shift cluster. This would include  all the resources associated with the operator and instance namespaces",
   "type": "bash",
   "fileName": "egrysskfep.sh",
+  "userId": "2a757938-cca9-4d36-a0c7-d1a511d30110",
   "preRequisites": {
     "fields": [
       {

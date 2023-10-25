@@ -6,6 +6,7 @@
   "description": "test 4",
   "type": "bash",
   "fileName": "spktzkjzze.sh",
+  "userId": "default",
   "preRequisites": {
     "fields": [
       {
