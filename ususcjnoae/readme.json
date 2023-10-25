@@ -13,23 +13,23 @@
     "fields": [
       {
         "type": "text",
-        "label": "S3_ACCESS_KEY"
+        "label": "s3_access_key"
       },
       {
         "type": "text",
-        "label": "S3_SECRET_KEY"
+        "label": "s3_secret_key"
       },
       {
         "type": "text",
-        "label": "S3_REGION"
+        "label": "s3_region"
       },
       {
         "type": "text",
-        "label": "S3_ENDPOINT"
+        "label": "s3_endpoint"
       },
       {
         "type": "text",
-        "label": "S3_BUCKET"
+        "label": "s3_bucket"
       }
     ],
     "requiredFields": [
@@ -45,5 +45,5 @@
       ""
     ]
   },
-  "timestamp": "1698277315000"
+  "timestamp": "1698278078000"
 }
