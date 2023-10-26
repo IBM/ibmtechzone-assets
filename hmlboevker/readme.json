@@ -1,0 +1,49 @@
+{
+  "id": "hmlboevker",
+  "title": "List S3 object using AWS CLI",
+  "author": "Rangarao Deepak",
+  "category": "watsonx.data",
+  "description": "List S3 object using AWS CLI",
+  "type": "bash",
+  "fileName": "s3ops/aws_cli_ls.sh",
+  "source": "git",
+  "assetURL": "https://github.com/drangar/assethub.git",
+  "userId": "85563d2a-96ba-4a98-8cca-e58a9ab6398e",
+  "preRequisites": {
+    "fields": [
+      {
+        "type": "text",
+        "label": "s3_access_key"
+      },
+      {
+        "type": "text",
+        "label": "s3_secret_key"
+      },
+      {
+        "type": "text",
+        "label": "s3_region"
+      },
+      {
+        "type": "text",
+        "label": "s3_endpoint"
+      },
+      {
+        "type": "text",
+        "label": "s3_bucket"
+      }
+    ],
+    "requiredFields": [
+      [
+        "s3_access_key",
+        "s3_secret_key",
+        "s3_region",
+        "s3_endpoint",
+        "s3_bucket"
+      ]
+    ],
+    "installDependencyCommands": [
+      ""
+    ]
+  },
+  "timestamp": "1698279346000"
+}
