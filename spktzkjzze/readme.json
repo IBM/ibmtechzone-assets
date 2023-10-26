@@ -1,11 +1,13 @@
 {
   "id": "spktzkjzze",
   "title": "Deploy Streamlit app v4",
-  "author": "newcatherine.cao@ibm.com",
+  "author": "catherine.cao@ibm.com",
   "category": "watsonx.ai",
   "description": "test 4",
   "type": "bash",
   "fileName": "spktzkjzze.sh",
+  "source": "local",
+  "assetURL": "",
   "userId": "e62e1431-588f-483b-a115-1f70fa79a136",
   "preRequisites": {
     "fields": [
@@ -38,5 +40,5 @@
       ""
     ]
   },
-  "timestamp": "1694775138000"
+  "timestamp": "1698336733000"
 }
