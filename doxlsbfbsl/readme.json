@@ -1,0 +1,29 @@
+{
+  "id": "doxlsbfbsl",
+  "title": "Test Allignment",
+  "author": "GIRISH PADMANABHAN",
+  "category": "watsonx.ai",
+  "description": "Test",
+  "type": "bash",
+  "fileName": "doxlsbfbsl.sh",
+  "source": "local",
+  "assetURL": "",
+  "userId": "2a757938-cca9-4d36-a0c7-d1a511d30110",
+  "preRequisites": {
+    "fields": [
+      {
+        "type": "text",
+        "label": "Test"
+      }
+    ],
+    "requiredFields": [
+      [
+        "test"
+      ]
+    ],
+    "installDependencyCommands": [
+      ""
+    ]
+  },
+  "timestamp": "1698407409000"
+}
