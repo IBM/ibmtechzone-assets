@@ -3,7 +3,7 @@
   "title": "S3 List bucket contents",
   "author": "DEEPAK RANGARAO",
   "category": "watsonx.data",
-  "description": "Uses the AWS CLI and the connection details to any S3 compliant object store to display list of objects in the bucket.",
+  "description": "Uses the AWS CLI and the connection details to any S3 compliant object store to display list of objects in the bucket. \nDEPENDENCIES=You need to execute the S3 install AWS CLI task before this task of listing the objects in the bucket",
   "type": "bash",
   "fileName": "s3ops/aws_cli_ls.sh",
   "source": "git",
@@ -45,5 +45,5 @@
       ""
     ]
   },
-  "timestamp": "1698695405000"
+  "timestamp": "1698695456000"
 }
