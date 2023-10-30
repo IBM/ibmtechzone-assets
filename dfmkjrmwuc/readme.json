@@ -1,0 +1,49 @@
+{
+  "id": "dfmkjrmwuc",
+  "title": "S3 List bucket contents",
+  "author": "DEEPAK RANGARAO",
+  "category": "watsonx.data",
+  "description": "Uses the AWS CLI and the connection details to any S3 compliant object store to display list of objects in the bucket.",
+  "type": "bash",
+  "fileName": "s3ops/aws_cli_ls.sh",
+  "source": "git",
+  "assetURL": "https://github.com/drangar/assethub.git",
+  "userId": "5e224805-db45-45c4-8bb1-994e09ed1933",
+  "preRequisites": {
+    "fields": [
+      {
+        "type": "text",
+        "label": "s3_access_key"
+      },
+      {
+        "type": "text",
+        "label": "s3_secret_key"
+      },
+      {
+        "type": "text",
+        "label": "s3_region"
+      },
+      {
+        "type": "text",
+        "label": "s3_endpoint"
+      },
+      {
+        "type": "text",
+        "label": "s3_bucket"
+      }
+    ],
+    "requiredFields": [
+      [
+        "s3_access_key",
+        "s3_secret_key",
+        "s3_region",
+        "s3_endpoint",
+        "s3_bucket"
+      ]
+    ],
+    "installDependencyCommands": [
+      ""
+    ]
+  },
+  "timestamp": "1698695405000"
+}
