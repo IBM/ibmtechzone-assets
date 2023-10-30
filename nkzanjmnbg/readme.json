@@ -1,0 +1,29 @@
+{
+  "id": "nkzanjmnbg",
+  "title": "S3 Install AWS CLI",
+  "author": "DEEPAK RANGARAO",
+  "category": "watsonx.data",
+  "description": "Task to install the AWS CLI, this CLI can be used to connect to any S3 compliant object store including IBM Cloud Object Store. Currently has one dummy parameter which you can ignore, this could potentially be used for specifying the install location at a later date.",
+  "type": "bash",
+  "fileName": "s3ops/install_aws_cli.sh",
+  "source": "git",
+  "assetURL": "https://github.com/drangar/assethub.git",
+  "userId": "5e224805-db45-45c4-8bb1-994e09ed1933",
+  "preRequisites": {
+    "fields": [
+      {
+        "type": "text",
+        "label": "DUMMY_VARIABLE"
+      }
+    ],
+    "requiredFields": [
+      [
+        "dummy_variable"
+      ]
+    ],
+    "installDependencyCommands": [
+      ""
+    ]
+  },
+  "timestamp": "1698686787000"
+}
