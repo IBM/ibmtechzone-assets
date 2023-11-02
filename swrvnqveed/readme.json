@@ -1,0 +1,29 @@
+{
+  "id": "swrvnqveed",
+  "title": "check-timestamp-db-update",
+  "author": "Nupur Negi",
+  "category": "CP4D",
+  "description": "test to see if timestamp is getting updated in the db",
+  "type": "bash",
+  "fileName": "swrvnqveed.sh",
+  "source": "local",
+  "assetURL": "",
+  "userId": "490475a6-a209-4d0b-846c-53f2d6db3d77",
+  "preRequisites": {
+    "fields": [
+      {
+        "type": "text",
+        "label": "input"
+      }
+    ],
+    "requiredFields": [
+      [
+        "input"
+      ]
+    ],
+    "installDependencyCommands": [
+      ""
+    ]
+  },
+  "timestamp": "1698936370000"
+}
