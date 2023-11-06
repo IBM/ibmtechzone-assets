@@ -6,6 +6,8 @@
   "description": "updated desc code-server ",
   "type": "bash",
   "fileName": "code-server/code-server-deploy.sh",
+  "source": "local",
+  "assetURL": "",
   "userId": "fad35186-3af1-4a4c-963f-13e0e28db13d",
   "preRequisites": {
     "fields": [
@@ -28,5 +30,5 @@
       ""
     ]
   },
-  "timestamp": "1695776562000"
+  "timestamp": "1699249913000"
 }
