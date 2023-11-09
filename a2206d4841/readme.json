@@ -6,6 +6,7 @@
   "description": "Print 1 to n numbers taking n as an argument",
   "type": "bash",
   "fileName": "a2206d4841.sh",
+  "userId": "490475a6-a209-4d0b-846c-53f2d6db3d77",
   "preRequisites": {
     "fields": [
       {
