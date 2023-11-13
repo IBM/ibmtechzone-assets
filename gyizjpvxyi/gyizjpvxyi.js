@@ -1,1 +1,1 @@
-console.log(input1);
+console.log(process.env.input1);
