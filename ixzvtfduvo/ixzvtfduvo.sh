@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set default CSV file path
-default_csv_file="/projects/allScripts/sample.csv"
+default_csv_file="results.csv"
 
 # Check if a CSV file is provided as an argument, otherwise use the default path
 if [ $# -eq 0 ]; then
