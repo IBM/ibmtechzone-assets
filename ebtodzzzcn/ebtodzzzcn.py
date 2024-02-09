@@ -1,0 +1,1 @@
+print("this is testing asset with no input")
