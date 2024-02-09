@@ -1,2 +1,2 @@
 java -version
-mv --version
+mvn --version
