@@ -35,8 +35,6 @@ def do_get(url, username, password):
 def do_post(url):
         header=get_header()
         data=json.dumps(get_bodycontent())
-        print(data)
-        print(header)
         response = requests.post(url, verify=False, headers=header, data=data)
         return response
 
@@ -54,7 +52,7 @@ set_bodycontent("password",password)
 get_bodycontent()
 
 response = do_get(url, username, password)
-config['CP4D'] = {'INITIAL_RESPONSE': response.status_code}
+config['CHECK_FOR_IAM'] = {'INITIAL_RESPONSE': response.status_code}
 
 if(response.status_code!=200):
   print("This is a IAM enabled cluster")
