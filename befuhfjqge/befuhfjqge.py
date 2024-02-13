@@ -42,7 +42,6 @@ def print_response(response):
         print(response.text)
 
 
-
 set_header("Accept-Encoding","gzip, deflate, br")
 set_header("Content-Type","application/json;charset=UTF-8")
 set_header("Accept","application/json, text/plain, */*")
@@ -51,7 +50,10 @@ set_bodycontent("username",username)
 set_bodycontent("password",password)
 get_bodycontent()
 
-response = requests.get(url, auth=HTTPBasicAuth(username, password),verify=False, headers=header, data=body_content)
+response = do_get(url, username, password)
 
-os.environ["RESPONSE_CODE"] = response.status_code
-os.environ["RESPONSE_TEXT"] = response.text
+f = open("cp4d_environment.txt", "a")
+f.write("RESPONSE_CODE="+response.status_code)
+f.write("RESPONSE_TEXT="+response.text)
+f.close()
+
