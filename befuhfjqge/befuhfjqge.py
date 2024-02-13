@@ -54,7 +54,7 @@ get_bodycontent()
 response = do_get(url, username, password)
 config['CP4D'] = {'INITIAL_RESPONSE': response.status_code}
 
-with open('example.ini', 'w') as configfile:
+with open('cp4d_info.ini', 'w') as configfile:
   config.write(configfile)
   
 
