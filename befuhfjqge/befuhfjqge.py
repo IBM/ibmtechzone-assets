@@ -54,6 +54,9 @@ get_bodycontent()
 response = do_get(url, username, password)
 config['CP4D'] = {'INITIAL_RESPONSE': response.status_code}
 
+if(response.status_code!=200):
+  print("This is a IAM enabled cluster")
+  
 with open('cp4d_info.ini', 'w') as configfile:
   config.write(configfile)
   
