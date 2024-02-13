@@ -8,7 +8,9 @@ headers={}
 body_content={}
 config = configparser.ConfigParser()
 
-url= os.environ["url"]
+url= os.environ["url"] + "/v1/preauth/signin"
+console_url= os.environ["console_url"] + "/idprovider/v1/auth/identitytoken"
+
 username= os.environ["username"]
 password= os.environ["password"]
 
@@ -56,7 +58,19 @@ config['CP4D'] = {'INITIAL_RESPONSE': response.status_code}
 
 if(response.status_code!=200):
   print("This is a IAM enabled cluster")
+  set_header("Content-Type","application/json; charset=utf-8")
+  set_bodycontent("grant_type","password")
+  set_bodycontent("username",username)
+  set_bodycontent("password",password)
+  set_bodycontent("scope","openid")
+  response=do_post(console_url)
   
+  if(response.status_code!=200):
+    print("Still having a problem logging in, please check URL and credentials")
+  else:
+    token=json.loads(response.text)["access_token"]
+    config['CP4D'] = {'TOKEN': token}
+    
 with open('cp4d_info.ini', 'w') as configfile:
   config.write(configfile)
   
