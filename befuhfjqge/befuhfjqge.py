@@ -2,14 +2,15 @@ import requests
 import json
 import os
 from requests.auth import HTTPBasicAuth
+import configparser
 
 headers={}
 body_content={}
+config = configparser.ConfigParser()
 
 url= os.environ["url"]
 username= os.environ["username"]
 password= os.environ["password"]
-
 
 def set_header(key, value):
         headers[key]=value
@@ -51,9 +52,10 @@ set_bodycontent("password",password)
 get_bodycontent()
 
 response = do_get(url, username, password)
+config['CP4D'] = {'INITIAL_RESPONSE': response.status_code}
 
-f = open("cp4d_environment.txt", "a")
-f.write("RESPONSE_CODE="+response.status_code)
-f.write("RESPONSE_TEXT="+response.text)
-f.close()
+with open('example.ini', 'w') as configfile:
+  config.write(configfile)
+  
+
 
