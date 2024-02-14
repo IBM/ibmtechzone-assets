@@ -44,12 +44,12 @@ def create_container(platformURL, token, is_cloud, container_name, container_typ
   print(payload)
   response = requests.post(url, headers=headers, json=payload, verify=False, timeout=180)
   elapsed = time.time() - start
-  print(response)
-  print(response.status_code, response.text)
-  print(json.dumps(response.json(), indent=2))
   if not (response.status_code == 201 or response.status_code == 202):
     print('Failed to create project: {}'.format(container_name))
-    raise Exception('Failed to create project, url: {} rc: {} {}'.format(url, response.status_code, response.text))
-    
+    #raise Exception('Failed to create project, url: {} rc: {} {}'.format(url, response.status_code, response.text))
+  else:
+    print(response)
+    print(response.status_code, response.text)
+    print(json.dumps(response.json(), indent=2))
 
 create_container(cp4d_url,token,False,project_name,"CONTAINER_PROJECT",'NA')
