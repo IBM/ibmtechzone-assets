@@ -3,6 +3,8 @@ apikey=$apikey
 concat_string=$username
 concat_string+=":"
 concat_string+=$apikey
+rm cp4d_info.conf
+
 echo $concat_string
 TOKEN=$(echo $concat_string|base64)
 echo $TOKEN
