@@ -1,17 +1,14 @@
 import requests
 import json
 import os
-from requests.auth import HTTPBasicAuth
 import configparser
 
 headers={}
 body_content={}
 config = configparser.ConfigParser()
+config.read('cp4d_info.conf')
 
-url= os.environ["url"] 
-
-username= os.environ["username"]
-password= os.environ["password"]
+cp4d_url= os.environ["cp4d_url"] 
 
 def set_header(key, value):
         headers[key]=value
@@ -28,13 +25,7 @@ def get_bodycontent():
 def do_get(url, username, password):
         header=get_header()
         data=get_bodycontent()
-        response = requests.get(url, auth=HTTPBasicAuth(username, password),verify=False, headers=header, data=data)
-        return response
-
-def do_post(url):
-        header=get_header()
-        data=json.dumps(get_bodycontent())
-        response = requests.post(url, verify=False, headers=header, data=data)
+        response = requests.get(url, verify=False, headers=header, data=data)
         return response
 
 def print_response(response):
@@ -51,13 +42,7 @@ set_bodycontent("password",password)
 get_bodycontent()
 
 response = do_get(url, username, password)
-config['CHECK_FOR_IAM'] = {'INITIAL_RESPONSE': response.status_code}
 
 if(response.status_code!=200):
   print("This is a IAM enabled cluster")
-
-with open('cp4d_info.ini', 'w') as configfile:
-  config.write(configfile)
-  
-
 
