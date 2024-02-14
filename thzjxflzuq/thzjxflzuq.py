@@ -2,6 +2,8 @@ import uuid
 import time
 import requests
 import configparser
+import os
+import json
 
 cp4d_url = os.environ["cp4d_url"]
 project_name = os.environ["project_name"]
@@ -28,14 +30,14 @@ def create_container(platformURL, token, is_cloud, container_name, container_typ
     project_storage_guid = crn[len(crn) - 3]
     storage = {'type': 'bmcos_object_storage', 'guid': project_storage_guid, 'resource_crn': project_storage_crn}
 
-  if (container_type == CONTAINER_PROJECT):
+  if (container_type == "CONTAINER_PROJECT"):
     url = '{}/transactional/v2/projects'.format(platformURL)
   elif (container_type == CONTAINER_SPACE):
     url = '{}/v2/spaces'.format(platformURL)
-  # iam_token = token
-  headers = {'Accept': 'application/json', 'Content-Type': 'application/json', 'Authorization': iam_token}
+  iam_token = token
+  headers = {'Accept': 'application/json', 'Content-Type': 'application/json', 'Authorization': "ZenApiKey "+iam_token}
   payload = {'name': container_name, 'generator': 'DataStage', 'storage': storage}
-  headers = create_headers(token)
+  #headers = create_headers(token)
   start = time.time()
   print(url)
   print(headers)
@@ -50,4 +52,4 @@ def create_container(platformURL, token, is_cloud, container_name, container_typ
     raise Exception('Failed to create project, url: {} rc: {} {}'.format(url, response.status_code, response.text))
     
 
-create_container(cp4d_url,token,False,project_name,CONTAINER_PROJECT,'NA')
+create_container(cp4d_url,token,False,project_name,"CONTAINER_PROJECT",'NA')
