@@ -33,15 +33,9 @@ def create_container(platformURL, token, is_cloud, container_name, container_typ
   elif (container_type == CONTAINER_SPACE):
     url = '{}/v2/spaces'.format(platformURL)
   # iam_token = token
-  # headers = {'Accept': 'application/json', 'Content-Type': 'application/json', 'Authorization': iam_token}
+  headers = {'Accept': 'application/json', 'Content-Type': 'application/json', 'Authorization': iam_token}
   payload = {'name': container_name, 'generator': 'DataStage', 'storage': storage}
   headers = create_headers(token)
-  if is_cloud == False:
-    headers["Accept"] = "application/json"
-    if (container_type == CONTAINER_SPACE):
-      payload = {'name': container_name, 'generator': 'DataStage'}
-    elif (container_type == CONTAINER_PROJECT):
-      payload = {'name': container_name, 'generator': 'DataStage', 'storage': storage}
   start = time.time()
   print(url)
   print(headers)
