@@ -39,5 +39,19 @@ get_header()
 
 response = do_get(cp4d_url)
 
-pd.json_normalize(response.text, max_level=1)
-  
+all_user_info=json.loads(response.text)
+print("Users in this CP4D cluster")  
+print("==========================")
+
+if os.path.exists("cp4d_users.txt"):
+  os.remove("cp4d_users.txt")
+
+f = open("cp4d_users.txt", "a")
+f.write("user_name"+"\n")
+
+for user in range(len(all_user_info)):
+    print(all_user_info[user]["username"])
+    f.write(all_user_info[user]["username"]+"\n")
+
+print("==========================")
+f.close()
