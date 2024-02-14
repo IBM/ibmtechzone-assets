@@ -1,8 +1,14 @@
 import uuid
 import time
 import requests
+import configparser
+
 cp4d_url = os.environ["cp4d_url"]
 project_name = os.environ["project_name"]
+
+config = configparser.ConfigParser()
+config.read('cp4d_info.conf')
+token=config['CP4D']['TOKEN']
 
 def create_container(platformURL, token, is_cloud, container_name, container_type, project_storage_crn):
   print("\nCreating project {}".format(container_name))
