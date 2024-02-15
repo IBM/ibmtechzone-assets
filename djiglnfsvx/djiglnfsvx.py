@@ -1,0 +1,1 @@
+print("Task without inputs")
