@@ -18,7 +18,8 @@ else
     echo "DataProject exists with Project UID=$DATAPROJECT_EXISTS"
 fi
 echo "Create new connections for Data and AI called DataProject"
-CREATE_CONN_PROPERTIES = "{\"database\": \"$database_name\",\"host\": \"$database_host\",\"password\": \"$database_password\",\"username\": \"$database_user\"}"
-CONNECTION_ID=$(cpdctl connection create --name "datasource-connection" --description "Connection to my datasource" --datasource-type $datasource_type --project-id $DATAPROJECT_EXISTS --properties $CREATE_CONN_PROPERTIES -j metadata.asset_id --origin-country us --output json -j 'metadata.asset_id')
-echo $CONNECTION_ID
 
+CREATE_CONN_PROPERTIES="{\"database\": \"$database_name\",\"host\": \"$database_host\",\"port\": \"$database_port\",\"password\": \"$database_password\",\"username\": \"$database_user\"}"
+echo $CREATE_CONN_PROPERTIES
+CONNECTION_ID=$(cpdctl connection create --name "datasource-connection" --description "Connection to my datasource" --datasource-type "$datasource_type" --project-id "$DATAPROJECT_EXISTS" --properties "$CREATE_CONN_PROPERTIES" -j metadata.asset_id --origin-country us --output json -j 'metadata.asset_id')
+echo $CONNECTION_ID
