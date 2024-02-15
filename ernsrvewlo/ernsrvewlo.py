@@ -1,1 +1,0 @@
-print("This asset has no input")
