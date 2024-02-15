@@ -23,3 +23,5 @@ CREATE_CONN_PROPERTIES="{\"database\": \"$database_name\",\"host\": \"$database_
 echo $CREATE_CONN_PROPERTIES
 CONNECTION_ID=$(cpdctl connection create --name "datasource-connection" --description "Connection to my datasource" --datasource-type "$datasource_type" --project-id "$DATAPROJECT_EXISTS" --properties "$CREATE_CONN_PROPERTIES" -j metadata.asset_id --origin-country us --output json -j 'metadata.asset_id')
 echo $CONNECTION_ID
+ALL_TABLES=$(cpdctl connection discover-adhoc --path="/gosalesdw" --datasource-type "$datasource_type" --name "datasource-connection" --properties "$CREATE_CONN_PROPERTIES" --output json)
+cat $ALL_TABLES>alltables.json
