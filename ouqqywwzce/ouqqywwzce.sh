@@ -24,4 +24,9 @@ echo $CREATE_CONN_PROPERTIES
 CONNECTION_ID=$(cpdctl connection create --name "datasource-connection" --description "Connection to my datasource" --datasource-type "$datasource_type" --project-id "$DATAPROJECT_EXISTS" --properties "$CREATE_CONN_PROPERTIES" -j metadata.asset_id --origin-country us --output json -j 'metadata.asset_id')
 echo $CONNECTION_ID
 ALL_TABLES=$(cpdctl connection discover-adhoc --path="/gosalesdw" --datasource-type "$datasource_type" --name "datasource-connection" --properties "$CREATE_CONN_PROPERTIES" --output json)
-cat $ALL_TABLES>alltables.json
+echo $ALL_TABLES|jq '.assets[].id'
+ASSET_METADATA="{\"name\": \"emp_expense_fact\",\"asset_type\": \"data_asset\",\"origin_country\": \"us\",\"asset_category\": \"USER\"}"
+ASSET_ENTITY="{\"data_asset\": {\"mime_type\": \"application/x-ibm-rel-table\",\"dataset\": true},\"discovered_asset\": {   \"extended_metadata\": [{\"name\":\"table_type\",\"value\":\"TABLE\"}]}}"
+ATTACHMENTS='[{"asset_type": "data_asset","connection_id": "$CONNECTION_ID","connection_path": "/gosalesdw/emp_expense_fact/"}]'
+echo $ATTACHMENTS
+cpdctl asset data-asset create --project-id "$DATAPROJECT_EXISTS" --metadata "$ASSET_METADATA" --entity "$ASSET_ENTITY" --attachments "$ATTACHMENTS" --output json -j metadata.asset_id
