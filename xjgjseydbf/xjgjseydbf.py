@@ -8,9 +8,11 @@ import configparser
 import warnings
 
 warnings.filterwarnings('ignore')
-project_name=os.environ["project_name"]
-connection_name=os.getenv("connection_id")
+project_id=os.environ["project_name"]
+connection_id=os.getenv("connection_id")
 mdi_name=os.getenv("mdi_name")
+schema_name=os.getenv("schema_name")
+cpd_url=os.getenv("cpd_url")
 
 
 config = configparser.ConfigParser()
@@ -38,7 +40,7 @@ def createMDI(mdi_name,schemaName,connectionID,projectID):
     print("Creating MDI object for schema: ", schemaName)
     print("Create MDI API url: ", url)
     print("payload: ", payload)
-    
+    print("header: ", header)
     try:
         response = requests.post(url, json=payload, headers=header,verify=False)
         response.raise_for_status()
