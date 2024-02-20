@@ -233,8 +233,6 @@ def setupRunMDI(mdiName,schemaName):
     return statusResponse
     
 
-mdiName=os.getenv("MDI_NAME")
-schema=os.getenv("SCHEMA")
-print("Setting up MDI for schema: ", schema)
-mdi_response = setupRunMDI(mdiName,schema)
+print("Setting up MDI for schema: ", schema_name)
+mdi_response = setupRunMDI(mdi_name,schema_name)
 print("MDI response: ", mdi_response)
