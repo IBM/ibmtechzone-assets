@@ -4,14 +4,19 @@ import requests
 import json
 import random
 import time
-
+import configparser
 import warnings
+
 warnings.filterwarnings('ignore')
 project_name=os.environ["project_name"]
 connection_name=os.getenv("connection_id")
 mdi_name=os.getenv("mdi_name")
 
-token=os.environ["token"]
+
+config = configparser.ConfigParser()
+config.read('cp4d_info.conf')
+token=config['CP4D']['TOKEN']
+
 # schemaName is the name of the schema to be used as scope for metadata import job
 def createMDI(mdi_name,schemaName,connectionID,projectID):
     #mdi_name=f'{schemaName}-mdi'
