@@ -13,8 +13,8 @@ import streamlit as st
 
 def generate(input, model_id, parameters):
 
-    api_key = os.environ["IBM_CLOUD_API_KEY"]
-    project_id = os.environ["PROJECT_ID"]
+    api_key = os.environ["ibm_cloud_api_key"]
+    project_id = os.environ["project_id"]
 
     access_token = IAMTokenManager(
         apikey = api_key,
