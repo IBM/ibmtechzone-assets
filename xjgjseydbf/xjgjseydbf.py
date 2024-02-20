@@ -8,7 +8,7 @@ import time
 import warnings
 warnings.filterwarnings('ignore')
 project_name=os.environ["project_name"]
-connection_name=os.getenv("connection_name")
+connection_name=os.getenv("connection_id")
 mdi_name=os.getenv("mdi_name")
 
 token=os.environ["token"]
