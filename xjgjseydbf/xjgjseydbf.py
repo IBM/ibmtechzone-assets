@@ -15,27 +15,8 @@ warnings.filterwarnings('ignore')
 # This is how long this script will wait for an MDI job to complete.
 # If MDI job run is not complete within 40 minutes, it is stopped and cleared
 timeout = 40
-# Return a Cloud Pak for Data token needed for executing subsequent APIs
-def getCPDtoken(cpd_url,cpd_username,cpd_password):
-    # get token
-    url = cpd_url + '/v1/preauth/validateAuth'
 
-    try:
-        response = requests.get(url,auth=(cpd_username,cpd_password),verify=False)
-        response.raise_for_status()
-    except requests.exceptions.HTTPError as err:
-        print("Failed to obtain Cloud Pak for Data authentication token. ERROR: ", err)
-        return -1
-    except requests.exceptions.RequestException as e:  # This is the correct syntax
-        print("Failed to obtain Cloud Pak for Data authentication token. ERROR: ", e)
-        return -1
-    mltoken = response.json()["accessToken"]
-
-    return mltoken
-
-# Get Bearer token
-
-    
+  
 # Not needed if project id provided
 def getProjectID(projectName):
 # Endpoint for getting All projects defined on the platform
@@ -407,7 +388,6 @@ config.read('cp4d_info.conf')
 
 cpd_url=config['CP4D']['CPD_URL']
 cpd_username=config['CP4D']['CPD_USERNAME']
-cpd_password=config['CP4D']['CPD_PASSWORD']
 token=config['CP4D']['CPD_TOKEN']
 
 cpd_project="DataGovernance" #os.environ["cpd_project"]
