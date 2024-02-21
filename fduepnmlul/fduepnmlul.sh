@@ -1,1 +1,1 @@
-git clone https://$git_token$git_repo
+git clone https://$git_token@$git_repo data
