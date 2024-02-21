@@ -15,6 +15,25 @@ warnings.filterwarnings('ignore')
 # This is how long this script will wait for an MDI job to complete.
 # If MDI job run is not complete within 40 minutes, it is stopped and cleared
 timeout = 40
+# Return a Cloud Pak for Data token needed for executing subsequent APIs
+def getCPDtoken(cpd_url,cpd_username,cpd_password):
+    # get token
+    url = cpd_url + '/v1/preauth/validateAuth'
+
+    try:
+        response = requests.get(url,auth=(cpd_username,cpd_password),verify=False)
+        response.raise_for_status()
+    except requests.exceptions.HTTPError as err:
+        print("Failed to obtain Cloud Pak for Data authentication token. ERROR: ", err)
+        return -1
+    except requests.exceptions.RequestException as e:  # This is the correct syntax
+        print("Failed to obtain Cloud Pak for Data authentication token. ERROR: ", e)
+        return -1
+    mltoken = response.json()["accessToken"]
+
+    return mltoken
+
+# Get Bearer token
 
 def getConnectionID(connectionName):
 # Endpoint for getting All projects defined on the platform
@@ -413,11 +432,12 @@ def setupRunMDI(mdiName,schemaName):
 cpd_url=os.environ["cpd_url"]
 cpd_username=os.environ["cpd_username"]
 cpd_password=os.environ["cpd_password"]
+token = getCPDtoken(cpd_url,cpd_username,cpd_password)
 
 cpd_project="DataGovernance" #os.environ["cpd_project"]
-cpd_project_id=getProjectID(cpd_project)
+project_id=getProjectID(cpd_project)
 connectionName="pgsql_datasource"
-connection_id=getConnectionID(connectionName) #"d8d52de8-6d52-41f0-99e6-ed6ad1efebab"
+connection_id="f01c33fe-7724-4407-8c25-01e684f4f53b" #getConnectionID(connectionName) #"d8d52de8-6d52-41f0-99e6-ed6ad1efebab"
 mdiName="pgsql_metadata_import"
 
 schema="gosalesdw"
