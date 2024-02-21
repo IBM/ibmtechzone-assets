@@ -30,6 +30,8 @@ cpd_token=$(echo $concat_string|base64)
 
 rm -rf cp4d_info.conf
 echo "[CP4D]">>cp4d_info.conf
+echo "CPD_URL="$cpd_url>>cp4d_info.conf
+echo "CPD_USERNAME="$cpd_username>>cp4d_info.conf
 echo "CPD_TOKEN="$cpd_token>>cp4d_info.conf
 echo "CP4D_APIKEY="$cpd_apikey>>cp4d_info.conf
 echo "CONNECTION_ID="$connection_id>>cp4d_info.conf
