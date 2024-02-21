@@ -7,7 +7,7 @@ import requests
 import json
 import random
 import time
-
+import configparser
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -35,33 +35,6 @@ def getCPDtoken(cpd_url,cpd_username,cpd_password):
 
 # Get Bearer token
 
-def getConnectionID(connectionName):
-# Endpoint for getting All projects defined on the platform
-    url = f'{cpd_url}/v2/connections'
-
-    # token to authenticate to the platform
-    header = {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token}
-
-    # GET all projects
-    try:
-        response = requests.get(url,headers=header,verify=False)
-        response.raise_for_status()
-    except requests.exceptions.HTTPError as err:
-        print("Failed to get list of Connections defined in WKC. ERROR: ", err)
-        return -1
-    except requests.exceptions.RequestException as e:  # This is the correct syntax
-        print("Failed to get list of Connections defined in WKC. ERROR: ", e)
-        return -1
-    
-    connectionsList = response.json()
-    print(connectionsList)
-    #return projectsList
-    for p in connectionsList['resources']:
-        if p['entity']['name'] == connectionName:
-            return p['metadata']['guid']
-    print("Connection: ", connectionName, " not found")
-
-    return -1
     
 # Not needed if project id provided
 def getProjectID(projectName):
@@ -437,7 +410,11 @@ token = getCPDtoken(cpd_url,cpd_username,cpd_password)
 cpd_project="DataGovernance" #os.environ["cpd_project"]
 project_id=getProjectID(cpd_project)
 connectionName="pgsql_datasource"
-connection_id="f01c33fe-7724-4407-8c25-01e684f4f53b" #getConnectionID(connectionName) #"d8d52de8-6d52-41f0-99e6-ed6ad1efebab"
+
+config = configparser.ConfigParser()
+config.read('cp4d_info.conf')
+connection_id=config['CP4D']['CONNECTION_ID']
+
 mdiName="pgsql_metadata_import"
 
 schema="gosalesdw"
