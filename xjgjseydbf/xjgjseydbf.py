@@ -402,17 +402,18 @@ def setupRunMDI(mdiName,schemaName):
     return statusResponse
 
 # Define global variables for the script
-cpd_url=os.environ["cpd_url"]
-cpd_username=os.environ["cpd_username"]
-cpd_password=os.environ["cpd_password"]
+config = configparser.ConfigParser()
+config.read('cp4d_info.conf')
+
+cpd_url=config['CP4D']['CPD_URL']
+cpd_username=config['CP4D']['CPD_USERNAME']
+cpd_password=config['CP4D']['CPD_PASSWORD']
 token = getCPDtoken(cpd_url,cpd_username,cpd_password)
 
 cpd_project="DataGovernance" #os.environ["cpd_project"]
 project_id=getProjectID(cpd_project)
 connectionName="pgsql_datasource"
 
-config = configparser.ConfigParser()
-config.read('cp4d_info.conf')
 connection_id=config['CP4D']['CONNECTION_ID']
 
 mdiName="pgsql_metadata_import"
