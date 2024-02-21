@@ -388,9 +388,9 @@ cpd_password="TOPaccess1" #os.environ["cpd_password"]
 
 cpd_project="DataGovernanceDemo" #os.environ["cpd_project"]
 cpd_project_id=getProjectID(cpd_project)
-connectionName="mypg"
-connection_id="d8d52de8-6d52-41f0-99e6-ed6ad1efebab"
-mdiName="mymdi"
+connectionName="pgsql_datasource"
+connection_id=os.environ["connection_id"] #"d8d52de8-6d52-41f0-99e6-ed6ad1efebab"
+mdiName="pgsql_metadata_import"
 
 schema="gosalesdw"
 print("Setting up MDI for schema: ", schema)
