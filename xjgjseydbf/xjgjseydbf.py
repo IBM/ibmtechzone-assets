@@ -1,23 +1,170 @@
+#!/usr/bin/env python
+# coding: utf-8
+
 import os
 import pandas as pd
 import requests
 import json
 import random
 import time
-import configparser
+
 import warnings
-
 warnings.filterwarnings('ignore')
-project_id=os.environ["project_name"]
-connection_id=os.getenv("connection_id")
-mdi_name=os.getenv("mdi_name")
-schema_name=os.getenv("schema_name")
-cpd_url=os.getenv("cpd_url")
+
+# Provide a timeout value in minutes
+# This is how long this script will wait for an MDI job to complete.
+# If MDI job run is not complete within 40 minutes, it is stopped and cleared
+timeout = 40
+
+# Not needed if project id provided
+def getProjectID(projectName):
+# Endpoint for getting All projects defined on the platform
+    url = f'{cpd_url}/v2/projects'
+
+    # token to authenticate to the platform
+    header = {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token}
+
+    # GET all projects
+    try:
+        response = requests.get(url,headers=header,verify=False)
+        response.raise_for_status()
+    except requests.exceptions.HTTPError as err:
+        print("Failed to get list of Catalogs defined in WKC. ERROR: ", err)
+        return -1
+    except requests.exceptions.RequestException as e:  # This is the correct syntax
+        print("Failed to get list of Catalogs defined in WKC. ERROR: ", e)
+        return -1
+
+    projectsList = response.json()
+    #return projectsList
+    for p in projectsList['resources']:
+        if p['entity']['name'] == projectName:
+            return p['metadata']['guid']
+    print("Project: ", projectName, " not found")
+
+    return -1
 
 
-config = configparser.ConfigParser()
-config.read('cp4d_info.conf')
-token=config['CP4D']['TOKEN']
+# Not needed if project id provided
+def getProjectID(projectName):
+# Endpoint for getting All projects defined on the platform
+    url = f'{cpd_url}/v2/projects'
+
+    # token to authenticate to the platform
+    header = {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token}
+
+    # GET all projects
+    try:
+        response = requests.get(url,headers=header,verify=False)
+        response.raise_for_status()
+    except requests.exceptions.HTTPError as err:
+        print("Failed to get list of Catalogs defined in WKC. ERROR: ", err)
+        return -1
+    except requests.exceptions.RequestException as e:  # This is the correct syntax
+        print("Failed to get list of Catalogs defined in WKC. ERROR: ", e)
+        return -1
+
+    projectsList = response.json()
+    #return projectsList
+    for p in projectsList['resources']:
+        if p['entity']['name'] == projectName:
+            return p['metadata']['guid']
+    print("Project: ", projectName, " not found")
+
+    return -1
+
+# Get catalog ID from catalogName
+def getCatalogID(catalogName):
+    # Endpoint for getting All catalogs defined on the platform
+    url = f'{cpd_url}/v2/catalogs'
+
+    # token to authenticate to the platform
+    header = {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token}
+
+    # GET all catalogs
+    try:
+        response = requests.get(url,headers=header,verify=False)
+        response.raise_for_status()
+    except requests.exceptions.HTTPError as err:
+        print("Failed to get list of Catalogs defined in WKC. ERROR: ", err)
+        return -1
+    except requests.exceptions.RequestException as e:  # This is the correct syntax
+        print("Failed to get list of Catalogs defined in WKC. ERROR: ", e)
+        return -1
+
+    catalogsList = response.json()
+    for c in catalogsList['catalogs']:
+        if c['entity']['name'] == catalogName:
+            return c['metadata']['guid']
+    print("Catalog: ", catalogName, " not found")
+
+    return -1
+
+
+def getJobs(projectID):
+    # Endpoint for getting All projects defined on the platform
+    url = f'{cpd_url}/v2/jobs?project_id={projectID}'
+
+    # token to authenticate to the platform
+    header = {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token}
+
+    # GET all catalogs
+    try:
+        response = requests.get(url,headers=header,verify=False)
+        response.raise_for_status()
+    except requests.exceptions.HTTPError as err:
+        print("Failed to get list of Catalogs defined in WKC. ERROR: ", err)
+        return -1
+    except requests.exceptions.RequestException as e:  # This is the correct syntax
+        print("Failed to get list of Catalogs defined in WKC. ERROR: ", e)
+        return -1
+
+    jobsList = response.json()
+    return jobsList
+    
+#GET /v2/jobs/{job_id}
+def getJobDetails(jobID,projectID):
+    # Endpoint for getting All projects defined on the platform
+    url = f'{cpd_url}/v2/jobs/{jobID}?project_id={projectID}'
+
+    # token to authenticate to the platform
+    header = {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token}
+
+    # GET all catalogs
+    try:
+        response = requests.get(url,headers=header,verify=False)
+        response.raise_for_status()
+    except requests.exceptions.HTTPError as err:
+        print("Failed to get list of Catalogs defined in WKC. ERROR: ", err)
+        return -1
+    except requests.exceptions.RequestException as e:  # This is the correct syntax
+        print("Failed to get list of Catalogs defined in WKC. ERROR: ", e)
+        return -1
+
+    jobDetails = response.json()
+    return jobDetails
+
+#/v2/jobs/{job_id}/runs
+def getJobRuns(jobID,projectID):
+    # Endpoint for getting All projects defined on the platform
+    url = f'{cpd_url}/v2/jobs/{jobID}/runs?project_id={projectID}'
+
+    # token to authenticate to the platform
+    header = {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token}
+
+    # GET all catalogs
+    try:
+        response = requests.get(url,headers=header,verify=False)
+        response.raise_for_status()
+    except requests.exceptions.HTTPError as err:
+        print("Failed to get list of Catalogs defined in WKC. ERROR: ", err)
+        return -1
+    except requests.exceptions.RequestException as e:  # This is the correct syntax
+        print("Failed to get list of Catalogs defined in WKC. ERROR: ", e)
+        return -1
+
+    jobRuns = response.json()
+    return jobRuns
 
 # schemaName is the name of the schema to be used as scope for metadata import job
 def createMDI(mdi_name,schemaName,connectionID,projectID):
@@ -40,7 +187,7 @@ def createMDI(mdi_name,schemaName,connectionID,projectID):
     print("Creating MDI object for schema: ", schemaName)
     print("Create MDI API url: ", url)
     print("payload: ", payload)
-    print("header: ", header)
+    
     try:
         response = requests.post(url, json=payload, headers=header,verify=False)
         response.raise_for_status()
@@ -233,8 +380,21 @@ def setupRunMDI(mdiName,schemaName):
     schema_mdi_status = 'COMPLETED'
     statusResponse = [schemaName,schema_mdi_name,mdi_id,schema_mdi_job_name,mdi_job_id,schema_mdi_job_run_name,job_run_id,schema_mdi_status]
     return statusResponse
-    
 
-print("Setting up MDI for schema: ", schema_name)
-mdi_response = setupRunMDI(mdi_name,schema_name)
+# Define global variables for the script
+cpd_url="https://cpd-cpd-instance.apps.cpd47top.tec.ihost.com" #os.environ["cpd_url"]
+cpd_username="cpadmin" #os.environ["cpd_username"]
+cpd_password="TOPaccess1" #os.environ["cpd_password"]
+
+cpd_project="DataGovernanceDemo" #os.environ["cpd_project"]
+cpd_project_id=getProjectID(cpd_project)
+connectionName="mypg"
+connection_id="d8d52de8-6d52-41f0-99e6-ed6ad1efebab"
+mdiName="mymdi"
+
+schema="gosalesdw"
+print("Setting up MDI for schema: ", schema)
+mdi_response = setupRunMDI(mdiName,schema)
 print("MDI response: ", mdi_response)
+
+# ## END
