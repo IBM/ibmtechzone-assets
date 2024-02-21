@@ -16,6 +16,34 @@ warnings.filterwarnings('ignore')
 # If MDI job run is not complete within 40 minutes, it is stopped and cleared
 timeout = 40
 
+def getConnectionID(connectionName):
+# Endpoint for getting All projects defined on the platform
+    url = f'{cpd_url}/v2/connections'
+
+    # token to authenticate to the platform
+    header = {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token}
+
+    # GET all projects
+    try:
+        response = requests.get(url,headers=header,verify=False)
+        response.raise_for_status()
+    except requests.exceptions.HTTPError as err:
+        print("Failed to get list of Connections defined in WKC. ERROR: ", err)
+        return -1
+    except requests.exceptions.RequestException as e:  # This is the correct syntax
+        print("Failed to get list of Connections defined in WKC. ERROR: ", e)
+        return -1
+    
+    connectionsList = response.json()
+    print(connectionsList)
+    #return projectsList
+    for p in connectionsList['resources']:
+        if p['entity']['name'] == connectionName:
+            return p['metadata']['guid']
+    print("Connection: ", connectionName, " not found")
+
+    return -1
+    
 # Not needed if project id provided
 def getProjectID(projectName):
 # Endpoint for getting All projects defined on the platform
@@ -389,7 +417,7 @@ cpd_password=os.environ["cpd_password"]
 cpd_project="DataGovernance" #os.environ["cpd_project"]
 cpd_project_id=getProjectID(cpd_project)
 connectionName="pgsql_datasource"
-connection_id=os.environ["connection_id"] #"d8d52de8-6d52-41f0-99e6-ed6ad1efebab"
+connection_id=getConnectionID(connectionName) #"d8d52de8-6d52-41f0-99e6-ed6ad1efebab"
 mdiName="pgsql_metadata_import"
 
 schema="gosalesdw"
