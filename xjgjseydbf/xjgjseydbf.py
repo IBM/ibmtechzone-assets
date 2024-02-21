@@ -382,11 +382,11 @@ def setupRunMDI(mdiName,schemaName):
     return statusResponse
 
 # Define global variables for the script
-cpd_url="https://cpd-cpd-instance.apps.cpd47top.tec.ihost.com" #os.environ["cpd_url"]
-cpd_username="cpadmin" #os.environ["cpd_username"]
-cpd_password="TOPaccess1" #os.environ["cpd_password"]
+cpd_url=os.environ["cpd_url"]
+cpd_username=os.environ["cpd_username"]
+cpd_password=os.environ["cpd_password"]
 
-cpd_project="DataGovernanceDemo" #os.environ["cpd_project"]
+cpd_project="DataGovernance" #os.environ["cpd_project"]
 cpd_project_id=getProjectID(cpd_project)
 connectionName="pgsql_datasource"
 connection_id=os.environ["connection_id"] #"d8d52de8-6d52-41f0-99e6-ed6ad1efebab"
