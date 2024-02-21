@@ -6,11 +6,10 @@ cpdctl project list
 echo "Check if DataGovernance already exists"
 echo "===================================="
 project_id=$(cpdctl project list --name="DataGovernance" --output json -j "(resources[].metadata.guid)[0]" --raw-output)
-
-EXPORT_JSON = "{'all_assets': True}"
-result=$(cpdctl asset export start --project-id $project_id --assets '$EXPORT_JSON' --name datagovernance-project-assets --output json --jmes-query "metadata.id" --raw-output)
-export_id = result.s
-echo 'Export ID='=$EXPORT_ID
-
-cpdctl asset export download --project-id $project_id --export-id $export_id --output-file project-assets.zip --progress
+echo $project_id
+export_json="{\"all_assets\": true}"
+export_id=$(cpdctl asset export start --project-id $project_id --assets "$export_json" --name datagovernance-project-assets  --output json -j "(metadata.id)" --raw-output)
+echo $export_id
+echo 'Export ID='=$export_id
+cpdctl asset export download --project-id $project_id --export-id $export_id --output-file DataGovernance.zip --progress
 
