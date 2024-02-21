@@ -408,7 +408,7 @@ config.read('cp4d_info.conf')
 cpd_url=config['CP4D']['CPD_URL']
 cpd_username=config['CP4D']['CPD_USERNAME']
 cpd_password=config['CP4D']['CPD_PASSWORD']
-token = getCPDtoken(cpd_url,cpd_username,cpd_password)
+token=config['CP4D']['CPD_TOKEN']
 
 cpd_project="DataGovernance" #os.environ["cpd_project"]
 project_id=getProjectID(cpd_project)
