@@ -22,5 +22,6 @@ project_id=$(cpdctl project list --name="DataGovernance" --output json -j "(reso
 cpdctl asset import start --project-id $project_id --import-file DataGovernance.zip --output json --jmes-query "metadata.id" --raw-output
 connection_id=$(cpdctl connection list --project-id $project_id --output json -j "(resources[0].metadata.asset_id)" --raw-output)
 rm -rf cp4d_info.conf
+echo "[CP4D]">>cp4d_info.conf
 echo "CP4D_APIKEY="$cpd_apikey>>cp4d_info.conf
 echo "CONNECTION_ID="$connection_id>>cp4d_info.conf
