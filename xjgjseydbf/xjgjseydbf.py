@@ -24,7 +24,6 @@ def getCPDtoken(cpd_url,cpd_username,cpd_apikey):
 
     try:
         response = requests.post(url,headers=header,json=data,verify=False)
-        print(response)
         response.raise_for_status()
     except requests.exceptions.HTTPError as err:
         print("Failed to obtain Cloud Pak for Data authentication token. ERROR: ", err)
@@ -193,7 +192,7 @@ def createMDI(mdi_name,schemaName,connectionID,projectID):
 
     url = f'{cpd_url}/v2/metadata_imports?project_id={projectID}'
     
-    header = {'Content-Type': 'application/json', 'Authorization': '' + token}
+    header = {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token}
     
     payload = {
         "name": mdi_name,
@@ -411,7 +410,6 @@ cpd_username=config['CP4D']['CPD_USERNAME']
 cpd_apikey=config['CP4D']['CP4D_APIKEY']
 
 token=getCPDtoken(cpd_url,cpd_username,cpd_apikey) #config['CP4D']['CPD_TOKEN']
-print("Auth token=" + token)
 
 cpd_project="DataGovernance" #os.environ["cpd_project"]
 project_id=config['CP4D']['CPD_PROJECT_ID']
