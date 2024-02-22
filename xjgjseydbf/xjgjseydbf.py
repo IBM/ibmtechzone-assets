@@ -423,5 +423,9 @@ schema="gosalesdw"
 print("Setting up MDI for schema: ", schema)
 mdi_response = setupRunMDI(mdiName,schema)
 print("MDI response: ", mdi_response)
+print("MDI ID="+mdi_response[2])
+config['CP4D']['MDI_ID'] = mdi_response[2]
+with open('cp4d_info.conf', 'w') as configfile:
+    config.write(configfile)
 
 # ## END
