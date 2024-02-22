@@ -1,0 +1,21 @@
+---
+- name: Clone Git repo and unzip
+  hosts: your_target_hosts
+  become: yes
+  tasks:
+    - name: Clone Git repository
+      git:
+        repo: "{{ lookup('env', 'git_repo')}}"
+        dest: "/projects/allScripts/datafiles"
+        version: main  # Specify branch or tag if needed
+        clone: yes
+        accept_hostkey: yes
+        depth: 1  # Optional: Shallow clone if you don't need full history
+        extra_headers: "Authorization: token {{ lookup('env', 'git_token')}}"
+
+    - name: Unzip the downloaded zip file
+      unarchive:
+        src: "/projects/allScripts/datafiles/{{ lookup('env', 'zil_file_name')}}"
+        dest: "/projects/allScripts/datafiles"
+        remote_src: yes
+        creates: "/path/to/extract/files/contents"  # Specify if you want to skip extraction if files already exist
