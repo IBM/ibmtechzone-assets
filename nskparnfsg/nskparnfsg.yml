@@ -1,6 +1,6 @@
 ---
 - name: Clone Git repo and unzip
-  hosts: your_target_hosts
+  hosts: local
   become: yes
   tasks:
     - name: Clone Git repository
@@ -16,6 +16,6 @@
     - name: Unzip the downloaded zip file
       unarchive:
         src: "/projects/allScripts/datafiles/{{ lookup('env', 'zil_file_name')}}"
-        dest: "/projects/allScripts/datafiles"
+        dest: "/projects/allScripts/datafiles/extracted"
         remote_src: yes
-        creates: "/path/to/extract/files/contents"  # Specify if you want to skip extraction if files already exist
+        creates: "/projects/allScripts/datafiles/extracted"  # Specify if you want to skip extraction if files already exist
