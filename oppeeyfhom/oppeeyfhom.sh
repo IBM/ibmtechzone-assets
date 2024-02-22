@@ -34,4 +34,5 @@ echo "CPD_URL="$cpd_url>>cp4d_info.conf
 echo "CPD_USERNAME="$cpd_username>>cp4d_info.conf
 echo "CPD_TOKEN="$cpd_token>>cp4d_info.conf
 echo "CP4D_APIKEY="$cpd_apikey>>cp4d_info.conf
+echo "CPD_PROJECT_ID="$project_id>>cp4d_info.conf
 echo "CONNECTION_ID="$connection_id>>cp4d_info.conf
