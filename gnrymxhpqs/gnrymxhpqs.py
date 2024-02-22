@@ -11,27 +11,15 @@ import configparser
 import warnings
 warnings.filterwarnings('ignore')
 
-# Define global variables for the notebook
-mdi_id="3b59fb44-5a91-4183-bae0-fb7f31576afe"
-
-cpd_url="https://cpd-cpd-instance.apps.cpd47top.tec.ihost.com"
-cpd_username="cpadmin"
-cpd_password="TOPaccess1"
-
-projectName="deepak"
-project_id="e0756b69-fbf5-47f1-84fe-c68030bf7275"
-connectionName="mypg"
-connection_id="d8d52de8-6d52-41f0-99e6-ed6ad1efebab"
-mdiName="mymdi"
-mdeName="mymde2"
-
 # Return a Cloud Pak for Data token needed for executing subsequent APIs
-def getCPDtoken(cpd_url,cpd_username,cpd_password):
+def getCPDtoken(cpd_url,cpd_username,cpd_apikey):
     # get token
-    url = cpd_url + '/v1/preauth/validateAuth'
+    url = cpd_url + '/icp4d-api/v1/authorize'
+    header = {'Content-Type': 'application/json'}
+    data = {'username':cpd_username,'api_key': cpd_apikey}
 
     try:
-        response = requests.get(url,auth=(cpd_username,cpd_password),verify=False)
+        response = requests.post(url,headers=header,json=data,verify=False)
         response.raise_for_status()
     except requests.exceptions.HTTPError as err:
         print("Failed to obtain Cloud Pak for Data authentication token. ERROR: ", err)
@@ -39,12 +27,11 @@ def getCPDtoken(cpd_url,cpd_username,cpd_password):
     except requests.exceptions.RequestException as e:  # This is the correct syntax
         print("Failed to obtain Cloud Pak for Data authentication token. ERROR: ", e)
         return -1
-    mltoken = response.json()["accessToken"]
+    mltoken = response.json()["token"]
 
     return mltoken
 
 # Get Bearer token
-token = getCPDtoken(cpd_url,cpd_username,cpd_password)
 
 # Not needed if project id provided
 def getProjectID(projectName):
@@ -187,7 +174,21 @@ def createMDE(mdeName,projectID,mdiID,cID):
 # In[37]:
 config = configparser.ConfigParser()
 config.read('cp4d_info.conf')
+# Define global variables for the notebook
+mdi_id=config['CP4D']['MDI_ID']
 
+cpd_url=config['CP4D']['CPD_URL']
+cpd_username=config['CP4D']['CPD_USERNAME']
+cpd_apikey=config['CP4D']['CP4D_APIKEY']
+
+projectName="DataGovernance"
+project_id=config['CP4D']['CPD_PROJECT_ID']
+connectionName="pgsql_datasource"
+token=getCPDtoken(cpd_url,cpd_username,cpd_apikey) #config['CP4D']['CPD_TOKEN']
+
+connection_id=config['CP4D']['CONNECTION_ID']
+mdiName="pgsql_metadata_import"
+mdeName="pgsql_metadata_encrichment"
 cID = getUncategorizedID()
 response=createMDE(mdeName,project_id,mdi_id,cID)
 print("response: ", response)
