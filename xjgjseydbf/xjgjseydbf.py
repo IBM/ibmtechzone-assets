@@ -16,7 +16,26 @@ warnings.filterwarnings('ignore')
 # If MDI job run is not complete within 40 minutes, it is stopped and cleared
 timeout = 40
 
-  
+def getCPDtoken(cpd_url,cpd_username,cpd_apikey):
+    # get token
+    url = cpd_url + '/icp4d-api/v1/authorize'
+    header = {'Content-Type': 'application/json'}
+    data = {'username':cpd_username,'api_key': cpd_apikey}
+
+    try:
+        response = requests.get(url,headers=header,data=data,verify=False)
+        print(response)
+        response.raise_for_status()
+    except requests.exceptions.HTTPError as err:
+        print("Failed to obtain Cloud Pak for Data authentication token. ERROR: ", err)
+        return -1
+    except requests.exceptions.RequestException as e:  # This is the correct syntax
+        print("Failed to obtain Cloud Pak for Data authentication token. ERROR: ", e)
+        return -1
+    mltoken = response.json()["accessToken"]
+
+    return mltoken
+
 # Not needed if project id provided
 def getProjectID(projectName):
 # Endpoint for getting All projects defined on the platform
@@ -174,7 +193,7 @@ def createMDI(mdi_name,schemaName,connectionID,projectID):
 
     url = f'{cpd_url}/v2/metadata_imports?project_id={projectID}'
     
-    header = {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token}
+    header = {'Content-Type': 'application/json', 'Authorization': '' + token}
     
     payload = {
         "name": mdi_name,
@@ -188,7 +207,7 @@ def createMDI(mdi_name,schemaName,connectionID,projectID):
     print("Creating MDI object for schema: ", schemaName)
     print("Create MDI API url: ", url)
     print("payload: ", payload)
-    
+    print("header: ", header)
     try:
         response = requests.post(url, json=payload, headers=header,verify=False)
         response.raise_for_status()
@@ -282,7 +301,7 @@ def createMDIjobRun(jobID,projectID):
     print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
     print("Create MDI Job Run API url: ", url)
     print("payload: ", payload)
-    
+    print("header: ", header)
     try:
         response = requests.post(url, json=payload, headers=header,verify=False)
         response.raise_for_status()
@@ -346,6 +365,7 @@ def cancelJobRun(jobID,jobrunID,projectID):
 def setupRunMDI(mdiName,schemaName):
     # Create MDI and capture the id of the created MDI
     #mdi_response=createMDI(schemaName,connection_id,project_id,target_catalog_id)
+    print("about to run mdi for "+mdiName+"  " + schemaName + "  "+connection_id+" "+project_id)
     mdi_response=createMDI(mdiName,schemaName,connection_id,project_id)
     mdi_id = mdi_response["metadata"]["asset_id"]
     schema_mdi_name = mdi_response["entity"]["name"]
@@ -388,10 +408,13 @@ config.read('cp4d_info.conf')
 
 cpd_url=config['CP4D']['CPD_URL']
 cpd_username=config['CP4D']['CPD_USERNAME']
-token=config['CP4D']['CPD_TOKEN']
+cpd_apikey=config['CP4D']['CP4D_APIKEY']
+
+token=getCPDtoken(cpd_url,cpd_username,cpd_apikey) #config['CP4D']['CPD_TOKEN']
+print("Auth token=" + token)
 
 cpd_project="DataGovernance" #os.environ["cpd_project"]
-project_id=getProjectID(cpd_project)
+project_id=config['CP4D']['CPD_PROJECT_ID']
 connectionName="pgsql_datasource"
 
 connection_id=config['CP4D']['CONNECTION_ID']
