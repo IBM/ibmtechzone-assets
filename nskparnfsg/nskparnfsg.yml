@@ -1,21 +1,24 @@
 ---
 - name: Clone Git repo and unzip
   hosts: localhost
-  become: yes
+  become: no
   tasks:
+    - name: Creates directory
+      ansible.builtin.file:
+        path: /projects/allScripts/datafiles/extracted
+        state: directory
+
     - name: Clone Git repository
       git:
-        repo: "{{ lookup('env', 'git_repo')}}"
+        repo: "https://{{ lookup('env', 'git_token')}}@{{ lookup('env', 'git_repo')}}"
         dest: "/projects/allScripts/datafiles"
         version: main  # Specify branch or tag if needed
         clone: yes
         accept_hostkey: yes
         depth: 1  # Optional: Shallow clone if you don't need full history
-        extra_headers: "Authorization: token {{ lookup('env', 'git_token')}}"
 
     - name: Unzip the downloaded zip file
       unarchive:
         src: "/projects/allScripts/datafiles/{{ lookup('env', 'zil_file_name')}}"
         dest: "/projects/allScripts/datafiles/extracted"
         remote_src: yes
-        creates: "/projects/allScripts/datafiles/extracted"  # Specify if you want to skip extraction if files already exist
