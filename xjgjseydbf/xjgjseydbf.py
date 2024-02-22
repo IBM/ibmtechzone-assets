@@ -31,7 +31,7 @@ def getCPDtoken(cpd_url,cpd_username,cpd_apikey):
     except requests.exceptions.RequestException as e:  # This is the correct syntax
         print("Failed to obtain Cloud Pak for Data authentication token. ERROR: ", e)
         return -1
-    mltoken = response.json()["accessToken"]
+    mltoken = response.json()["token"]
 
     return mltoken
 
