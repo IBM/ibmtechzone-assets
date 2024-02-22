@@ -19,7 +19,7 @@ echo $storage_json
 cpdctl project create --name "DataGovernance" --output json --raw-output --storage "$storage_json" --jmes-query 'location'
 cpdctl project list
 project_id=$(cpdctl project list --name="DataGovernance" --output json -j "(resources[].metadata.guid)[0]" --raw-output)
-cpdctl asset import start --project-id $project_id --import-file DataGovernance.zip --output json --jmes-query "metadata.id" --raw-output
+cpdctl asset import start --project-id $project_id --import-file data/DataGovernance.zip --output json --jmes-query "metadata.id" --raw-output
 connection_id=$(cpdctl connection list --project-id $project_id --output json -j "(resources[0].metadata.asset_id)" --raw-output)
 
 concat_string=$cpd_username
