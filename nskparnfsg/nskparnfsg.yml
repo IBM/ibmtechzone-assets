@@ -3,11 +3,6 @@
   hosts: localhost
   become: no
   tasks:
-    - name: Creates directory
-      ansible.builtin.file:
-        path: /projects/allScripts/datafiles/extracted
-        state: directory
-
     - name: Clone Git repository
       git:
         repo: "https://{{ lookup('env', 'git_token')}}@{{ lookup('env', 'git_repo')}}"
@@ -16,6 +11,11 @@
         clone: yes
         accept_hostkey: yes
         depth: 1  # Optional: Shallow clone if you don't need full history
+        
+    - name: Creates directory
+      ansible.builtin.file:
+        path: /projects/allScripts/datafiles/extracted
+        state: directory
 
     - name: Unzip the downloaded zip file
       unarchive:
