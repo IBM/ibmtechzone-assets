@@ -1,0 +1,19 @@
+---
+- name: Scrape Web Page
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Fetch web page content
+      uri:
+        url: "{{ website_to_scrape }}"  # Replace with your desired URL
+        method: GET
+      register: webpage_content
+
+    - name: Scrape all text from webpage
+      set_fact:
+        scraped_text: "{{ webpage_content.content | regex_search('<.*?>([^<]*)<.*?>', '\\1', 'g') }}"
+
+    - name: Print scraped text
+      debug:
+        var: scraped_text
