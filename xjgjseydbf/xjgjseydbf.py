@@ -23,7 +23,7 @@ def getCPDtoken(cpd_url,cpd_username,cpd_apikey):
     data = {'username':cpd_username,'api_key': cpd_apikey}
 
     try:
-        response = requests.get(url,headers=header,data=data,verify=False)
+        response = requests.post(url,headers=header,json=data,verify=False)
         print(response)
         response.raise_for_status()
     except requests.exceptions.HTTPError as err:
