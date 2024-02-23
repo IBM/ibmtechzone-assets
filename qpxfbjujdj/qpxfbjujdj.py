@@ -1,27 +1,26 @@
 import json
 from datetime import datetime
 
+# Hardcoded file paths
+output_log = "/projects/allScripts/test.log"
 output_json = "/projects/allScripts/config.json"
 
-def append_from_nupur():
-    # Get current timestamp
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    
-    # Prepare the message in the desired format
-    new_data = {"timestamp": timestamp, "message": "From Python"}
-    
-    # Read the existing JSON data
-    with open(output_json, 'r') as json_file:
-        existing_data = json.load(json_file)
-    
-    # Create a list containing the existing data
-    existing_data_list = existing_data if isinstance(existing_data, list) else [existing_data]
-    
-    # Append the new message to the existing data list
-    existing_data_list.append(new_data)
-    
-    # Write the modified data back to config.json
-    with open(output_json, 'w') as json_file:
-        json.dump(existing_data_list, json_file)
+# Read the JSON data from the file
+with open(output_json, 'r') as json_file:
+    json_data = json.load(json_file)
 
-append_from_nupur()
+# Extract the message from JSON data
+message = json_data['message']
+
+# Append "From Python" to the existing message
+new_message = message + " From Python"
+
+# Get current timestamp
+current_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S:%f")[:-3]
+
+# Append the new message to the log file
+with open(output_log, 'a') as log_file:
+    log_file.write(f"[{current_timestamp}] {new_message}\n")
+
+# Display a confirmation message
+print("New message has been appended to", output_log)
