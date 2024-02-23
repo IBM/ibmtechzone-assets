@@ -1,6 +1,8 @@
 import pandas as pd
 import pyarrow.parquet as pq
 from io import StringIO
+from os import listdir
+from os.path import isfile, join
 
 def determine_file_type(filename):
     try:
@@ -17,6 +19,9 @@ def determine_file_type(filename):
     except Exception as e:
         return 'Unknown'
 
-filename=os.environ["file_to_load"]
-file_type = determine_file_type(filename)
-print(f"The file '{filename}' is of type: {file_type}")
+datafile_location=os.environ["datafile_location"]
+onlyfiles = [f for f in listdir(datafile_location) if isfile(join(datafile_location, f))]
+
+for datafile in onlyfiles:
+    file_type = determine_file_type(datafile)
+    print(f"The file '{datafile}' is of type: {file_type}")
