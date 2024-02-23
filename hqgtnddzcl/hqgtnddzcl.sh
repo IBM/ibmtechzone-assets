@@ -13,8 +13,6 @@ done < "$input_json"
 
 welcome_message=${`echo "$message" | jq -r '.message'`}
 
-printf '%s\n' "$welcome_message"
-
 cd
 wget https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz
 tar -xvzf apache-maven-3.9.6-bin.tar.gz
