@@ -5,6 +5,8 @@ from os import listdir
 from os.path import isfile, join
 import os
 
+def loadData(file_type, data_file):
+
 def determine_file_type(filename):
     try:
         with open(filename, 'rb') as f:
@@ -40,3 +42,5 @@ for datafile in onlyfiles:
     print(join(datafile_location, datafile))
     file_type = determine_file_type(join(datafile_location, datafile))
     print(f"The file '{datafile}' is of type: {file_type}")
+    loadData('{datafile}', join(datafile_location, datafile))
+
