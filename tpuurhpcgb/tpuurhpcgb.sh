@@ -17,10 +17,10 @@ welcome_message="$1"
 timestamp=$(date +"%Y-%m-%d %T")
 
 # Append the message to the log file
-echo "[$timestamp] $welcome_message" >> "$output_log"
+echo "[$timestamp] $welcome_message --from bash" >> "$output_log"
 
 # Construct the JSON object
-json_data="{\"timestamp\": \"$timestamp\", \"message\": \"$welcome_message\"}"
+json_data="{\"message\": \"$welcome_message\"}"
 
 # Write the JSON data to the specified file
 echo "$json_data" > "$output_json"
