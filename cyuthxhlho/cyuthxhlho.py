@@ -10,4 +10,4 @@ else:
     df = pd.DataFrame(np.random.randint(0,100,size=(100, 4)), columns=list('ABCD'))
 
 # Print summary statistics
-df.describe()
+print(df.describe())
