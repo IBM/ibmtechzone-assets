@@ -5,6 +5,7 @@ from langchain.embeddings import HuggingFaceBgeEmbeddings
 from langchain.retrievers.document_compressors import DocumentCompressorPipeline
 from langchain.retrievers import ContextualCompressionRetriever
 from langchain.text_splitter import CharacterTextSplitter, RecursiveCharacterTextSplitter
+from langchain_community.document_loaders import TextLoader
 from langchain_community.document_transformers import EmbeddingsRedundantFilter
 from langchain.retrievers.document_compressors import EmbeddingsFilter
 
@@ -18,16 +19,25 @@ logging.config.dictConfig({
 CONTEXT = os.environ["context"]
 QUERY = os.environ["query"]
 
+is_context_file = 0
 if CONTEXT == '' and QUERY == '':
     CONTEXT = """Generative artificial intelligence (generative AI, GenAI, or GAI) is artificial intelligence capable of generating text, images, videos, or other data using generative models, often in response to prompts. Generative AI models learn the patterns and structure of their input training data and then generate new data that has similar characteristics.
 Improvements in transformer-based deep neural networks, particularly large language models (LLMs), enabled an AI boom of generative AI systems in the early 2020s. These include chatbots such as ChatGPT, Copilot, Gemini and LLaMA, text-to-image artificial intelligence image generation systems such as Stable Diffusion, Midjourney and DALL-E, and text-to-video AI generators such as Sora. Companies such as OpenAI, Anthropic, Microsoft, Google, and Baidu as well as numerous smaller firms have developed generative AI models.
 Generative AI has uses across a wide range of industries, including software development, healthcare, finance, entertainment, customer service, sales and marketing, art, writing, fashion, and product design. However, concerns have been raised about the potential misuse of generative AI such as cybercrime, the use of fake news or deepfakes to deceive or manipulate people, and the mass replacement of human jobs"""
     QUERY = "What is GenAI?"
 
+elif os.path.isfile(CONTEXT):
+    CONTEXT = TextLoader(CONTEXT).load()
+    is_context_file = 1
+
 
 ## process data
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=200, chunk_overlap=25)
-data = [Document(page_content=x) for x in text_splitter.split_text(CONTEXT)]
+if is_context_file:
+    data = text_splitter.split_documents(CONTEXT)
+else:
+    data = [Document(page_content=x) for x in text_splitter.split_text(CONTEXT)]
+
 
 ## Helper function for printing docs
 def pretty_print_docs(docs):
@@ -127,3 +137,4 @@ compressed_contexts_len = len("\n\n".join([d.page_content for i, d in enumerate(
 print("Original context length:", original_contexts_len)
 print("Compressed context length:", compressed_contexts_len)
 print("Compressed Ratio:", f"{original_contexts_len/(compressed_contexts_len + 1e-5):.2f}x")
+
