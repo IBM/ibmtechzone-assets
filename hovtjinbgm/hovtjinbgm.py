@@ -5,7 +5,6 @@ from pyspark.sql import SparkSession
 
 #Read data from WatsonX.data using prestodb
 host_name = os.environ["host_name"]
-port = os.environ["port"]
 username = os.environ["username"]
 password = os.environ["password"]
 catalog_name = os.environ["catalog_name"]
@@ -18,7 +17,7 @@ s3_bucket_path = os.environ["s3_bucket_path"]
 #Create the connection to prestodb
 conn=prestodb.dbapi.connect(
     host=host_name,
-    port=port,
+    port=443,
     user=username,
     password=password,
     http_scheme='https',
