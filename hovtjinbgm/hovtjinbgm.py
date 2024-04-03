@@ -7,7 +7,7 @@ import boto3
 
 #Read data from WatsonX.data using prestodb
 host_name = os.environ["host_name"]
-port = 443
+port = os.environ["port"]
 username = os.environ["username"]
 password = os.environ["password"]
 catalog_name = os.environ["catalog_name"]
@@ -23,7 +23,7 @@ key = os.environ["key"]
 #Create the connection to prestodb
 conn=prestodb.dbapi.connect(
     host=host_name,
-    port=port,
+    port=int(port),
     user=username,
     password=password,
     http_scheme='https',
