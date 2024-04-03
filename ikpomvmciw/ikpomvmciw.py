@@ -15,6 +15,10 @@ logging.config.dictConfig({
     'disable_existing_loggers': True,
 })
 
+import warnings
+warnings.filterwarnings("ignore")
+
+
 ## inputs
 CONTEXT = os.environ["context"]
 QUERY = os.environ["query"]
