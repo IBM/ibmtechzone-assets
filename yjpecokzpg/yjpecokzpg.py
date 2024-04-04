@@ -1,13 +1,12 @@
+# pip install streamlit;pip install pypdf;pip install ibm_watson_machine_learning
 import streamlit as st
-import os
 from pypdf import PdfReader
 from ibm_watson_machine_learning.foundation_models import Model
-from dotenv import load_dotenv
+import sys
 
-load_dotenv()
-ibm_cloud_url = os.getenv("IBM_CLOUD_URL", None)
-watson_ai_project_id = os.getenv("PROJECT_ID", None)
-watson_ai_api_key = os.getenv("API_KEY", None)
+ibm_cloud_url = sys.argv[0]
+watson_ai_project_id = sys.argv[1]
+watson_ai_api_key = sys.argv[3]
 
 def extract_paragraphs(uploaded_file):
     pdf_page=PdfReader(uploaded_file)
