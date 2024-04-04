@@ -14,7 +14,7 @@ model = "meta-llama/llama-2-70b-chat"
 
 
 my_credentials = { 
-  "url"    : "https://bam-api.res.ibm.com/v2/text/generation?version=2024-03-19", 
+  "url"    : "https://us-south.ml.cloud.ibm.com",
   "apikey" : API_KEY
 }
 # params_response_generation = GenerateParams(decoding_method="greedy", min_new_tokens= min_new_tokens, max_new_tokens=max_new_tokens, random_seed=1024, repetition_penalty=1.2) 
@@ -25,7 +25,8 @@ project_id  = PROJECT_ID
 space_id    = None
 verify      = False
 
-model = Model( model_id, my_credentials, gen_parms, project_id, space_id, verify )    
+model = Model( model_id, my_credentials, gen_parms, project_id, space_id, verify )   
+
 
 
 prompt_1 = PROMPT_1
@@ -65,6 +66,7 @@ async def handle_prompts_async(model, prompts, gen_parms_override):
     
 async def main():
   results = await handle_prompts_async(model, prompts, gen_parms_override)
+  print(results)
   return results
 
 asyncio.run(main())
