@@ -1,12 +1,12 @@
-aws_access_key_id = os.environ["aws_access_key_id"]
-aws_secret_access_key = os.environ["aws_secret_access_key"]
-aws_bucket_name = os.environ["aws_bucket_name"]
-key_prefix = os.environ["key_prefix"] #enter key folder path in S3 where logs need to be stored
 import logging
 import boto3
 from botocore.exceptions import NoCredentialsError
 from datetime import datetime
-
+import os
+aws_access_key_id = os.environ["aws_access_key_id"]
+aws_secret_access_key = os.environ["aws_secret_access_key"]
+aws_bucket_name = os.environ["aws_bucket_name"]
+key_prefix = os.environ["key_prefix"] #enter key folder path in S3 where logs need to be stored
 class S3Handler(logging.Handler):
     def __init__(self, bucket_name, key_prefix, log_filename='log.txt'):
         super().__init__()
