@@ -4,9 +4,11 @@ from pypdf import PdfReader
 from ibm_watson_machine_learning.foundation_models import Model
 import sys
 
-ibm_cloud_url = sys.argv[0]
-watson_ai_project_id = sys.argv[1]
+ibm_cloud_url = sys.argv[1]
+watson_ai_project_id = sys.argv[2]
 watson_ai_api_key = sys.argv[3]
+
+print(ibm_cloud_url,watson_ai_project_id,watson_ai_api_key)
 
 def extract_paragraphs(uploaded_file):
     pdf_page=PdfReader(uploaded_file)
