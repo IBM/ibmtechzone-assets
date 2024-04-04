@@ -8,6 +8,7 @@ PROMPT_2 = os.environ["prompt_2"]
 PROMPT_3 = os.environ["prompt_3"]
 PROMPT_4 = os.environ["prompt_4"]
 API_KEY = os.environ["api_key"]
+PROJECT_ID = os.environ["project_id"]
 
 model = "meta-llama/llama-2-70b-chat"
 
@@ -20,10 +21,11 @@ my_credentials = {
 
 model_id    = ModelTypes.LLAMA_2_70B_CHAT
 gen_parms   = {"decoding_method" : "greedy", "min_new_tokens" : 10, "max_new_tokens" : 250, "random_seed" : 1024}
+project_id  = PROJECT_ID
 space_id    = None
 verify      = False
 
-model = Model( model_id, my_credentials, gen_parms, space_id, verify )   
+model = Model( model_id, my_credentials, gen_parms, project_id, space_id, verify )    
 
 
 prompt_1 = PROMPT_1
