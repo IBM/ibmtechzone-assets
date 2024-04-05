@@ -3,6 +3,8 @@ import streamlit as st
 from pypdf import PdfReader
 from ibm_watson_machine_learning.foundation_models import Model
 import sys
+from streamlit.web import cli as stcli
+from streamlit import runtime
 
 ibm_cloud_url = sys.argv[1]
 watson_ai_project_id = sys.argv[2]
@@ -60,3 +62,13 @@ if entity1_file is not None:
 
     summary_placeholder.subheader("Document Summaries")
     st.write(f"{filename1} Summary: \n\n", summary(data_1))
+
+if __name__ == '__main__':
+    if runtime.exists():
+        print("Running ......")
+    else:
+        ibm_cloud_url = sys.argv[1]
+        watson_ai_project_id = sys.argv[2]
+        watson_ai_api_key = sys.argv[3]
+        sys.argv = ["streamlit", "run", sys.argv[0],ibm_cloud_url,watson_ai_project_id,watson_ai_api_key]
+        sys.exit(stcli.main())
