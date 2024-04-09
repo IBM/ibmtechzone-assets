@@ -7,11 +7,13 @@ import re
 string = os.environ["transcript"]
 
 print("*********************************Original Transcript Starts************************************")
-print(string)
-print("*********************************Original Transcript Ends************************************")
 
 vttlist = string.split('\n')
 newvtt = [i for i in vttlist if i]
+
+for y in newvtt:
+    print(y)
+print("*********************************Original Transcript Ends************************************")
 
 # Need to remove "<v" and replace ">" with ":"
 
