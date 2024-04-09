@@ -1,26 +1,14 @@
-import pandas as pd
-import numpy as np
-import io
-
 from ibm_watson import DiscoveryV2
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 import os
-import json
-import pdfkit
-from reportlab.lib import colors
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, ListFlowable, ListItem, KeepTogether
-from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle, ListStyle
-# Create custom fonts for bold and italic
-from reportlab.lib.fonts import addMapping
-from reportlab.pdfbase.pdfmetrics import registerFont, registerFontFamily
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Image
-from collections import defaultdict
 import re
 
 
 string = os.environ["transcript"]
 
-
+print("*********************************Original Transcript Starts************************************")
+print(string)
+print("*********************************Original Transcript Ends************************************")
 
 vttlist = string.split('\n')
 newvtt = [i for i in vttlist if i]
@@ -105,4 +93,5 @@ for f in final_output:
 # Create one whole doc from all the strings
 #whole_doc = ' '.join(str(c) + ' ' for c in clean_clean)
 whole_doc = '\n'.join(line for line in final_no_dupes) # clean_clean  # adding "\n" helps with chunking
+print("*********************************Cleaned Transcript************************************")
 print(whole_doc)
