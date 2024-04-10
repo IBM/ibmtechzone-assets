@@ -112,8 +112,8 @@ cons_placeholder = st.empty()
 if entity1_file is not None:
     data_1 = extract_paragraphs(entity1_file)
 
-    summary_placeholder.subheader("Summaries")
-    st.write(f"{filename1} Summary: \n\n", summary(data_1))
+    summary_placeholder.subheader("Summary")
+    st.write(summary(data_1))
 
 if __name__ == '__main__':
     if runtime.exists():
