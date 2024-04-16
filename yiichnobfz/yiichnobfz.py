@@ -1,5 +1,6 @@
 import ibm_boto3
 from botocore.client import Config
+import os
 
 COS_API_KEY = os.getenv("cos_api_key")
 SERVICE_INSTANCE_ID = os.getenv("service_instance_id")
