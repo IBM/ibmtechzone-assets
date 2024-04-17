@@ -2,21 +2,21 @@ import os
 import re
 
 
-# string = os.environ["transcript"]
-def load_vtt_file(file_path):
-    try:
-        with open(file_path, 'r') as file:
-            return file.read()  # Read the entire file content as a string
-    except FileNotFoundError:
-        print("File not found:", file_path)
-        return None
+string = os.environ["transcript"]
+# def load_vtt_file(file_path):
+#     try:
+#         with open(file_path, 'r') as file:
+#             return file.read()  # Read the entire file content as a string
+#     except FileNotFoundError:
+#         print("File not found:", file_path)
+#         return None
 
-# Path to your local VTT file
-vtt_file_path = "example1.vtt"
+# # Path to your local VTT file
+# vtt_file_path = "example1.vtt"
 
 # Load VTT file
 
-string = load_vtt_file(vtt_file_path)
+# string = load_vtt_file(vtt_file_path)
 # string = ""
 # print(string)
 
