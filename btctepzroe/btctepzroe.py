@@ -50,7 +50,8 @@ def clean_summary_numbers(responses):
     responses=[response.replace('""','"').replace("''","'").replace(''''"''','"').replace(""""'""",'"') for response in responses]
 
     responses=[response.replace('//not provided in input','').replace('and',',').replace(';',',').replace('percent ','').replace('percent,',',').replace('.,',',').replace(',,',',').replace('Zero','0') for response in responses]
+    responses=[ ast.literal_eval(response) for response in responses]
     return responses
     
 responses=ast.literal_eval(JSON_LIST)
-clean_summary_numbers(responses)    
+print(clean_summary_numbers(responses))    
