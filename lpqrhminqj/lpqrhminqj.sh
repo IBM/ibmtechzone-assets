@@ -9,4 +9,5 @@ ilab init
 ilab download
 ilab serve &
 sleep 5
+ilab
 ilab chat
