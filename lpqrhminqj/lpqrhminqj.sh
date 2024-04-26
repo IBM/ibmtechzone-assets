@@ -6,4 +6,5 @@ pip install git+https://github.com/instructlab/instructlab.git@stable
 ilab
 ilab download
 git clone https://github.com/instructlab/taxonomy
-ilab serve --model-path taxonomy
+ilab init --model-path taxonomy
+ilab serve
