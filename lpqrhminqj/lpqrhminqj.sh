@@ -7,5 +7,5 @@ ilab
 git clone https://github.com/instructlab/taxonomy
 ilab init
 ilab download
-nohup ilab serve &
+ilab serve > output.log 2>&1 &
 ilab chat
