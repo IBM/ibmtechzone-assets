@@ -7,6 +7,5 @@ ilab
 git clone https://github.com/instructlab/taxonomy
 ilab init
 ilab download
-sleep 2
-nohup ilab serve
+nohup ilab serve &
 ilab chat
