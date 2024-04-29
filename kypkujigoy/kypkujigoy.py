@@ -10,7 +10,10 @@ driver = webdriver.Chrome(ChromeDriverManager().install())
 
 def initialize_driver():
     # Initialize the WebDriver
-    driver = webdriver.Chrome(ChromeDriverManager().install())
+    #driver = webdriver.Chrome(ChromeDriverManager().install())
+    driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
+
+    
     return driver
 
 # Usage
