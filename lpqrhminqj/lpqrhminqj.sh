@@ -8,4 +8,11 @@ git clone https://github.com/instructlab/taxonomy
 ilab init
 ilab download
 ilab serve > output.log 2>&1 &
+deactivate
+pwd
+cd instructlab
+python3 -m venv venv
+source venv/bin/activate
+ilab
+
 ilab chat
