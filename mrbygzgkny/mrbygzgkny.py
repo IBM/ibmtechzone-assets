@@ -22,7 +22,6 @@ def main():
     variable_name_generator = iter(dfs(string.ascii_lowercase))
     variable_name_mapping = {}
 
-    
     original_code = java_code
     parsed_code = javalang.parse.parse(original_code)
 
@@ -63,10 +62,11 @@ def main():
             flags=re.MULTILINE | re.DOTALL,
         )
 
-    print(original_code)
+    with open(f"minifiedCode.java", "w") as f:
+        f.write(original_code)
 
     javalang.parse.parse(original_code)
 
 
-
-main()
+if __name__ == "__main__":
+    main()
