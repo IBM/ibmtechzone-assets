@@ -11,13 +11,13 @@ def get_credentials():
 	}
 
 #Here you can add your old pseudocode
-older_version_Pseudocode=os.environ["SAMPLE_PSEUDOCODE"]
+older_version_Pseudocode = os.environ["SAMPLE_PSEUDOCODE"]
 
 #Here you can add your old java code
-older_version_Java_Code=os.environ["SAMPLE_JAVA_CODE"]
+older_version_Java_Code = os.environ["SAMPLE_JAVA_CODE"]
 
 #Here you can add your new pseudocode
-New_version_Pseudocode=os.environ["NEW_PSEUDOCODE"]
+New_version_Pseudocode = os.environ["NEW_PSEUDOCODE"]
 
 #Prompt for java code generation based on the provided pseudocode.
 prompt_input = f"""Input: You are an excellent agent focused on creating accurate and efficient Java code. Consider the provided older version of pseudocode, older version of javacode as a example. Generate the New version Java code according to New version Pseudocode. New version java code must be compatible with stable JDK(java development version) version. Generated New version Java code must contain the updated logic made in the New version Pseudocode. 
