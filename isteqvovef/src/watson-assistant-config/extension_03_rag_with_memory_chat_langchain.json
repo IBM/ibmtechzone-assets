@@ -1,0 +1,79 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "RAG API",
+    "description": "API to do RAG"
+  },
+  "servers": [
+    {
+      "url": "https://chatbot-with-memory.16jc1w8uq8wb.us-south.codeengine.appdomain.cloud"
+    }
+  ],
+  "paths": {
+    "/get_model_response": {
+      "post": {
+        "summary": "Query retriever & do LLM inference",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "description": "query to RAG"
+                  }
+                },
+                "required": ["query"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "rag_response": {
+                      "type": "string",
+                      "description": "WatsonX response"
+                    },
+                    "dummy_one": {
+                      "type": "string",
+                      "description": "dummy_one"
+                    },
+                    "dummy_two": {
+                      "type": "string",
+                      "description": "dummy_two"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No results found or collection is empty",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
