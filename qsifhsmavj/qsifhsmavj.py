@@ -2,12 +2,12 @@ import requests
 import pprint
 import os
 import ast
-# add
+
 api_key = os.environ["api_key"]
 project_id = os.environ["project_id"]
 job_name = os.environ["job_name"]
-job_env_variables = os.environ["job_env_variables"]
-job_env_variables=ast.literal_eval(job_env_variables)
+#job_env_variables = os.environ["job_env_variables"]
+#job_env_variables=ast.literal_eval(job_env_variables)
 
 url = "https://iam.cloud.ibm.com/identity/token"
 
@@ -47,8 +47,7 @@ print("job_name: ", job_name)
 print("job_id: ", job_id )
 
 
-data = {"job_run": {'configuration': {
-                                          'env_variables':job_env_variables }}}
+#data = {"job_run": {'configuration': {'env_variables':job_env_variables }}}
         
 headers = {'authorization': 'Bearer %s'%(access_token),
            'content-type': 'application/json'}
@@ -56,7 +55,6 @@ url = host+"/v2/jobs/{}/runs?project_id={}".format(job_id,project_id)
 r = requests.post(url,
                  headers=headers,
                  verify=False,
-                 json= data,
+                 #json= data,
                 )
 pprint.pprint(r.json())
-#wait for completion eta 2 min
