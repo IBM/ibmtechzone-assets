@@ -10,17 +10,18 @@ def get_credentials():
 		"apikey" : os.environ["IBM_CLOUD_API_KEY"]
 	}
 
+def promptConfiguration():
     #Here you can add your old pseudocode
-older_version_Pseudocode = os.environ["SAMPLE_PSEUDOCODE"]
+    older_version_Pseudocode = os.environ["SAMPLE_PSEUDOCODE"]
 
     #Here you can add your old java code
-older_version_Java_Code = os.environ["SAMPLE_JAVA_CODE"]
+    older_version_Java_Code = os.environ["SAMPLE_JAVA_CODE"]
 
     #Here you can add your new pseudocode
-New_version_Pseudocode = os.environ["NEW_PSEUDOCODE"]
+    New_version_Pseudocode = os.environ["NEW_PSEUDOCODE"]
 
     #Prompt for java code generation based on the provided pseudocode.
-prompt_input = f"""Input: You are an excellent agent focused on creating accurate and efficient Java code. Consider the provided older version of pseudocode, older version of javacode as a example. Generate the New version Java code according to New version Pseudocode. New version java code must be compatible with stable JDK(java development version) version. Generated New version Java code must contain the updated logic made in the New version Pseudocode. 
+    prompt_input = f"""Input: You are an excellent agent focused on creating accurate and efficient Java code. Consider the provided older version of pseudocode, older version of javacode as a example. Generate the New version Java code according to New version Pseudocode. New version java code must be compatible with stable JDK(java development version) version. Generated New version Java code must contain the updated logic made in the New version Pseudocode. 
     ***IMPORTANT CONDITIONS AND STEPS TO FOLLOW IN NEW VERSION JAVA CODE GENERATION PROCESS :
     1. Required to generate the code without object oriented programming concepts. Only code snippet is required.
     2. First Understand the older version pseudocode and its corresponding older version of javacode then compare the New version Pseudocode with older version Pseudocode. Strictly consider the updation made in New version Pseudocode.
@@ -43,6 +44,8 @@ prompt_input = f"""Input: You are an excellent agent focused on creating accurat
     New version Java code:
 
     Output:"""
+
+    return prompt_input
 
 
 def javaCodeGen():
@@ -76,7 +79,7 @@ def javaCodeGen():
 
     #LLM Respose Generation
     print("Submitting generation request...")
-    generated_response = model.generate_text(prompt=prompt_input)
+    generated_response = model.generate_text(prompt=promptConfiguration)
     return generated_response
 
 if __name__ == '__main__':
