@@ -1,6 +1,7 @@
 import yaml
 import re
 import os
+import argparse
 
 class Merge_Ansible:
 
@@ -140,15 +141,31 @@ class Merge_Ansible:
 
 if __name__ == '__main__':
 
+    # Create argument parser
+    parser = argparse.ArgumentParser(description='Process two code strings.')
+
+    # Add arguments for code strings
+    parser.add_argument('code1', type=str, help='First code string.')
+    parser.add_argument('code2', type=str, help='Second code string.')
+
+    # Parse the arguments
+    args = parser.parse_args()
+
+    # Access the code strings
+    code1 = args.code1
+    code2 = args.code2
+
+    # Do something with the code strings
+    print('First code string:', code1)
+    print('Second code string:', code2)
+
     ma = Merge_Ansible()
 
-    PROJECT_NAME = os.environ["project_name"]
-    print(os.popen("oc project " + PROJECT_NAME).read())
+    codes = [code1, code2]
 
-    # codes = []
+    merged_dict = ma.merge_sections(codes)
 
-    # merged_dict = ma.merge_sections(codes)
+    merged_script = ma.dict_to_yaml_string(merged_dict)
 
-    # merged_script = ma.dict_to_yaml_string(merged_dict)
-
+    print('Output Code String:', merged_script)
     
