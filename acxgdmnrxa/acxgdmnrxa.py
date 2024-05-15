@@ -141,21 +141,94 @@ class Merge_Ansible:
 
 if __name__ == '__main__':
 
-    # Create argument parser
-    parser = argparse.ArgumentParser(description='Process two code strings.')
+    code1 = '''
+- name: Start Springboot Applications
+  hosts: all
+  gather_facts: yes
+  vars:
+    sbApps: "{{ node['visa_springboot']['apps_dir'] }}"
+    log_file: "{{ node['visa_springboot']['log_dir'] }}/day2_start.log"
 
-    # Add arguments for code strings
-    parser.add_argument('code1', type=str, help='First code string.')
-    parser.add_argument('code2', type=str, help='Second code string.')
+  tasks:
+    - name: Check User and Group
+      ansible.builtin.include_role:
+        name: visa_springboot
+      vars:
+        check_user_group: true
+      register: check_result
+      when: check_user_group is defined
 
-    # Parse the arguments
-    args = parser.parse_args()
+    - name: Raise Error if Declined
+      ansible.builtin.fail:
+        msg: "DECLINED: {{ check_result.results[0].msg }}"
+      when: check_result.results[0].msg is defined
 
-    # Access the code strings
-    code1 = args.code1
-    code2 = args.code2
+    - name: Create Log Directory
+      ansible.builtin.file:
+        path: "{{ node['visa_springboot']['log_dir'] }}"
+        state: directory
+        mode: '0755'
+'''
+    code2 = '''
+- name: Start Springboot Containers
+  hosts: all
+  gather_facts: yes
+  vars:
+    log_file: "/var/log/springboot.log"
+    sbApps: "/opt/visa/sbApps"
 
-    # Do something with the code strings
+  tasks:
+    - name: Start Container
+      ansible.builtin.bash:
+        user: "{{ node['visa_springboot']['service_user'] }}"
+        group: "{{ node['visa_springboot']['service_group'] }}"
+        content: |
+          exec 1>>{{ log_file }}
+          exec 2>&1
+          echo ""
+          echo "{{ node['visa_springboot']['timestamp'] }}"
+          echo "*** Starting {{ container_name }} ***"
+          {{ sbApps }}/{{ container_name }}/bin/sbruntime-ctl.sh start
+          sleep 8
+        notify: Validate Container Action
+        when: "container_name in node['visa_springboot']['containers'].keys()"
+        register: container_result
+        ignore_errors: true
+
+    - name: Validate Container Action
+      ansible.builtin.block:
+        - name: Check Container Status
+          ansible.builtin.command: ps -ef|grep {{ sbApps }}/{{ container_name }}/conf|grep -v grep
+          register: check_result
+          changed_when: false
+          failed_when: check_result.rc != 0
+          ignore_errors: true
+
+        - name: Raise Error if Container Not Running
+          ansible.builtin.fail:
+            msg: "{{ container_name }} could not be started"
+          when: check_result.rc != 0
+
+  handlers:
+    - name: Validate Container Action
+      ansible.builtin.block:
+        - name: Log Container Result
+          ansible.builtin.debug:
+            var: container_result
+'''
+
+    import os
+    CODE1_FILE_NAME = os.environ["code1_file"]
+    CODE2_FILE_NAME = os.environ["code2_file"]
+
+    if os.path.isfile(CODE1_FILE_NAME) and os.path.isfile(CODE2_FILE_NAME):
+        # If file exists read data from the data file
+        with open(CODE1_FILE_NAME, 'r') as file:
+                code1 = file.read()
+
+        with open(CODE2_FILE_NAME, 'r') as file:
+                code2 = file.read()
+
     print('First code string:', code1)
     print('Second code string:', code2)
 
