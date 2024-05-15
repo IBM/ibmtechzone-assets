@@ -5,10 +5,8 @@ from rouge import Rouge
 scorer = BERTScorer(lang="en", rescale_with_baseline=True)
 
 """
-This script demonstrates how to evaluate the performance of two models, LLAMA-70B and Mistral, by computing ROUGE scores for their generated answers compared to reference answers. 
-It defines two functions: calculate_rouge_scores to compute ROUGE scores for model answers,and evaluate_models to compare the ROUGE scores of both models and select the model with the best performance. 
-The evaluate_models function takes LLAMA-70B answers, Mistral answers, and reference answers as input, calculates their ROUGE scores, prints the scores for both models, 
-and returns the name of the model with the higher ROUGE-L F1 score as the best-performing model. 
+This script demonstrates how to evaluate the performance of two models, LLAMA-70B and Mistral, by computing the average Bert and ROUGE scores for their generated answers compared to reference answers. 
+It defines two functions: calculate_rouge_scores to compute ROUGE-L scores for model answers,and calculate_bert_scores for computing the bert scores and compare the scores of both models and select the model with the best performance. 
 Example usage with dummy answers is provided, demonstrating how to use the functions to determine the best model.
 """
 
