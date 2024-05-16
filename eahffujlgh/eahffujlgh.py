@@ -28,7 +28,7 @@ def compare_documents(doc1, doc2):
             index2 += 1
 
     print("Indices of missing text:", indices_missing)
-    print("Indices of extra text:", indices_extra) #check this
+    print("Indices of extra text:", indices_extra) 
     
     missing_text = []
     extra_text =[]
