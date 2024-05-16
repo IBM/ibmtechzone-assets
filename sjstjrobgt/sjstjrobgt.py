@@ -1,7 +1,7 @@
 import ibm_boto3
 import os
 
-def generate_url_for_object(cos_access_key_id: str, cos_secret_access_key: str, cos_endpoint_url: str,expiration: int, key_name: str, bucket_name: str):
+def generate_url_for_object(cos_access_key_id, cos_secret_access_key, cos_endpoint_url,expiration, key_name, bucket_name):
     try:
         cos_client = ibm_boto3.client(
             service_name="s3",
