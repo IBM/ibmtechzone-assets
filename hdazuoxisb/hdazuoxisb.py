@@ -484,3 +484,11 @@ Answer: '''
 
                     st.write("Answer")
                     st.write(final_response)
+                    
+                    
+if __name__ == '__main__':
+    if runtime.exists():
+        print("Running ......")
+    else:
+        sys.argv = ["streamlit", "run", sys.argv[0]]
+        sys.exit(stcli.main())
