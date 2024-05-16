@@ -1,9 +1,5 @@
-from fastapi import FastAPI
-from fastapi.openapi.utils import get_openapi
 import ibm_boto3
-import json
-
-app = FastAPI()
+import os
 
 def generate_url_for_object(cos_access_key_id: str, cos_secret_access_key: str, cos_endpoint_url: str,expiration: int, key_name: str, bucket_name: str):
     try:
@@ -22,14 +18,13 @@ def generate_url_for_object(cos_access_key_id: str, cos_secret_access_key: str, 
         print(f"An error occurred while creating the url: {e}")
         return None
 
-@app.get("/generate-url/")
-async def generate_presigned_url(cos_access_key_id: str,cos_secret_access_key: str,cos_endpoint_url: str,expiration: int,key_name: str, bucket_name: str):
-    return {"presignedurl" : generate_url_for_object(cos_access_key_id, cos_secret_access_key, cos_endpoint_url, expiration,key_name, bucket_name)}
 
-# Generate OpenAPI schema
-openapi_schema = get_openapi(
-    title="IBM COS Pre-Signed URL Generator",
-    version="1.0.0",
-    description="Generate pre-signed URLs for accessing objects in IBM Cloud Object Storage.",
-    routes=app.routes,
-)
+def generate_presigned_url():
+
+    cos_access_key_id = os.environ["cos_access_key_id"]
+    cos_secret_access_key = os.environ["cos_secret_access_key"]
+    cos_endpoint_url = os.environ["cos_endpoint_url"]
+    expiration = os.environ["expiration"]
+    key_name = os.environ["key_name"]
+    bucket_name = os.environ["bucket_name"]
+    return {"presignedurl": generate_url_for_object(cos_access_key_id, cos_secret_access_key, cos_endpoint_url, expiration,key_name, bucket_name)}
