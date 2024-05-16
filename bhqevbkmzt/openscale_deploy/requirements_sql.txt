@@ -1,9 +1,0 @@
-langchain==0.0.345
-sentence-transformers
-ibm-watson-machine-learning
-ibm-metrics-plugin
-ibm-watson-openscale
-python-dotenv
-fastapi
-uvicorn
-nest-asyncio
