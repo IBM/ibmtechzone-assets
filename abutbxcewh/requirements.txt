@@ -1,6 +1,0 @@
-fastapi
-uvicorn
-ibm-cloud-sdk-core
-ibm-cos-sdk
-ibm-cos-sdk-core
-ibm-cos-sdk-s3transfer
