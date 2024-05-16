@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="SauceDemo - Swag Labs">
+    <test name="Regression" parallel="classes" thread-count="10">
+        <classes>
+            <class name="web_saucedemo.tests.testng.testcases.TC001_AddToCart_Checkout"></class>
+            <class name="web_saucedemo.tests.testng.testcases.TC002_AddToCart_Count"></class>
+            <class name="web_saucedemo.tests.testng.testcases.TC003_LockedOutUser"></class>
+            <class name="web_saucedemo.tests.testng.testcases.TC004_Logout"></class>
+        </classes>
+    </test> <!-- Test -->
+</suite> <!-- Suite -->
