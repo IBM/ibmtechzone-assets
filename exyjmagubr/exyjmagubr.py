@@ -20,5 +20,15 @@ def detect_language_endpoint():
     return jsonify({"language": language})
 
 
+@app.route("/health", methods=["GET"])
+def health_check():
+    return "I am alive"
+
+
+@app.route("/", methods=["GET"])
+def main():
+    return "Language Detector"
+
+
 if __name__ == "__main__":
     app.run(debug=True)
