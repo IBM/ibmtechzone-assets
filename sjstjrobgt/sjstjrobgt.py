@@ -28,3 +28,6 @@ def generate_presigned_url():
     key_name = os.environ["key_name"]
     bucket_name = os.environ["bucket_name"]
     return {"presignedurl": generate_url_for_object(cos_access_key_id, cos_secret_access_key, cos_endpoint_url, expiration,key_name, bucket_name)}
+    
+if __name__ == '__main__':
+    print(generate_presigned_url())
