@@ -235,76 +235,7 @@ def save_multi_json(final_object_dict,testcase_final_dict,output_path):
 
     return obj_df,tc_df
 
-def selenium_to_json(folder_path):
 
-    test_files_with_dependency = code_discovery_and_refactore(folder_path)
-
-    final_object_dict = {}
-    final_response_list = []
-
-    for test_main_file in list(test_files_with_dependency.keys()):
-        selenium_test_files = [test_main_file]
-        selenium_obj_files = test_files_with_dependency[test_main_file]
-
-        print(selenium_obj_files)
-        print(selenium_test_files)
-        obj_text = read_java_files(selenium_obj_files)
-        test_text = read_java_files(selenium_test_files)
-        #print(java_text)
-
-        # Generate Prompt
-        object_prompt = object_prompt_start + " ".join(obj_text) + object_prompt_end
-        print("Prompt: ",object_prompt)
-
-        # Call WatsonX.AI Model
-        object_json_dict = model._generate_text(prompt=object_prompt)
-        #print("Model Output: ",object_json_dict)
-
-        # Post-processing output
-        object_json_dict = json.loads(object_json_dict)
-        print("After:",object_json_dict)
-        final_object_dict, object_list = processing_obj_response(object_json_dict,final_object_dict)
-        all_text = " ".join(obj_text) + '\n' + " ".join(test_text)
-        counter = 0
-        not_in = []
-        for obj_name in object_list:
-            if obj_name not in all_text:
-                del final_object_dict[obj_name]
-                counter += 1
-                not_in.append(obj_name)
-
-        if len(object_list) > 0 and (counter*100)/len(object_list) >= 70.00:
-            print("CONTINUE++++++++++++++++++++++++")
-            continue
-
-        else:
-            object_list = list(set(object_list) - set(not_in))
-            objectNames = str(object_list)
-            object_prompt_tc_extr = testcase_prompt_start + "\n".join(test_text) + object_prompt_end
-            tc_json = model2._generate_text(prompt=object_prompt_tc_extr)
-            print("Testcase and Function JSON output:",tc_json)
-
-            json_format = "TestCase JSON:\n" + tc_json
-            objList = "ObjectName List:\n" + objectNames
-            object_prompt_combination = mapping_testcase_and_object_prompt_start  + json_format + "\n" + objList + "\n".join(obj_text + test_text) + object_prompt_end
-            print(object_prompt_combination)
-            final_response = model2._generate_text(prompt=object_prompt_combination)
-            print("final_response before json load: ",final_response)
-            final_response = json.loads(final_response.rsplit('}',1)[0]+'}')
-            print("final_response: ",final_response)
-
-            # post processing 
-            # testcase_final_dict = processing_tc_task_obj_response(final_response,final_object_dict)
-            final_response_list.append(final_response)
-            del final_response
-            time.sleep(15)
-
-    final_test_list = []
-    for final_response in final_response_list:
-        testcase_final_dict = processing_tc_task_obj_response(final_response,final_object_dict)
-        final_test_list.append(testcase_final_dict)
-    
-    return final_object_dict, final_test_list
 
 
 def save_multi_json_final(final_object_dict, final_test_list, custom_output_path):
