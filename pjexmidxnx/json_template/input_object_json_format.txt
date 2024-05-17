@@ -1,0 +1,28 @@
+{
+  "objectClass": "",
+  "objectName": "",
+  "objectSource": "WebRecorder",
+  "propertyList": [
+    {
+      "propertyName": "ObjectData",
+      "propertyValue": ""
+    }
+  ],
+  "objectId": "",
+  "parentId": "",
+  "technology": "Web",
+  "objectDescription": "",
+  "isEmptyObject": false,
+  "smartLocator": true,
+  "tool": "WebDriver",
+  "typeId": "",
+  "iconName": "",
+  "createdBy": "",
+  "updatedOn": "2024-03-22T11:22:46.763Z",
+  "createdOn": "2024-03-22T11:22:46.763Z",
+  "updatedBy": "",
+  "schema": {
+    "version": "1.0"
+  },
+  "modifiedVerId": ""
+}
