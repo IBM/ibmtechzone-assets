@@ -14,11 +14,6 @@ from config import watsonx_selenium_object_config, watsonx_selenium_object_confi
 model = WatsonxAPI(watsonx_selenium_object_config)
 model2 = WatsonxAPI(watsonx_selenium_object_config_greedy)
 
-# input_path_to_java = '/Users/pinkal/Documents/projects/selenium_to_qualitia/code/TestCases/TestCase1/input/'
-# output_path = "/Users/pinkal/Documents/projects/selenium_to_qualitia/code/TestCases/TestCase1/output_temp/"
-
-# java_files = [file_j for file_j in os.listdir(input_path_to_java) if file_j.endswith('.java') and "TestData" not in file_j]
-# print(java_files)
 
 # Read Object JSON Template
 with open('json_template/input_object_json_format.txt', 'r') as f:

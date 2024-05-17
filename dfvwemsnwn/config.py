@@ -36,7 +36,3 @@ watsonx_selenium_object_config_greedy = {
         "stop_sequences": ["\n\nNote:","Note:", "Input:", '↵↵', 'Explanation:'],
     }
 }
-
-# API_KEY=BELum2c4YKgFmrlpGFEXQGlVklxrhLkt-F-M68n3IInT
-# IBM_CLOUD_URL=https://us-south.ml.cloud.ibm.com
-# PROJECT_ID=7a31a166-4a8a-4bb2-a145-88e0d537deb2
