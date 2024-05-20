@@ -3,8 +3,8 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-api_key = os.getenv("API_KEY", None)
-collection_id = os.getenv("COLLECTION_ID", None)
+api_key = os.getenv("api_key", None)
+collection_id = os.getenv("collection_id", None)
 url = f"https://api.getpostman.com/collections/{collection_id}/transformations"
 
 headers = {
