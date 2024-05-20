@@ -21,7 +21,7 @@ def response_generation_llm(df):
     for index, row in df.iterrows():
         word_count = len(str(row['Review Text']).split())
         if word_count <= 2:
-            #df.at[index, 'Review Text'] = "Thanks for your feedback. Happy to hear more!" if row['Star Rating'] < 3 else "Thankyou for sharing your feedback. We will continue to serve you"
+            
             prompt=f"""<s>[INST] <<SYS>>Please generate response based on the review text and the rating {row['Review Text']} that is given. The generated response has to start with "Hi User, .." Please don't add any other additional information or don't add any further explanation. Keep the generated response within 2 lines and within 100 words and don't provide any other additional information. Consider the rating and give the responses. {row['Star Rating']} is the rating given. If {row['Star Rating']} is less than 3, then the response has to start with "Hi User, Sorry, to hear..". If {row['Star Rating']} is more than 3, then the response has to start with "Hi User, Thanks for the feedback. We're glad to hear that..". If {row['Star Rating']} is 3, then the response has to start with "Hi User,.." and it has to be based on the review text given. Only one response has to be generated and don't add any further explanation. Don't generate additional responses for different ratings. Only one response needs to be generated. Add "company-name.co.in" in the response for contact details. The response generated has to end with "Thanks! Team company-name"
                     <</SYS>>
                     Input: {row['Review Text']}
