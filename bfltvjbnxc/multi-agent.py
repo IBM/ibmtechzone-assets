@@ -22,7 +22,7 @@ Note:
 proxy_server.py file: Flask API to call Watsonx.AI Model. To use WatsonX.AI for llm model, one wrapper is written on top of this.
 
 Library:
-pip install autogen;
+pip install pyautogen;
 pip install flask
 '''
 
