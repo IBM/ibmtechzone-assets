@@ -4,14 +4,15 @@ import re
 
 string1 = os.environ["file_path"]
 
-def load_vtt_file(file_path):
-    try:
-        with open(file_path, 'r') as file:
-            return file.read()  # Read the entire file content as a string
-    except FileNotFoundError:
-        print("File not found:", file_path)
-        return None
-
+def load_vtt_file(string1):
+  try:
+    if os.path.isfile(string1):
+      with open(file_path, 'r') as file:
+                return file.read()
+  except FileNotFoundError:
+    print("File not found:", file_path)
+    return None
+  
 # Path to your local VTT file
 # vtt_file_path = "example1.vtt"
 
