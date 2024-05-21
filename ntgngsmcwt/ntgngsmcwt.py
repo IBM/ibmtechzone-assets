@@ -7,7 +7,7 @@ string1 = os.environ["file_path"]
 def load_vtt_file(string1):
   try:
     if os.path.isfile(string1):
-      with open(file_path, 'r') as file:
+      with open(string1, 'r') as file:
                 return file.read()
   except FileNotFoundError:
     print("File not found:", file_path)
@@ -112,5 +112,6 @@ for f in final_output:
 # Create one whole doc from all the strings
 #whole_doc = ' '.join(str(c) + ' ' for c in clean_clean)
 whole_doc = '\n'.join(line for line in final_no_dupes) # clean_clean  # adding "\n" helps with chunking
-print("*********************************Cleaned Transcript************************************")
+print("*********************************Cleaned Transcript Starts************************************")
 print(whole_doc)
+print("*********************************Cleaned Transcript Ends************************************")
