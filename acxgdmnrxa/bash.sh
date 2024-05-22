@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# pip3 install --upgrade pip
+# pip3 install -r requirements.txt
+
+# Directory to save the downloaded file
+save_directory="data"
+
+mkdir -p $save_directory
+
+# file1_URL="https://dl.boxcloud.com/d/1/b1!xV0tUEeli-dmDatihVUsOlGsKKkNiPJu0Q4xxMVjl84J-IduJ20onrwRx51yDqxBPk4ydrVs1WSffJ3AN_yELHLmbd5NPH-UXNEAkHdVQBSyt3WJGCGcX6xIqQgLrlNNMRE9JpRgqRWevdDq5hmA3qLbKdMYiLlafv14fglqlcocxFsNEZhVmgQItC8c5QmpCNBuvQ9w0tboC504mnPRAFnoS9zGmv0UDWVzweIf5WKLvDzMqOS8aw00tUkILAk6F-f9WlRDA-pn7fEPyAUh068H6T_WMDuGm6-1ns5QfM-tSIxHo7gwSrK795ZWFdkPl2hKVs2azq3Q19zD1k7NzLW7-AaN22R2vZB06pixf2KVi3TnFzMPEcoZ6Vsa8NsXjaO6kVRWmFG8TtJRSRG2uGTCdSGpdl6Cct_A0fFXK5pXdExpdfMr_F4mId08dfEXH56bAYSRiLaxPp13G-uzLivGs3RE7xTS4u2XbKxpB1vSMytuiFYhew8kQkXgpeSMj6BVwoidHvT3tS5P5HTDIMpR3NTuJtJVWMpWW2t4lW-WAKDCVLg5W0Wr9uFng-axbSaNLjhApAus6I32sYQ-HvUEEGpTrc83XW4M6a_u5ugtYmlF1zCZZo4VXKV8TaVY87e_zx-kX2qNe6lv7iI4bq6x5y0CiGB0MblzKJhVeyvtmrI0z5HASSZh52Y7dYDyesaPu7tt7eTl3-AdnQger5kOE-Q7wjbYL0CiN26jxLll5Oqz33EDmFiul3A6pfQbVMChwqGipcYrCUMeMMnVBbZx3coA_CDVewHmg2Jwm2rAOCPK8C3eZxobXxeDvu4eNITj3qJ4Xr0WxqbAsMKY30sYfhgRKfDgJxolP5CCHnN58KnVE64IiqIJIqpcSrLrDA4iRzuSWG1UmElMo1ecG_mFsxVItDZ-3oKvIptlplXQQwInlGfQnbYm9QopztM_fcFabs6AKYeQgip8FGcbnrdaLUcvs0NIAbESmkPrL6oAXO5XpEmzOVBay28PfdJ7hbkKynyuId6d7nG6vp6vLMuZamt22_UYwKEd4YUD9qdozGKYk3cKeTHU8HqlrR7SdKMugEvMncMvjcO_MTxbGajDg8aLR89gSJZ-KgDszRfrr7u1IJgS1qiVlThjq-WaEM2frJJANjMekB9vUOFrE1Bn1oAZpJYhluK_hYcnDO2vNR5Gc1yY7FF7VDXQIQHyR8hpIQPuvpWlsaEf4CyeMNdMF1JBllbne7s8KKiHeRew_S0atGAGVfsE4A9m8hHxjIneTnQonKBGsCRXeRWFzD56mLzDYXcoBH8mhY4xLar4-knEmo4OQ5VvztffBLrn3Wnm4NeO8pwqCS4OGSqZ6Nw3W14oEbM6JX2NaN_pFmiqpni61EyRn7E./download"
+# file2_URL="https://dl.boxcloud.com/d/1/b1!tjPnpHNNntLdqesVshezaJgMmL-iAGKJt-028Tjz1hpOh0JTWkNHrppmVc3hWnyAuA8VEL8XXlTfps6fedAd9Xgvr7yiw3xDghcP2445YD_OQJOqAYd8d5T57Gr6_YcP1nYLwBzZBzkfW7C9Xt4jHIg4Ba6kkvxdvjNWMryQt25lIwiJnRkuMFLKYKswT8RotgPdK3u4leFmZgbyhz1U1mh3O97UOpt-1BFejCukKZS9rBfsaTbnAYaoiJmxhJiB9RyVFdJopZNXTErUiWZ82kLVHabOrClFyCWyB-6Xo2qyDJchd3sKPrsO9tsQezYdcGk4ViisUkG4L8eMLzSeFOLManMfi5z5GdPcu4NwIYDEVz-U5yTv0Xkt47taJaCNkcJYpVQCNNlGlWT08OhoIEpjb6DVVH6xORQPLsiNp_taOpR17qAEZckuUb-eqdiaDb_gfC3Mwg11avBGbQqxYgvDc3s0Yn_rwKfzIcLFxHBWGn8ShtLG9253tDBJi7Tul-35_utbV1wGw7d2ijfqElZ7-4jr71KAMpfzn-xTwNreTg_iQN3eDT6qHKBOHfsyHy4qVY7oLOx1QWMdfIVf3zrewfeOoMoga9NxHWOlE1Ix0bE7stAeKAE67KXtst8wSiDqlOAlsN_3EoBWgnI-GfttxhvzhORVSxKcaSFcE8rvzPMjc5zq8b07KKpq87zvDP7bnEN3zqzgSbaTXR4zLozZYbwc3QUj6pcfmrORehdSvcRsrtbqCmqynKcqKQYIU7D4-GiaXfzMHRxtqo1A_7PF9_H-ZrVajcdQeCBIl6C7EVtxaukFXYOU5BlY6ancgmX4efcRlNOKfF_FpDb52bquv7MtiQeuK2DoL25uZp-DXYbdYHKlVPCb7uZ3bs1nCWjyBIrhjrltaBF7zXwRxXY7F7cE9sN7TePE26fOF35p4qvBiOzfVctlZOdw0MBIWBA3-0Nml9WyhI2Zmj1Bn4tQHiPxQWJ2lwbZ035YCBO6GoayrYt_Vnr9Wa9anrbqHOhN6Os3ppK2DGhOq-VxXKOefVLfXJxfu56GV9vPfDdaEIdZIJ9Pb0plM81oiD2AA_jCEkowEkAsnRnMN3U_VyDxXJ0_w4G4Dp_pSYwTU-vpWhYuhuhHEhQzW-_-DD61f1AqUQCvmPMp1fmCatofEUx1VQb4kGrh8D1e2XDSC1NCFEtmcxBbtmkM07yw_Yz8TWPMntfUqkrL462yYgmPV0gA8ADhs5H6c_2-H3xsqfJSG1Ab0IOxxLObgc-MXjQU4bn-57Z2i2K83zQbLHWA19tn78I1dPufjss3n9G8CEL0YDdWyp15Ax4NwUvzuzwmFORYtSnolAfnimkZdZqR3hg-CCYDwMnTg-y61t3GRxeHq2yO7YHoL7Q./download"
+
+
+# Download the file and check if the download was successful
+if wget -O "$save_directory/temp_file.yaml" "$file1_URL"; then
+  mv "$save_directory/temp_file.yaml" "$save_directory/file1.yaml"
+  echo "File downloaded and saved successfully."
+else
+  echo "Failed to download the file. It will not be saved."
+  rm -f "$save_directory/temp_file.yaml" # Clean up the temporary file if download failed
+fi
+
+echo ""
+echo ""
+
+# Download the file and check if the download was successful
+if wget -O "$save_directory/temp_file.yaml" "$file2_URL"; then
+  mv "$save_directory/temp_file.yaml" "$save_directory/file2.yaml"
+  echo "File downloaded and saved successfully."
+else
+  echo "Failed to download the file. It will not be saved."
+  rm -f "$save_directory/temp_file.yaml" # Clean up the temporary file if download failed
+fi
+
+
+cd $save_directory
+CWD="$(pwd)"
+
+for f in "$CWD"/*
+do
+    if [ -f *.zip ]; 
+    then
+        unzip $f
+    fi
+done
+
+cd ..
+python3 merge_ansible.py

@@ -1,12 +1,33 @@
 import yaml
 import re
 import os
+import glob
 import argparse
 
 class Merge_Ansible:
 
     def __init__(self) -> None:
         pass
+    
+
+    def get_yaml_files(self, directory):
+        """
+        Get the paths of all YAML files in the specified directory and its subdirectories.
+
+        Args:
+            directory (str): The directory to search for YAML files.
+
+        Returns:
+            list: A list of paths to YAML files.
+        """
+        yaml_files = []
+        # Use glob to recursively find all YAML files in the directory
+        for file in glob.glob(os.path.join(directory, '**/*.yaml'), recursive=True):
+            yaml_files.append(file)
+        for file in glob.glob(os.path.join(directory, '**/*.yml'), recursive=True):
+            yaml_files.append(file)
+        return yaml_files
+
 
     def preprocess_codeBlock(self, code_block):
         return code_block.replace('\n        ','\n').replace('```\n---\n','').replace('\n```', '\n').replace('```\n', '\n')
@@ -42,7 +63,7 @@ class Merge_Ansible:
         merged_code = {}
         for code_block in code_blocks:
 
-            code_block = self.preprocess_codeBlock(code_block)
+            # code_block = self.preprocess_codeBlock(code_block)
 
             try:
                 # Attempt to parse the YAML content
@@ -89,15 +110,14 @@ class Merge_Ansible:
                 return 'false'
         elif isinstance(val, int):
             return val
-        elif val == None:
-            return "null"
-        
         elif isinstance(val, str):
             pattern = r'.*{{.*}}.*'
             if re.match(pattern, val):
                 return '"' + val + '"'
-        else:
-            return val
+        elif val == None:
+            return "null"
+        
+        return val
     
 
     def dict_to_yaml_string(self, data, indent=0):
@@ -142,103 +162,64 @@ class Merge_Ansible:
 if __name__ == '__main__':
 
     code1 = '''
-- name: Start Springboot Applications
-  hosts: all
-  gather_facts: yes
-  vars:
-    sbApps: "{{ node['visa_springboot']['apps_dir'] }}"
-    log_file: "{{ node['visa_springboot']['log_dir'] }}/day2_start.log"
+- name: Update web servers
+  hosts: webservers
+  remote_user: root
 
   tasks:
-    - name: Check User and Group
-      ansible.builtin.include_role:
-        name: visa_springboot
-      vars:
-        check_user_group: true
-      register: check_result
-      when: check_user_group is defined
+  - name: Ensure apache is at the latest version
+    ansible.builtin.yum:
+      name: httpd
+      state: latest
 
-    - name: Raise Error if Declined
-      ansible.builtin.fail:
-        msg: "DECLINED: {{ check_result.results[0].msg }}"
-      when: check_result.results[0].msg is defined
-
-    - name: Create Log Directory
-      ansible.builtin.file:
-        path: "{{ node['visa_springboot']['log_dir'] }}"
-        state: directory
-        mode: '0755'
+  - name: Write the apache config file
+    ansible.builtin.template:
+      src: /srv/httpd.j2
+      dest: /etc/httpd.conf
 '''
     code2 = '''
-- name: Start Springboot Containers
-  hosts: all
-  gather_facts: yes
-  vars:
-    log_file: "/var/log/springboot.log"
-    sbApps: "/opt/visa/sbApps"
+- name: Update db servers
+  hosts: databases
+  remote_user: root
 
   tasks:
-    - name: Start Container
-      ansible.builtin.bash:
-        user: "{{ node['visa_springboot']['service_user'] }}"
-        group: "{{ node['visa_springboot']['service_group'] }}"
-        content: |
-          exec 1>>{{ log_file }}
-          exec 2>&1
-          echo ""
-          echo "{{ node['visa_springboot']['timestamp'] }}"
-          echo "*** Starting {{ container_name }} ***"
-          {{ sbApps }}/{{ container_name }}/bin/sbruntime-ctl.sh start
-          sleep 8
-        notify: Validate Container Action
-        when: "container_name in node['visa_springboot']['containers'].keys()"
-        register: container_result
-        ignore_errors: true
+  - name: Ensure postgresql is at the latest version
+    ansible.builtin.yum:
+      name: postgresql
+      state: latest
 
-    - name: Validate Container Action
-      ansible.builtin.block:
-        - name: Check Container Status
-          ansible.builtin.command: ps -ef|grep {{ sbApps }}/{{ container_name }}/conf|grep -v grep
-          register: check_result
-          changed_when: false
-          failed_when: check_result.rc != 0
-          ignore_errors: true
-
-        - name: Raise Error if Container Not Running
-          ansible.builtin.fail:
-            msg: "{{ container_name }} could not be started"
-          when: check_result.rc != 0
-
-  handlers:
-    - name: Validate Container Action
-      ansible.builtin.block:
-        - name: Log Container Result
-          ansible.builtin.debug:
-            var: container_result
+  - name: Ensure that postgresql is started
+    ansible.builtin.service:
+      name: postgresql
+      state: started
 '''
 
-    import os
-    CODE1_FILE_NAME = os.environ["code1_file"]
-    CODE2_FILE_NAME = os.environ["code2_file"]
-
-    if os.path.isfile(CODE1_FILE_NAME) and os.path.isfile(CODE2_FILE_NAME):
-        # If file exists read data from the data file
-        with open(CODE1_FILE_NAME, 'r') as file:
-                code1 = file.read()
-
-        with open(CODE2_FILE_NAME, 'r') as file:
-                code2 = file.read()
-
-    print('First code string:', code1)
-    print('Second code string:', code2)
+    codes = []
 
     ma = Merge_Ansible()
+    
+    # Example usage
+    directory_path = 'data'
+    yaml_files = ma.get_yaml_files(directory_path)
+    print(yaml_files)
+    for yaml_file in yaml_files:
+        print(f"Reading file: {yaml_file}")
+        with open(yaml_file, 'r') as file:
+          codes.append(file.read())
 
-    codes = [code1, code2]
+    if codes:
+        pass
+
+    else:
+        codes = [code1, code2]
+
+    for i, code in enumerate(codes, start=1):
+        print(f'Code {i} :\n{code}')
+
 
     merged_dict = ma.merge_sections(codes)
 
     merged_script = ma.dict_to_yaml_string(merged_dict)
 
     print('Output Code String:', merged_script)
-    
+        
