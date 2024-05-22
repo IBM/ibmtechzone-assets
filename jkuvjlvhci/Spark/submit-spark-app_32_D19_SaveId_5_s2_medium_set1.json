@@ -1,0 +1,25 @@
+{
+    "application_details": {
+      "application": "s3a://bdpf-jp-pre-poc-data01/Output/SingleDispatchTestcases/inputscripts/SD_medium_Id_19_32_Save5_s2_4_1-33.py",
+      "conf": {
+       "ae.spark.librarysets": "my_library_set",
+       "spark.hadoop.fs.s3a.bucket.bdpf-jp-pre-poc-data01.endpoint": "https://s3.jp-tok.cloud-object-storage.appdomain.cloud",
+       "spark.hadoop.fs.s3a.bucket.bdpf-jp-pre-poc-data01.access.key": "",
+       "spark.hadoop.fs.s3a.bucket.bdpf-jp-pre-poc-data01.secret.key": "",
+       "spark.executor.cores": "4",
+       "spark.executor.memory": "16G",
+       "spark.driver.cores": "4",
+       "spark.driver.memory": "16G",
+       "spark.hadoop.fs.cos.multipart.size": "104900000",
+       "spark.hadoop.fs.cos.threads.max": "500",
+       "spark.hadoop.fs.cos.block.size": "256",
+       "spark.hadoop.mapreduce.input.fileinputformat.split.minsize":"268435456",
+       "spark.shuffle.compress":"true",
+       "spark.shuffle.spill.compress":"true",
+       "spark.io.compression.codec":"zstd",
+       "spark.io.compression.zstd.level":"1",
+       "spark.default.parallelism": 36,
+       "ae.spark.executor.count": "8"
+      }
+    }
+  }
