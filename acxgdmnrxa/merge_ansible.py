@@ -68,9 +68,9 @@ class Merge_Ansible:
             try:
                 # Attempt to parse the YAML content
                 yaml_data = yaml.safe_load(code_block)
-                print("YAML content is valid:", yaml_data)
-            except yaml.YAMLError as e:
-                print("Error parsing YAML content:", yaml_data)
+                print(f"YAML content is valid:\n{yaml_data}\n")
+            except Exception as e:
+                print(f"Error parsing YAML content:\n{yaml_data}\n")
                 raise e
 
             try:
@@ -211,6 +211,7 @@ if __name__ == '__main__':
         pass
 
     else:
+        print('Files were not able to download. So using inbuilt example !\n')
         codes = [code1, code2]
 
     for i, code in enumerate(codes, start=1):
