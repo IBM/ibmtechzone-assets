@@ -9,6 +9,7 @@ from genai import Credentials, Client
 from genai.extensions.langchain import LangChainInterface
 import subprocess
 subprocess.run(['wget', '-O', 'sample.mp4', 'https://drive.google.com/uc?export=download&id=17i-vQn0r_m59q37Jsn35jFRJXg3yX8nX'], check=True)
+print(f"Sample File Downloaded Successfully.\n")
 
 
 
@@ -20,13 +21,12 @@ BAM_API_KEY = os.environ["bam_api_key"]
 BAM_API_ENDPOINT = os.environ["bam_api_endpoint"]
 
 
-
 SOURCE_LANGUAGE = "English"
 TARGET_LANGUAGE = "Spanish"    
-INPUT_MP4_FILE_PATH = "sample.mp4"
+INPUT_MP4_FILE_PATH = os.path.abspath("sample.mp4")
 FILENAME = os.path.splitext(INPUT_MP4_FILE_PATH)[0] 
 AUDIO_OUTPUT_PATH = FILENAME + ".wav"
-MERGED_OUTPUT_PATH = "output_" + FILENAME + ".mp4"
+MERGED_OUTPUT_PATH = FILENAME + "_output.mp4"
 
 
 
