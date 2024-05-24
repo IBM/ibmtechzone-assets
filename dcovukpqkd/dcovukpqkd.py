@@ -1,4 +1,6 @@
 import re
+import os
+java_file=os.getenv('java_file')
 
 def find_similar_lines_public(text):
     similar_lines = []
