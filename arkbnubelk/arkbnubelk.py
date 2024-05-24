@@ -1,6 +1,7 @@
 import re
 import json
-
+import os
+java_file=os.getenv('java_file')
 # Standard Java data types
 standard_types = {'byte', 'short', 'int', 'long', 'float', 'double', 'char', 'boolean', 'String'}
 
