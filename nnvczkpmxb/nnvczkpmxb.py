@@ -1,8 +1,5 @@
-import glob
 import io
-import json
 import re
-
 from docx import Document
 from pptx import Presentation
 
@@ -10,13 +7,14 @@ from pptx import Presentation
 class FileInfoExtractor:
     def __init__(self, file):
         """
-        FileInfoExtractor クラス初期化メソッド
+        FileInfoExtractor 
 
         Args:
-            file (werkzeug.FileStorage): 
+            file (werkzeug.FileStorage):
 
         Note:
-            If you want to read a file locally, convert it using FileStorage once.   
+            If you want to read a file locally, convert it using FileStorage once. 
+            
             from werkzeug.datastructures import FileStorage
             with open('ABC.docx', 'rb') as file:
                 file_storage = FileStorage(stream=file, filename='file_name', content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
@@ -33,14 +31,14 @@ class FileInfoExtractor:
     @property
     def file_data_array(self):
         """
-        docxやpptxなどのファイルのデータをlistにする
+        List data from files such as docx and pptx        
         """
         return self._file_data_array
 
     @property
     def file_data_dict(self):
         """
-        docxやpptxなどのファイルのデータをdictにする
+        Convert file data such as docx and pptx to dict
         """
         return {
             'name': self.file.filename,
@@ -50,10 +48,10 @@ class FileInfoExtractor:
 
     def __extract(self):
         """
-        ファイルからデータを抽出する
+        Extract data from file
 
         Returns:
-            list: データのlist
+            list: list of data
         """
         if self.type == 'docx':
             return self.__extract_docx()
@@ -62,10 +60,10 @@ class FileInfoExtractor:
     
     def __extract_docx(self):
         """
-        docxファイルからデータを抽出する
+        Extract data from docx file
 
         Returns:
-            list: データのlist
+            list: list of data
         """
         file_stream = io.BytesIO(self.file.read())
         doc = Document(file_stream)
@@ -78,26 +76,39 @@ class FileInfoExtractor:
             else:
                 texts += "\n"
 
-        return texts.replace("株式会社イーネット","")
+        return texts
 
     def __extract_pptx(self):
         """
-        Extracts data from a pptx file excluding content from tables.
+        Extracts data from a pptx file including content from tables, preserving the row-column relationship.
 
         Returns:
-            list: データのlist
+            list: list of data
         """
         file_stream = io.BytesIO(self.file.read())
         pptx = Presentation(file_stream)
         texts = []
 
         for slide in pptx.slides:
+            slide_texts = []
             for shape in slide.shapes:
-                if hasattr(shape, "text") and not shape.has_table:
-                    text = shape.text.strip().replace("\n", " ")
+                if shape.has_table:
+                    table_data = []
+                    tbl = shape.table
+                    for row in tbl.rows:
+                        row_data = []
+                        for cell in row.cells:
+                            cell_text = []
+                            for paragraph in cell.text_frame.paragraphs:
+                                for run in paragraph.runs:
+                                    cell_text.append(run.text)
+                            row_data.append(" ".join(cell_text))
+                        table_data.append(row_data)
+                    slide_texts.append(table_data)
+                elif hasattr(shape, "text_frame") and shape.text_frame is not None:
+                    text = shape.text_frame.text.strip().replace("\n", " ")
                     if len(text) > 15:
-                        texts.append(text)
+                        slide_texts.append(text)
+            texts.append(slide_texts)
 
-        pptx_content = "\n".join(texts)
-
-        return pptx_content
+        return texts
