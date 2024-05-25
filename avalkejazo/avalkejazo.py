@@ -1,6 +1,5 @@
 import gradio as gr
 from functools import partial
-from config import send_to_watsonxai
 from langchain.globals import get_llm_cache
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
