@@ -1,7 +1,7 @@
 import os
 HF_TOKEN = os.environ["hf_token"]
 
-!huggingface-cli login --token "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"
+!huggingface-cli login --token HF_TOKEN
 
 # Import required libraries
 import json
