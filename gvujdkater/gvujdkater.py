@@ -5,7 +5,7 @@ import numpy as np
 
 # Set env variables
 BAM_API_KEY = os.environ["bam_api_key"]
-WATSONX_API_KEY = os.environ["wx_api_key"]
+WATSONX_API_KEY = os.environ["watsonx_api_key"]
 IBM_CLOUD_URL = os.environ["ibm_cloud_url"]
 PROJECT_ID = os.environ["project_id"]
 
