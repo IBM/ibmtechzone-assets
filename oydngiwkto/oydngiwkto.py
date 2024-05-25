@@ -1,16 +1,17 @@
-import os
-HF_TOKEN = os.environ["hf_token"]
-
-!huggingface-cli login --token HF_TOKEN
-
 # Import required libraries
+import os
+import subprocess
+
+HF_TOKEN = os.environ["hf_token"]
+subprocess.run(['huggingface-cli', 'login', '--token', HF_TOKEN], check=True)
+
 import json
 import numpy as np
 import torch, torchaudio
 from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor, pipeline, WhisperTimeStampLogitsProcessor
 from transformers.pipelines.audio_utils import ffmpeg_read
 from pyannote.audio import Pipeline
-import subprocess
+
 subprocess.run(['wget', '-O', 'demo.wav', 'https://docs.google.com/uc?export=download&id=1CaAJoA6N52NSeBZJC2A2DDZj1tz62aJl'], check=True)
 print(f"Sample File Downloaded Successfully.\n")
 audio_file_path = os.path.abspath("demo.wav")
