@@ -1,11 +1,7 @@
 import gradio as gr
 from functools import partial
-from src.utils.vector_db import *
-from src.utils.query_utils import *
-from src.utils.prompt_builder import make_prompt
 from config import send_to_watsonxai
 from langchain.globals import get_llm_cache
-from src.utils.similarity_score import get_top_5_chunks
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 def process_question(vector_dbs, question, slider):
