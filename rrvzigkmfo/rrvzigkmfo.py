@@ -6,8 +6,8 @@ Description:
 This asset converts text to speech and saves it into a wav file. 
 
 Environment:
-WAT_TTS_KEY: # API KEY for Text to Speech Instance
-WAT_TTS_URL: # URL for text to Speech Instance
+wat_tts_key: # API KEY for Text to Speech Instance
+wat_tts_url: # URL for text to Speech Instance
 
 
 Requirements:
@@ -23,8 +23,8 @@ from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 from ibm_watson.websocket import SynthesizeCallback
 
 load_dotenv()
-api_key = os.getenv("WAT_TTS_KEY", None)
-url = os.getenv("WAT_TTS_URL", None)
+api_key = os.environ["wat_tts_key"]
+url = os.environ["wat_tts_url"]
 authenticator = IAMAuthenticator(api_key)
 text_to_speech = TextToSpeechV1(authenticator=authenticator)
 text_to_speech.set_service_url(url)
