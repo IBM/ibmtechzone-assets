@@ -8,6 +8,7 @@ import os
 
 bearer_token = "enter your bearer_token"
 project_id = "enter your project_id"
+url = "enter the url here"
 def Check_language(response):
         
         if detect_mixed_languages(response) != {"ja"}:
@@ -18,7 +19,7 @@ def trans_jp(text):
         
     start_time=time.time()
     prompt = "下記のテキストを日本語に翻訳する"
-    url = self.url
+    url = url
     headers = {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
