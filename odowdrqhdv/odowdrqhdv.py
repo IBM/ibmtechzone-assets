@@ -1,4 +1,3 @@
-import requests
 import time
 from langdetect import detect
 from datetime import datetime
@@ -15,31 +14,13 @@ def Check_language(response):
             response_final = trans_jp(response)
             response = response_final
         return response
+
 def trans_jp(text):
         
-    start_time=time.time()
     prompt = "下記のテキストを日本語に翻訳する"
-    url = url
-    headers = {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': 'Bearer ' + bearer_token
-    }
-    data = {
-        "model_id":'meta-llama/llama-2-70b-chat',
-        "project_id": project_id,
-        "input": prompt + '\n\n' + "Input: " + text + "\n\n" + "Output: ",
-        "parameters": {
-            "decoding_method": "greedy",
-            "min_new_tokens": 1,
-            "max_new_tokens": 300,
-            "beam_width": 1
-        }
-    }
-    
-    response = requests.post(url, headers=headers, json=data)
-    response = response.json()["results"][0]["generated_text"]
-    return response
+    "use  LLM for translating the text"
+    translated_response = "translated using LLM"
+    return translated_response
 
 #detects the language used 
 def detect_mixed_languages(text):
