@@ -4,7 +4,6 @@ from langdetect import detect
 from datetime import datetime
 import json
 import os
-import ulid
 
 
 bearer_token = "enter your bearer_token"
