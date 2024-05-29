@@ -4,9 +4,9 @@ from ibm_watson_machine_learning.metanames import GenTextParamsMetaNames as GenP
 from langchain.prompts import PromptTemplate
 
 #config Watsonx.ai environment
-api_key = os.environ("API_KEY", None)
-ibm_cloud_url = os.environ("IBM_CLOUD_URL", None)
-project_id = os.environ("PROJECT_ID", None)
+api_key = os.environ("api_key", None)
+ibm_cloud_url = os.environ("ibm_cloud_url", None)
+project_id = os.environ("project_id", None)
 
 if api_key is None or ibm_cloud_url is None or project_id is None:
     raise Exception("Ensure you copied the .env file that you created earlier into the same directory as this notebook")
@@ -59,7 +59,7 @@ Output:
 
 prompt_template = PromptTemplate.from_template(prompt_pattern)
 
-question = os.environ("Question", None)
+question = os.environ("question", None)
 if question:
     prompt = prompt_template.format(Question = question)
     response = send_to_watsonxai(prompt=prompt)
