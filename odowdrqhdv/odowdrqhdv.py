@@ -9,7 +9,7 @@ bearer_token = "enter your bearer_token"
 project_id = "enter your project_id"
 url = "enter the url here"
 def Check_language(response):
-        
+        print("detected languages are:",detect_mixed_languages(response))
         if detect_mixed_languages(response) != {"ja"}:
             response_final = trans_jp(response)
             response = response_final
