@@ -22,6 +22,7 @@ const cos = new COS.S3({
 // Fetch logs from ICOS
 async function fetchLogs(date) {
     const prefix = `events_logs/${date}/`;
+    
     try {
         const objects = await cos.listObjectsV2({ Bucket: config.bucketName, Prefix: prefix }).promise();
         const keys = objects.Contents.map(obj => obj.Key);
@@ -78,7 +79,7 @@ program
     .version('1.0.0')
     .description('CLI tool to process logs from IBM COS')
     .option('-d, --date <date>', 'Date to fetch logs for (YYYYMMDD format)')
-    .action((options) => {
+    .action(options => {
         if (options.date) {
             processLogs(options.date).catch(console.error);
         } else {
