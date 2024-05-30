@@ -22,13 +22,9 @@ const cos = new COS.S3({
 // Fetch logs from ICOS
 async function fetchLogs(date) {
     const prefix = `events_logs/${date}/`;
-    // console.log(`Using bucket: ${config.bucketName}`);
-    // console.log(`Using prefix: ${prefix}`);
-    
     try {
         const objects = await cos.listObjectsV2({ Bucket: config.bucketName, Prefix: prefix }).promise();
         const keys = objects.Contents.map(obj => obj.Key);
-        // console.log(`Fetched keys: ${JSON.stringify(keys, null, 2)}`);
         return keys;
     } catch (error) {
         console.error('Error fetching logs:', error);
@@ -41,7 +37,6 @@ async function getLogContent(key) {
     try {
         const data = await cos.getObject({ Bucket: config.bucketName, Key: key }).promise();
         const log = JSON.parse(data.Body.toString('utf-8'));
-        // console.log(`Fetched log content for ${key}: ${JSON.stringify(log, null, 2)}`);
         return log;
     } catch (error) {
         console.error(`Error fetching log content for ${key}:`, error);
