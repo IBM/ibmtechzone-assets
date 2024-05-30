@@ -1,0 +1,11 @@
+API_KEY = '_yUkax1ui_NJRP1lJgdq6rPUXnTANcTFNrzNyDuZEIeU'
+# API_KEY = '3-DWvPbZbSV6urMA4hpuC4fKGgjOg6ujTKW34bNkS0nK'
+# CATALOG_ID = '5a421ec7-23a0-4bb0-8cba-3156a3905d1b'
+CATALOG_ID = 'cdc39068-d8cc-4326-ac10-2d9a113622b4'
+TOEKN_URL = "https://iam.cloud.ibm.com/identity/token"
+# CONNECTION_ID = '6dc5a4b7-afdc-45ea-b94d-bef2bced6a94'
+CONNECTION_ID = 'f2060740-b312-40d4-8aa5-67167cce31db'
+WKC_URL ='https://api.dataplatform.cloud.ibm.com/v2'
+WATSONX_URL ='https://us-south.ml.cloud.ibm.com'
+# PROJECT_ID = '42e4893e-d6f9-49b9-8f6a-02e0cb4dc31c'
+PROJECT_ID = 'd074757e-bc9d-4a6e-881c-5af3a040294a'
