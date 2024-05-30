@@ -29,5 +29,5 @@ def Get_Files():
         file_list.append(i['id'])
     return file_list
 
-# test = Get_Files()
-# print("testing done", test)
+test = Get_Files()
+print("testing done", test)
