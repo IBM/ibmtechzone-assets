@@ -14,7 +14,7 @@ const config = {
 console.log('Configuration:', config);
 
 // Ensure all required environment variables are present
-if (!config.endpoint || !config.apiKeyId || !config.serviceInstanceId || !config.bucketName) {
+if (!Configuration.endpoint || !Configuration.apiKeyId || !Configuration.serviceInstanceId || !Configuration.bucketName) {
     console.error('Missing required environment variables. Please check your .env file.');
     process.exit(1);
 }
