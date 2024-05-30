@@ -33,12 +33,12 @@ from pyhive import presto
 # Connection with Presto Engine
 connect_args={'protocol':'https'}
 
-host = "061531f4-aacf-412c-b2eb-30b3a9c22f8f.cjeiomkf0sj1fo0snbc0.lakehouse.appdomain.cloud"
+host = "host.lakehouse.appdomain.cloud"
 port = '31667'
 
 username = 'ibmlhapikey'
-password = 'qPupSvIQZgaDO1m96Gajxjfg4sxjT3hShKQU616bKICf'
-catalog = 'bdpf_jp_pre_poc_data'
+password = 'password'
+catalog = 'bdpf-catalog'
 schema = 'schema_ingestion_test'
 
 # create engine
@@ -58,7 +58,7 @@ sample_data.to_sql("table_dev_00001_ingest", engine, schema=schema, index=False,
 
 
 #View the ingested table on the database
-sql = 'select * from bdpf_jp_pre_poc_data.schema_ingestion_test.table_dev_00001_ingest limit 5'
+sql = 'select * from bdpf_catalog.schema_ingestion_test.table_dev_00001_ingest limit 5'
 df = pd.read_sql_query(text(sql),conn)
 df
 
