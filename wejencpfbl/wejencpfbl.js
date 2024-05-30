@@ -4,10 +4,10 @@ const { program } = require('commander');
 
 // Load configuration from environment variables
 const config = {
-    endpoint: process.env.ENDPOINT,
-    apiKeyId: process.env.API_KEY_ID,
-    serviceInstanceId: process.env.SERVICE_INSTANCE_ID,
-    bucketName: process.env.BUCKET_NAME,
+    endpoint: process.env.endpoint,
+    apiKeyId: process.env.api_key_id,
+    serviceInstanceId: process.env.service_instance_id,
+    bucketName: process.env.bucket_name,
 };
 
 // Log the configuration to verify
