@@ -1,18 +1,23 @@
 require('dotenv').config();
 const COS = require('ibm-cos-sdk');
 const { program } = require('commander');
-const path = require('path');
 
-// Directly setting configuration values to debug
+// Load configuration from environment variables
 const config = {
-    endpoint: process.env.ENDPOINT || 'your-default-endpoint',
-    apiKeyId: process.env.API_KEY_ID || 'your-default-api-key',
-    serviceInstanceId: process.env.SERVICE_INSTANCE_ID || 'your-default-service-instance-id',
-    bucketName: process.env.BUCKET_NAME || 'your-default-bucket-name',
+    endpoint: process.env.ENDPOINT,
+    apiKeyId: process.env.API_KEY_ID,
+    serviceInstanceId: process.env.SERVICE_INSTANCE_ID,
+    bucketName: process.env.BUCKET_NAME,
 };
 
 // Log the configuration to verify
-console.log(config);
+console.log('Configuration:', config);
+
+// Ensure all required environment variables are present
+if (!config.endpoint || !config.apiKeyId || !config.serviceInstanceId || !config.bucketName) {
+    console.error('Missing required environment variables. Please check your .env file.');
+    process.exit(1);
+}
 
 // Configure IBM COS
 const cos = new COS.S3({
@@ -25,7 +30,7 @@ const cos = new COS.S3({
 // Fetch logs from ICOS
 async function fetchLogs(date) {
     const prefix = `events_logs/${date}/`;
-    
+
     try {
         const objects = await cos.listObjectsV2({ Bucket: config.bucketName, Prefix: prefix }).promise();
         const keys = objects.Contents.map(obj => obj.Key);
