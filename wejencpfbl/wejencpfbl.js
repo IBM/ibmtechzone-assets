@@ -3,13 +3,16 @@ const COS = require('ibm-cos-sdk');
 const { program } = require('commander');
 const path = require('path');
 
-// Load configuration from environment variables
+// Directly setting configuration values to debug
 const config = {
-    endpoint: process.env.ENDPOINT,
-    apiKeyId: process.env.API_KEY_ID,
-    serviceInstanceId: process.env.SERVICE_INSTANCE_ID,
-    bucketName: process.env.BUCKET_NAME,
+    endpoint: process.env.ENDPOINT || 'your-default-endpoint',
+    apiKeyId: process.env.API_KEY_ID || 'your-default-api-key',
+    serviceInstanceId: process.env.SERVICE_INSTANCE_ID || 'your-default-service-instance-id',
+    bucketName: process.env.BUCKET_NAME || 'your-default-bucket-name',
 };
+
+// Log the configuration to verify
+console.log(config);
 
 // Configure IBM COS
 const cos = new COS.S3({
