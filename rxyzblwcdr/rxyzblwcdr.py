@@ -5,6 +5,8 @@ import pandas as pd
 from datetime import datetime
 import json
 import threading
+import socket
+import sys
 
 global translation
 translation = "OFF"
@@ -111,10 +113,9 @@ def ui():
         result_button.click(stream_answer, inputs=[], outputs=[final_answer])
         demo.load(handle_refresh, inputs=None, outputs=None)
 
-
     # Additional tabs and functionalities can be defined following the similar structure
     demo.queue()
-    demo.launch()
+    demo.launch(share=True)
     
 
 def answer_generation():
@@ -134,6 +135,7 @@ def stream_answer():
 
 
 ui()
+
 
 
 
