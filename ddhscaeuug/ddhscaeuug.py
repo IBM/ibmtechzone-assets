@@ -1,5 +1,14 @@
 import xml.etree.ElementTree as ET
 import pandas as pd
+import getpass
+from ibm_watsonx_ai.foundation_models.utils.enums import ModelTypes
+import os
+from ibm_watsonx_ai.metanames import GenTextParamsMetaNames as GenParams
+import pandas as pd
+import xml_to_sql_input_prep
+import gc
+from tqdm import tqdm
+from ibm_watsonx_ai.foundation_models import ModelInference
 # Load and parse the XML file
 tree = ET.parse('m_CrDbStatsment.xml')
 
@@ -310,13 +319,51 @@ if __name__=='__main__':
     transformation_name=[list(i.keys())[0] for i in instance_order_new.values()]
     transformation_type_df=pd.DataFrame(transformation_type_list).rename(columns={0:'transformation_type',1:'transformation_name'})
 
-    df1=pd.DataFrame(question_list)
-    df1.rename(columns={0:'xml_content'},inplace=True)
-    df1['transformation_name']=[i.split('destination:')[1].split('NAME=')[1].split(' ')[0][1:-1] for i in df1['xml_content']]
+    llm_inputs=pd.DataFrame(question_list)
+    llm_inputs.rename(columns={0:'xml_content'},inplace=True)
+    llm_inputs['transformation_name']=[i.split('destination:')[1].split('NAME=')[1].split(' ')[0][1:-1] for i in llm_inputs['xml_content']]
     # df1.rename(columns={'question':'xml_content'},inplace=True)
     #df1['transformation_name']=transformation_name
-    df1=df1.merge(transformation_type_df,on='transformation_name')
-    df1=df1.merge(instructions_df,on='transformation_type')
-    df1.to_excel('inputs_for_code_conversion.xlsx')
+    llm_inputs=llm_inputs.merge(transformation_type_df,on='transformation_name')
+    llm_inputs=llm_inputs.merge(instructions_df,on='transformation_type')
+    #df1.to_excel('inputs_for_code_conversion.xlsx')
+    
+    credentials = {
+        "url": os.environ['url'],
+        "apikey": os.environ['apikey']
+    }
+    
+    project_id = os.environ["project_id"]
+    model_id = os.environ["model_id"]
+    
+    parameters = {
+        GenParams.DECODING_METHOD: "greedy",
+        GenParams.MAX_NEW_TOKENS: 800,
+        GenParams.STOP_SEQUENCES: ["<end·of·code>"]
+    }
+    
+    
+    model = ModelInference(
+        model_id=model_id, 
+        params=parameters, 
+        credentials=credentials,
+        project_id=project_id)
+    
+    if __name__=='__main__':
+        xml_to_sql_input_prep.prep_input()
+        llm_outputs=llm_inputs[:1].copy()
+        sql_text_list=[]
+        for item in tqdm(llm_inputs[:1].iterrows()):
+            try:
+                # print()#3,item['question'])
+                result = model.generate_text(" ".join([item[1]['instructions_to_model1'],item[1]['xml_content'], ]))
+                result = model.generate_text(" ".join([item[1]['instructions_to_model2'],result]))
+                #print(result)
+                sql_text_list.append(result)
+                gc.collect()
+            except Exception as e:
+                print(e)
+        llm_outputs['sql_code']=sql_text_list
+        llm_outputs.to_excel('code_conversion_output.xlsx')
 
 
