@@ -90,17 +90,6 @@ class FileInfoExtractor:
         pptx = Presentation(file_stream)
         texts = []
 
-        # for slide in pptx.slides:
-        #     for shape in slide.shapes:
-        #         if hasattr(shape, "text") and not shape.has_table:
-        #             text = shape.text.strip().replace("\n", " ")
-        #             if len(text) > 15:
-        #                 texts.append(text)
-
-        # pptx_content = "\n".join(texts)
-
-        # return pptx_content
-
         for slide in pptx.slides:
             slide_texts = []
             for shape in slide.shapes:
@@ -124,9 +113,13 @@ class FileInfoExtractor:
             texts.append(slide_texts)
 
         return texts    
+        
+        
+#Example Usage
 
 def main():
-    path = "/Users/kanishksaxena/Documents/POC's/generate-approval-docs/input documents/proposal_document.pptx"
+    #  PLZ DRAG AND DROP THE FILE. AND REPLACE THE PATH VARIABLE with the UPLOADED FILE'S NAME
+    path = "proposal_document.pptx"
         # Open the file in binary mode and wrap it in a FileStorage object
     with open(path, 'rb') as pptx_file:
         pptx_file_storage = FileStorage(
@@ -135,10 +128,8 @@ def main():
             content_type='application/vnd.openxmlformats-officedocument.presentationml.presentation'
         )
         
-        # Create an instance of FileInfoExtractor with the PPTX file
         file_extractor = FileInfoExtractor(pptx_file_storage)
         
-        # Extract and print the text data from the PPTX file
         pptx_text = file_extractor.file_data_array
         print("Extracted PPTX Text:")
         print(pptx_text)
