@@ -1,8 +1,9 @@
-import io
-import re
-from docx import Document
 from pptx import Presentation
-
+import io
+from docx import Document
+import io
+from werkzeug.datastructures import FileStorage
+from pptx import Presentation
 
 class FileInfoExtractor:
     def __init__(self, file):
@@ -16,8 +17,8 @@ class FileInfoExtractor:
             If you want to read a file locally, convert it using FileStorage once. 
             
             from werkzeug.datastructures import FileStorage
-            with open('ABC.docx', 'rb') as file:
-                file_storage = FileStorage(stream=file, filename='file_name', content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
+            with open('ABC.pptx', 'rb') as file:
+                file_storage = FileStorage(stream=file, filename='file_name', content_type='application/vnd.openxmlformats-officedocument.presentationml.presentation')
                 FileInfoExtractor(file_storage)
         """
         self.file = file
@@ -83,11 +84,22 @@ class FileInfoExtractor:
         Extracts data from a pptx file including content from tables, preserving the row-column relationship.
 
         Returns:
-            list: list of data
+            str: concatenated text data
         """
         file_stream = io.BytesIO(self.file.read())
         pptx = Presentation(file_stream)
         texts = []
+
+        # for slide in pptx.slides:
+        #     for shape in slide.shapes:
+        #         if hasattr(shape, "text") and not shape.has_table:
+        #             text = shape.text.strip().replace("\n", " ")
+        #             if len(text) > 15:
+        #                 texts.append(text)
+
+        # pptx_content = "\n".join(texts)
+
+        # return pptx_content
 
         for slide in pptx.slides:
             slide_texts = []
@@ -111,4 +123,25 @@ class FileInfoExtractor:
                         slide_texts.append(text)
             texts.append(slide_texts)
 
-        return texts
+        return texts    
+
+def main():
+    path = "/Users/kanishksaxena/Documents/POC's/generate-approval-docs/input documents/proposal_document.pptx"
+        # Open the file in binary mode and wrap it in a FileStorage object
+    with open(path, 'rb') as pptx_file:
+        pptx_file_storage = FileStorage(
+            stream=pptx_file,
+            filename='proposal_document.pptx',
+            content_type='application/vnd.openxmlformats-officedocument.presentationml.presentation'
+        )
+        
+        # Create an instance of FileInfoExtractor with the PPTX file
+        file_extractor = FileInfoExtractor(pptx_file_storage)
+        
+        # Extract and print the text data from the PPTX file
+        pptx_text = file_extractor.file_data_array
+        print("Extracted PPTX Text:")
+        print(pptx_text)
+
+if __name__ == "__main__":
+    main()
