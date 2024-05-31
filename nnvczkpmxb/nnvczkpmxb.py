@@ -118,7 +118,7 @@ class FileInfoExtractor:
 #Example Usage
 
 def main():
-    #  PLZ DRAG AND DROP THE FILE. AND REPLACE THE PATH VARIABLE with the UPLOADED FILE'S NAME
+    #  PLZ DRAG AND DROP THE FILE UNDER WORKSPACE(all Scripts). AND REPLACE THE PATH VARIABLE with the UPLOADED FILE'S NAME
     path = "proposal_document.pptx"
         # Open the file in binary mode and wrap it in a FileStorage object
     with open(path, 'rb') as pptx_file:
