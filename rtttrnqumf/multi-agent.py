@@ -22,7 +22,7 @@ pip install flask
 '''
 
 import autogen
-from autogen import AssistantAgent, UserProxyAgent, GroupChat, GroupChatManager
+from autogen import AssistantAgent, UserProxyAgent, GroupChat, GroupChatManager, Agent
 from autogen.agentchat.contrib.society_of_mind_agent import SocietyOfMindAgent
 import subprocess
 import sys
