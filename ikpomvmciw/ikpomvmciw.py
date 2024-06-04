@@ -142,3 +142,5 @@ print("Original context length:", original_contexts_len)
 print("Compressed context length:", compressed_contexts_len)
 print("Compressed Ratio:", f"{original_contexts_len/(compressed_contexts_len + 1e-5):.2f}x")
 
+# for more details, please do refer to this git repo: https://github.ibm.com/Sourav-Verma/Contextual-Compression
+
