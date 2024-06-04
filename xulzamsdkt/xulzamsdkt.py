@@ -2,19 +2,17 @@ from pdfminer.high_level import extract_text
 from genai import Client, Credentials
 from genai.extensions.langchain import LangChainInterface
 from genai.schema import (
-    DecodingMethod,
-    ModerationHAP,
-    ModerationParameters,
     TextGenerationParameters,
 )
+import os
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 import concurrent.futures
 from dotenv import load_dotenv
 load_dotenv()
-
-# if you are using standard ENV variable names (GENAI_KEY / GENAI_API)
-credentials = Credentials.from_env()
-        
+import warnings
+warnings.filterwarnings("ignore")
+api_endpoints = 'https://bam-api.res.ibm.com'   
+api_keys = os.environ['bam_api_key']
 def split_documents(documents, chunk_size, chunk_overlap):
     text_splitter = RecursiveCharacterTextSplitter(
         # separator="\n",
@@ -30,7 +28,7 @@ def split_documents(documents, chunk_size, chunk_overlap):
 def generate_summary(text_chunk):
    llm = LangChainInterface(
         model_id="mistralai/mixtral-8x7b-instruct-v01",
-        client=Client(credentials=Credentials.from_env()),
+        client=Client(credentials=Credentials(api_key=api_keys, api_endpoint=api_endpoints)),
         parameters=TextGenerationParameters(
             decoding_method='greedy',
             min_new_tokens=1,
@@ -128,7 +126,7 @@ def get_doc_summary(doc_content):
         return final_summary
 
 if __name__ == "__main__":
-    pdf_path = 'file.pdf'
+    pdf_path = 'sample.pdf'
     documents = extract_text(pdf_path)
     final_summary = get_doc_summary(documents)
     print(final_summary)
