@@ -109,6 +109,6 @@ with gr.Blocks() as demo:
 
     demo.queue()  # Add the demo to the Gradio queue
     if ID is None:  # Local deployment
-        demo.launch(show_api=False, server_name="0.0.0.0", server_port=8080)
+        demo.launch(show_api=False, server_name="0.0.0.0", server_port=8080,share=True)
     else:  # Production deployment
         demo.launch(auth=(ID, Password), show_api=False, server_name="0.0.0.0")
