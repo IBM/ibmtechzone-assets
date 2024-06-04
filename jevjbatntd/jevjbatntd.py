@@ -4,20 +4,16 @@ import os  # OS module is used for interacting with the operating system
 import time  # Time module is used for time-related functions
 from langchain.embeddings import HuggingFaceEmbeddings  # Import HuggingFaceEmbeddings from langchain
 from langchain.document_loaders import TextLoader  # Import TextLoader from langchain
-from dotenv import load_dotenv  # Load environment variables from a .env file
 from langchain.document_loaders.base import BaseLoader  # Base class for document loaders
 from langchain_core.documents import Document  # Import Document class from langchain core
 from ibm_botocore.client import Config as BotoConfig  # IBM Botocore Config for client configuration
 from ibm_botocore.client import ClientError  # IBM Botocore ClientError for error handling
 
-# Load environment variables from a .env file
 #Login Credentials : ID="User",Password="Password@1234"
-load_dotenv()
-ID = os.getenv("ID", None)  # Retrieve ID from environment variables
-Password = os.getenv("Password", None)  # Retrieve PW from environment variables
-Wx_Api_Key = os.getenv("WX_API_KEY", None)  # Retrieve WX_API_KEY from environment variables
-Trans_Api_Key = os.getenv("TRANS_API_KEY", None)  # Retrieve TRANS_API_KEY from environment variables
-Project_ID = os.getenv("PROJECT_ID", None)  # Retrieve PROJECT_ID from environment variables
+ID = input("Enter User ID: ")  # Input Id
+Password = input("Enter User Password: ")   # Input Password
+Wx_Api_Key = input("Enter your API_Key_value: ")  # Input Wx API Key
+Project_ID = input("Enter Project_ID: ")  # Input Project ID
 
 def sum_text(input_text, lang="out"):
     """
@@ -37,10 +33,7 @@ def sum_text(input_text, lang="out"):
         instruction = "Summarize the following input clearly and concisely"
     else:
         instruction = """
-        Please fully understand below sales report, and summarize it into a few sentences.
-        The summary should follow the template as the final output.
-        1. Outline of the business meeting (discussion point, target product or service): xxx
-        2. Customer reaction to the proposal: xxx
+        Please summarize the following text clearly and concisely.
         """
 
     # Define the API endpoint and headers for the request
