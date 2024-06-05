@@ -1,6 +1,0 @@
-ibm_watson_machine_learning==1.0.342
-pandas==1.5.3
-python-dotenv==1.0.1
-Requests==2.31.0
-streamlit==1.34.0
-ibm_watsonx_ai
