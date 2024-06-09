@@ -1,6 +1,3 @@
-from dotenv import load_dotenv
-load_dotenv()
-
 import os
 from langchain_ibm import WatsonxLLM
 from langchain_core.prompts import ChatPromptTemplate, PromptTemplate
@@ -15,9 +12,9 @@ parameters = {
     "repetition_penalty": 1
 }
 
-Wx_Api_Key = os.environ("WX_API_KEY", None)
-Project_ID = os.environ("PROJECT_ID", None)
-cloud_url = os.environ("IBM_CLOUD_URL", None)
+Wx_Api_Key = os.environ["WX_API_KEY"]
+Project_ID = os.environ["PROJECT_ID"]
+cloud_url = os.environ["IBM_CLOUD_URL"]
 
 
 model = WatsonxLLM(
@@ -58,3 +55,8 @@ def call_list_output_parser():
         "input": "happy"
     })
 
+print("Example of string output parser", type(call_string_output_parser()))
+print(call_string_output_parser())
+
+print("Example of List output parser", type(call_list_output_parser()))
+print(call_list_output_parser())
