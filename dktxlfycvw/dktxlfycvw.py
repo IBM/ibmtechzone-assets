@@ -12,18 +12,18 @@ parameters = {
     "repetition_penalty": 1
 }
 
-Wx_Api_Key = os.environ["WX_API_KEY"]
-Project_ID = os.environ["PROJECT_ID"]
-cloud_url = os.environ["IBM_CLOUD_URL"]
+wx_api_key = os.environ["wx_api_key"]
+project_id = os.environ["project_id"]
+cloud_url = os.environ["ibm_cloud_url"]
 
 
 model = WatsonxLLM(
             model_id="meta-llama/llama-3-70b-instruct",
             #model_id="ibm-mistralai/mixtral-8x7b-instruct-v01-q",
             url=cloud_url,
-            project_id=Project_ID,
+            project_id=project_id,
             params=parameters,
-            apikey=Wx_Api_Key,
+            apikey=wx_api_key,
             verbose=True
         )
 
