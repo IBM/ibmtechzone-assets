@@ -14,7 +14,7 @@ parameters = {
 
 wx_api_key = os.environ["wx_api_key"]
 project_id = os.environ["project_id"]
-cloud_url = os.environ["ibm_cloud_url"]
+cloud_url = os.environ["cloud_url"]
 
 
 model = WatsonxLLM(
