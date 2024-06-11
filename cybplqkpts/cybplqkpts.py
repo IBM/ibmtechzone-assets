@@ -149,7 +149,7 @@ def main():
     #     "apikey": apikey
     # }
     with gr.Blocks() as demo:
-        gr.Image("US-Stocks2_PDP-min.webp",show_label=False)
+        gr.Image("https://media.istockphoto.com/id/1449224970/photo/abstract-financial-graph-with-up-trend-line-candlestick-chart-in-stock-market-on-neon-light.jpg?b=1&s=612x612&w=0&k=20&c=gesoSwFA3KD38eVnOkBgAcKSCrKvMGRVtROM-34UA2A=",show_label=False)
         url=gr.Textbox(label="URL",value="https://jp-tok.ml.cloud.ibm.com")
         apikey=gr.Textbox(label="APIKEY")
         project_id=gr.Textbox(label="PROJECT_ID")
