@@ -36,7 +36,7 @@ model = Model(
     credentials=creds,
     params=model_params,
     )
-    """ Uncomment this if you want to use some of these regex to clean your dataframe"""
+""" Uncomment this if you want to use some of these regex to clean your dataframe"""
 # def clean_question(question):
 #     question = re.sub(r'\b(?:ＴＥＬ|TEL)[:：][\d\-（）]+', '', question)
 #     question = re.sub(r'\b(?:ＦＡＸ|FAX)[:：][\d\-（）]+', '', question)
