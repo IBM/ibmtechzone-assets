@@ -1,0 +1,5 @@
+fastapi
+uvicorn
+ibm_db
+pandas
+requests
