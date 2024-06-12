@@ -12,10 +12,7 @@ embedding = HuggingFaceEmbeddings(model_name='intfloat/multilingual-e5-large-ins
 api_key = os.environ("api_key", None)
 ibm_cloud_url = os.environ("ibm_cloud_url", None)
 project_id = os.environ("project_id", None)
-if api_key is None or ibm_cloud_url is None or project_id is None:
-    print("Ensure you copied the .env file that you created earlier into the same directory as this notebook")
-else:
-    creds = {
+creds = {
         "url": ibm_cloud_url,
         "apikey": api_key 
     }
