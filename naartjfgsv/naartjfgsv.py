@@ -2,7 +2,6 @@ import pandas as pd
 from langchain.embeddings import HuggingFaceEmbeddings
 from ibm_watson_machine_learning.foundation_models import Model
 from ibm_watson_machine_learning.metanames import GenTextParamsMetaNames as GenParams
-from dotenv import load_dotenv
 import os
 
 pd.options.mode.copy_on_write = True
