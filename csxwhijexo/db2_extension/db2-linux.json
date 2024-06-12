@@ -1,0 +1,213 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+      "title": "FastAPI Application",
+      "version": "1.0.0",
+      "description": "API for querying and updating database using FastAPI and IBM DB"
+    },
+    "servers": [
+      {
+        "url": "http://169.60.204.116:8080"
+      }
+    ],
+    "paths": {
+      "/query_db": {
+        "get": {
+          "summary": "Query Database",
+          "description": "Execute a SELECT SQL query on the database and return the results.",
+          "operationId": "query_db_query_db_get",
+          "parameters": [
+            {
+              "name": "dsn_database",
+              "in": "query",
+              "required": true,
+              "description": "Database name",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "dsn_hostname",
+              "in": "query",
+              "required": true,
+              "description": "Hostname",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "dsn_port",
+              "in": "query",
+              "required": true,
+              "description": "Port",
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            {
+              "name": "dsn_uid",
+              "in": "query",
+              "required": true,
+              "description": "User ID",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "dsn_pwd",
+              "in": "query",
+              "required": true,
+              "description": "Password",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "sql_query",
+              "in": "query",
+              "required": true,
+              "description": "Select SQL query to execute",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "VIN_CODE": {
+                          "type": "string"
+                        },
+                        "Date": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "detail": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/update_date": {
+        "put": {
+          "summary": "Update Database",
+          "description": "Execute an UPDATE SQL query on the database.",
+          "operationId": "update_date_update_date_put",
+          "parameters": [
+            {
+              "name": "dsn_database",
+              "in": "query",
+              "required": true,
+              "description": "Database name",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "dsn_hostname",
+              "in": "query",
+              "required": true,
+              "description": "Hostname",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "dsn_port",
+              "in": "query",
+              "required": true,
+              "description": "Port",
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            {
+              "name": "dsn_uid",
+              "in": "query",
+              "required": true,
+              "description": "User ID",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "dsn_pwd",
+              "in": "query",
+              "required": true,
+              "description": "Password",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "sql_query",
+              "in": "query",
+              "required": true,
+              "description": "Update SQL query to execute",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "success": {
+                        "type": "boolean"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "detail": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }  
