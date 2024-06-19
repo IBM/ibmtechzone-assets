@@ -77,7 +77,6 @@ with st.sidebar:
     st.session_state.api = st.text_input(
         "api key",
         label_visibility="collapsed",
-        value="8lzuqCQlXFLDuQSKoMxocfgpHIQIbLU4YxWiislYPmjM",
     )
 
     st.markdown("#### IBM Cloud URL")
@@ -89,7 +88,6 @@ with st.sidebar:
     st.session_state.project_id = st.text_input(
         "project id",
         label_visibility="collapsed",
-        value="7629055d-8e95-4c3a-9ca4-de781b2a165b",
     )
 
 
