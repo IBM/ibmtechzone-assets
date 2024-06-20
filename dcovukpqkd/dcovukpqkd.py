@@ -1,6 +1,13 @@
 import re
+import os 
 import pandas as pd 
 from pprint import pprint
+
+java_file = os.getenv("java_file")
+
+text = f"""
+{java_file} 
+"""
 
 
 def find_similar_lines_public(text):
@@ -33,11 +40,11 @@ def find_similar_lines_private(text):
     return similar_lines
 
 
-variables_list = find_similar_lines_private(java_file)
-functions_list = find_similar_lines_public(java_file)
+variables_list = find_similar_lines_private(text)
+functions_list = find_similar_lines_public(text)
 
 
-private_vars = re.findall(r"private \w+ (\w+);", java_file)
+private_vars = re.findall(r"private \w+ (\w+);", text )
 
 
 usage_dict = {var: [] for var in private_vars}
@@ -45,7 +52,7 @@ usage_dict = {var: [] for var in private_vars}
 
 method_pattern = re.compile(r"public \w+ (\w+)\(.*?\) \{([\s\S]*?)\}")
 
-methods = method_pattern.findall(java_file)
+methods = method_pattern.findall(text)
 
 
 for method, body in methods:
@@ -57,6 +64,4 @@ data = [(var, ', '.join(funcs)) for var, funcs in usage_dict.items() if funcs]
 df = pd.DataFrame(data, columns=['Private Variable', 'Functions Using Variable'])
 
 
-pprint(variables_list)
-pprint(functions_list)
 pprint(df)
