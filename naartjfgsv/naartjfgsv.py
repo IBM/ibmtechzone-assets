@@ -3,14 +3,16 @@ from langchain.embeddings import HuggingFaceEmbeddings
 from ibm_watson_machine_learning.foundation_models import Model
 from ibm_watson_machine_learning.metanames import GenTextParamsMetaNames as GenParams
 import os
+import re
+
 
 pd.options.mode.copy_on_write = True
 os.environ['KMP_DUPLICATE_LIB_OK']='True'
 os.environ['TOKENIZERS_PARALLELISM']='false'
 embedding = HuggingFaceEmbeddings(model_name='intfloat/multilingual-e5-large-instruct')
-api_key = os.environ("api_key", None)
-ibm_cloud_url = os.environ("ibm_cloud_url", None)
-project_id = os.environ("project_id", None)
+api_key = os.environ["api_key"]
+ibm_cloud_url = os.environ["ibm_cloud_url"]
+project_id = os.environ["project_id"]
 creds = {
         "url": ibm_cloud_url,
         "apikey": api_key 
