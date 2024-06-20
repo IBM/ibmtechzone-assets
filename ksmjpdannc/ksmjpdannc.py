@@ -13,6 +13,7 @@
 # llama-index-llms-openai==0.1.15
 # llama-index-embeddings-openai==0.1.7
 
+import os
 
 import nest_asyncio
 
@@ -25,7 +26,8 @@ nest_asyncio.apply()
 from llama_index.core import SimpleDirectoryReader
 
 # load documents
-documents = SimpleDirectoryReader(input_files=[]).load_data()
+file_name = os.environ["file_name"]
+documents = SimpleDirectoryReader(input_files=file_name).load_data()
 
 # Define LLM and Embedding model
 
