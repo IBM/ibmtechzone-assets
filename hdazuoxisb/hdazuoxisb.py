@@ -21,7 +21,7 @@ env_path = os.path.join(pwd, ".env")
 load_dotenv(env_path)
 
 st.set_page_config(
-    page_title="Chat with Excel",
+    page_title="QnA with Excel",
     layout="wide",
     initial_sidebar_state="expanded",
 )
