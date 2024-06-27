@@ -40,7 +40,8 @@ def get_topic(conversations):
     df=model.get_topic_info()
     df.to_csv("./topics_on_prompt_summary.csv")
     
-data=pd.read_csv(r'/Users/ruhinsalimshaikh/Downloads/test.csv')
+filename=os.environ["filename"]
+data=pd.read_csv(filename)
 data['summaries']=data['TITLE'] + data['ABSTRACT']
 conversations=data['summaries'].values.tolist()
 get_topic(conversations)
