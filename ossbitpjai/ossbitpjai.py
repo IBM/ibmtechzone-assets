@@ -1,7 +1,8 @@
-from dotenv import load_dotenv
 from genai import Client
 from genai.credentials import Credentials
+import os
 from genai.schema import TextGenerationParameters
+from dotenv import load_dotenv
 
 META_PROMPT = '''Today you will be writing instructions to an eager, helpful, but inexperienced and unworldly AI assistant who needs careful instruction and examples to understand how best to behave. I will explain a task to you. You will write instructions that will direct the assistant on how best to accomplish the task consistently, accurately, and correctly. Here are some examples of tasks and instructions.
 here are some general guidelines to keep in mind while writting instructions.
@@ -479,11 +480,11 @@ Instruction prompt for the above task:
 
 
 class Backend:
-    def __init__(self, model_id="google/flan-ul2", params=None):
+    def __init__(self, model_id="google/flan-ul2", params=None,api_key=None):
     # Initialize the backend with credentials from environment variables
-        load_dotenv()
-        credentials = Credentials.from_env()
-        self.client = Client(credentials=credentials)
+        print(api_key)
+        self.credentials = Credentials(api_key=api_key)
+        self.client = Client(credentials=self.credentials)
         self.model_id = model_id
       
       # Define default parameters if none provided
@@ -521,9 +522,11 @@ class Backend:
         return prompt
   
 def main():
+    #load_dotenv()
+    api_key=os.getenv("GENAI_KEY")
     model_id = "meta-llama/llama-3-70b-instruct"
-    backend = Backend(model_id=model_id)
-    task='write an email for resolving customer complaints about a product.'
+    backend = Backend(model_id=model_id,api_key=api_key)
+    task=os.getenv("task")
     prompt=backend.build_prompt(task=task)
     print(prompt)
     response=backend.send_to_genai(prompt)
