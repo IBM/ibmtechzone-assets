@@ -1,7 +1,7 @@
 import os,nltk
 from bertopic import BERTopic
 from sklearn.feature_extraction.text import CountVectorizer
-ntlk.download('stopwords')
+nltk.download('stopwords')
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 
