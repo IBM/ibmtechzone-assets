@@ -1,6 +1,7 @@
 import os,nltk
 from bertopic import BERTopic
 from sklearn.feature_extraction.text import CountVectorizer
+ntlk.download('stopwords')
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 
@@ -12,6 +13,7 @@ from sentence_transformers import SentenceTransformer
 # from hdbscan import HDBSCAN
 
 embedding_model = SentenceTransformer('all-MiniLM-L6-v2')
+
 
 
 #remove spanish stopwords
@@ -37,3 +39,6 @@ def get_topic(conversations):
     print(model.get_topics())
     df=model.get_topic_info().head(7).set_index('Topic')[['Count', 'Name', 'Representation']]
     df.to_csv("./topics_on_prompt_summary.csv")
+    
+conversations=os.environ["bert_topic_asset"]
+get_topic(conversations)
