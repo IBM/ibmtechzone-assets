@@ -1,23 +1,15 @@
 require('dotenv').config();
 const COS = require('ibm-cos-sdk');
 const { program } = require('commander');
+const path = require('path');
 
-// Load configuration from environment variables
+// Configuration from environment variables
 const config = {
-    endpoint: process.env.endpoint,
-    apiKeyId: process.env.api_key_id,
-    serviceInstanceId: process.env.service_instance_id,
-    bucketName: process.env.bucket_name,
+    endpoint: process.env.ENDPOINT,
+    apiKeyId: process.env.API_KEY_ID,
+    serviceInstanceId: process.env.SERVICE_INSTANCE_ID,
+    bucketName: process.env.BUCKET_NAME
 };
-
-// Log the configuration to verify
-console.log('Configuration:', config);
-
-// Ensure all required environment variables are present
-if (!Configuration.endpoint || !Configuration.apiKeyId || !Configuration.serviceInstanceId || !Configuration.bucketName) {
-    console.error('Missing required environment variables. Please check your .env file.');
-    process.exit(1);
-}
 
 // Configure IBM COS
 const cos = new COS.S3({
@@ -30,7 +22,6 @@ const cos = new COS.S3({
 // Fetch logs from ICOS
 async function fetchLogs(date) {
     const prefix = `events_logs/${date}/`;
-
     try {
         const objects = await cos.listObjectsV2({ Bucket: config.bucketName, Prefix: prefix }).promise();
         const keys = objects.Contents.map(obj => obj.Key);
@@ -87,7 +78,7 @@ program
     .version('1.0.0')
     .description('CLI tool to process logs from IBM COS')
     .option('-d, --date <date>', 'Date to fetch logs for (YYYYMMDD format)')
-    .action(options => {
+    .action((options) => {
         if (options.date) {
             processLogs(options.date).catch(console.error);
         } else {
