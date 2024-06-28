@@ -1,4 +1,4 @@
-import os,nltk
+import os,nltk,requests
 import pandas as pd
 from bertopic import BERTopic
 from sklearn.feature_extraction.text import CountVectorizer
