@@ -25,7 +25,7 @@ import os
 username = os.environ["ELASTICSEARCH_USERNAME"]
 password = os.environ["ELASTICSEARCH_PASSWORD"]
 elasticsearch_url = os.environ["URL"]
-entity = os.environ["entity_name"]
+entity_name_search = os.environ["entity_name"]
 file_path = os.environ["excel_file_path"]
 
 #Reading the excel file
@@ -176,7 +176,7 @@ def search(data_str, index_name, list_1):
 
 # Define the parameters
 data = {
-    "entity": entity_name
+    "entity": entity_name_search
 }
 data_str = json.dumps(data)
 #index_name = 'your_index_name'  # Replace with your actual index name
