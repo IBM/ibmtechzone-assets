@@ -176,7 +176,7 @@ def search(data_str, index_name, list_1):
 
 # Define the parameters
 data = {
-    "entity": "entity_name"
+    "entity": entity_name
 }
 data_str = json.dumps(data)
 #index_name = 'your_index_name'  # Replace with your actual index name
