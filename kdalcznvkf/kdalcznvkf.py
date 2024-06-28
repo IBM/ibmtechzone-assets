@@ -63,8 +63,8 @@ for file in os.listdir(CWD):
         with zipfile.ZipFile(file, 'r') as zip_ref:
             zip_ref.extractall(CWD)
     
-filename="data/download"
-data=pd.read_csv(filename)
+
+data=pd.read_csv(file_path)
 data['summaries']=data['TITLE'] + data['ABSTRACT']
 conversations=data['summaries'].values.tolist()
 get_topic(conversations)
