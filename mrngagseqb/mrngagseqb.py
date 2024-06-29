@@ -14,7 +14,7 @@ import re
 pd.options.mode.copy_on_write = True
 os.environ['KMP_DUPLICATE_LIB_OK']='True'
 os.environ['TOKENIZERS_PARALLELISM']='false'
-embedding = HuggingFaceEmbeddings(model_name='intfloat/multilingual-e5-large-instruct')
+# embedding = HuggingFaceEmbeddings(model_name='intfloat/multilingual-e5-large-instruct')
 
 api_key =os.environ["api_key"]
 project_id= os.environ["project_id"]
@@ -30,10 +30,11 @@ model_params = {
 # mistralai/mixtral-8x7b-instruct-v01
 # ibm/granite-13b-chat-v2
 model = WatsonxLLM(
-    cache=True,
+    apikey=api_key,
+    cache=False,
     model_id="meta-llama/llama-3-70b-instruct",
     url="https://us-south.ml.cloud.ibm.com",
-    project_id="7671c6cc-539c-4dce-b8c4-18dc4088bd68",
+    project_id=project_id,
     params=model_params,
 )
 
@@ -79,7 +80,7 @@ memory.save_context({"input": "How do I get to the nearest hospital?"},
 memory.save_context({"input": "What's the best way to learn Python?"}, 
                     {"output": "The best way to learn Python is through practice and online resources like Codecademy and Coursera."})
 
-def make_prompt(context, question_text):
+def make_prompt(question_text):
     return (
         f"Question: {question_text}?\n"
         f"You need to extract the exact and complete answer for the question.\n"
@@ -90,9 +91,9 @@ def make_prompt(context, question_text):
 previous_summary=""
 def chat_interaction(message, chat_history):
     chat_history=[]
-    cache = get_llm_cache()
+    # cache = get_llm_cache()
     global previous_summary
-    cached_response = cache.lookup(message, "")
+    # cached_response = cache.lookup(message, "")
     # if cached_response is not None:
     #     print("Response found in cache.")
     #     return cached_response
@@ -105,13 +106,13 @@ def chat_interaction(message, chat_history):
 
     # context = "\n\n\n".join(document_texts)
 
-    prompt = make_promp(message)
+    prompt = make_prompt(message)
 
     # input_list = [{"input": message, "history": chat_history, "text": prompt}]
 
     response = conversation.invoke(prompt)
 
-    cache.update(message, "", response['response'])
+    # cache.update(message, "", response['response'])
 
     chat_history.append(("Assistant", response['response']))
 
@@ -121,10 +122,6 @@ def chat_interaction(message, chat_history):
     print("messages:",messages)
     summary = memory.predict_new_summary(messages, previous_summary)
     print("Summary Here----",summary)
-
-    return response['response']
-    
-    memory.save_context({"input": "Hello"}, 
-                    {"output": "How are you, how can I help?"})
+        
 chat_history=[]
 chat_interaction(message="Hello",chat_history=chat_history)
