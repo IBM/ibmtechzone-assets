@@ -15,6 +15,7 @@ TTS_URL = os.environ["tts_url"]
 authenticator = IAMAuthenticator(TTS_API_KEY)
 tts_service = TextToSpeechV1(authenticator = authenticator)
 tts_service.set_service_url(TTS_URL)
+tts_service.set_disable_ssl_verification(True)
 print("Successfully authenticated for TTS service!!")
 
 
