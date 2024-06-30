@@ -54,7 +54,7 @@ generate_response = dspy.Predict(BasicQA)
 question = "What year did World War II end?"
 print(f"Question: {question}")
 pred = generate_response(question = question)
-print(f"Answer: {pred.answer}")
+print(f"Answer: {pred.answer}\n\n")
 
 
 # Setup Signature for RAG
