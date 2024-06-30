@@ -102,7 +102,7 @@ class UI:
             with main_ui:
                 expired_message = gr.Textbox(label="Session Status", value="", visible=False)
 
-        demo.launch(auth=[("user", "password"), ("user2", "password") , ("user3" , "password")])
+        demo.launch(auth=[("user", "password"), ("user2", "password") , ("user3" , "password")],share=True)
 
 
 # Test the logging functionality
