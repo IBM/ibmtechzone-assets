@@ -17,12 +17,6 @@ from ibm_watson_openscale.supporting_classes import *
 
 # Setup credentials
 WATSONX_API_KEY = os.environ["watsonx_api_key"]
-IBM_CLOUD_URL = os.environ["ibm_cloud_url"]
-PROJECT_ID = os.environ["project_id"]
-CREDENTIALS = {
-    "url": IBM_CLOUD_URL,
-    "apikey": WATSONX_API_KEY
-}
 
 
 # Download sample data
