@@ -22,9 +22,9 @@ from sentence_transformers import SentenceTransformer
 warnings.filterwarnings("ignore")
 
 import os
-username = os.environ["ELASTICSEARCH_USERNAME"]
-password = os.environ["ELASTICSEARCH_PASSWORD"]
-elasticsearch_url = os.environ["URL"]
+username = os.environ["elasticsearch_username"]
+password = os.environ["elasticsearch_password"]
+elasticsearch_url = os.environ["url"]
 entity_name_search = os.environ["entity_name"]
 file_path = os.environ["excel_file_path"]
 
