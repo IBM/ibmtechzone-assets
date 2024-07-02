@@ -2,12 +2,10 @@ import warnings
 warnings.filterwarnings("ignore")
 
 import os
-from dotenv import load_dotenv
 import numpy as np
 import pandas as pd
 from tqdm import tqdm
 from rouge import Rouge
-from dotenv import load_dotenv 
 from nltk.metrics import jaccard_distance
 from base import LLMEvaluator 
 from nltk.translate.bleu_score import sentence_bleu
@@ -168,7 +166,7 @@ def summary_metrics(file_fpath):
     result_df= None
     if file_fpath:
         df = pd.read_csv(file_fpath)
-        selected_columns = os.environ('selected_columns_summary',None)
+        selected_columns = os.environ["selected_columns_summary"]
         if selected_columns:
             selected_columns = selected_columns.split(',')
             result_df = compute_coherence_scores(df, selected_columns)
@@ -180,9 +178,9 @@ def summary_metrics(file_fpath):
     
     
 def select_usecase():
-    usecase = os.environ("usecase",None)
+    usecase = os.environ["usecase"]
     print(usecase)
-    file_path = os.environ("file_path",'')
+    file_path = os.environ["file_path"]
     usecase = usecase.lower()
     if 'summarization' in usecase:
         print('Summary usecase')
@@ -195,9 +193,9 @@ def select_usecase():
         print('RAG usecae')
         output_csv = 'rag_output.csv'  # Replace with desired output CSV file path
         MDOEL_ID = "meta-llama/llama-2-70b-chat"
-        URL = os.environ("url",None)
-        API_KEY = os.environ("api_key", None)
-        PROJECT_ID = os.environ("project_id", None)
+        URL = os.environ["url"]
+        API_KEY = os.environ["api_key"]
+        PROJECT_ID = os.environ["project_id"]
         file_fpath = download_box(file_path)
         rag_metrics_res = rag_metrics(file_fpath,MDOEL_ID,URL,API_KEY,PROJECT_ID)
         rag_metrics_res.to_csv(output_csv, index=False)
