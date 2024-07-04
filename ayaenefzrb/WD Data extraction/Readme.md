@@ -1,4 +1,3 @@
-
 Description:
 This asset facilitates the addition of metadata during data ingestion in Watson Discovery, as well as the extraction of the full document using Watson Discovery.
 
