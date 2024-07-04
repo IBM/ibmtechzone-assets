@@ -1,0 +1,6 @@
+{       
+    "MODEL_TYPE": "hf",
+    "EMBEDDING_MODEL": "sentence-transformers/all-MiniLM-L6-v2",
+    "EMBEDDING_DIMENSION": 384,
+    "INDEX_NAME": "my_elasticsearch_index"
+}
