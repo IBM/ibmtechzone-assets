@@ -1,0 +1,6 @@
+{       
+    "MODEL_TYPE": "elser",
+    "EMBEDDING_MODEL": ".elser_model_2",
+    "EMBEDDING_DIMENSION": -1,
+    "INDEX_NAME": "my_elasticsearch_index"
+}
