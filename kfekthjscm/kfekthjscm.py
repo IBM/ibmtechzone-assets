@@ -70,7 +70,7 @@ def sort_data_points(mast_dict, reverse=False):
 
     return mast_dict
 
-def clean_data_points(mast_dict):
+def clean_data_points(mast_dict, processed_dict):
     """ Cleans the dictionary
 
     Args:
@@ -79,13 +79,21 @@ def clean_data_points(mast_dict):
     Returns:
         dict: cleaned dictionary
     """
-    indices_to_remove = []
+    link_indices_to_remove = []
+    text_indices_to_remove = []
+
     for index, url_link in enumerate(mast_dict["links"]):
-        if url_link in mast_dict["error_links"] or url_link in mast_dict["forbidden_links"] or url_link in mast_dict["flagged_links"]:
-            indices_to_remove.append(index)
+        if any(url_link in links for links in [mast_dict["error_links"], mast_dict["forbidden_links"], mast_dict["flagged_links"], processed_dict["processed_links"]]):
+            link_indices_to_remove.append(index)
     
-    for index in sorted(indices_to_remove, reverse=True):
+    for index in sorted(link_indices_to_remove, reverse=True):
         mast_dict["links"].pop(index)
+
+    for index, url_text in enumerate(mast_dict["url_text"]):
+        if url_text in processed_dict["url_text"]:
+            text_indices_to_remove.append(index)
+    
+    for index in sorted(text_indices_to_remove, reverse=True):
         mast_dict["url_text"].pop(index)
     
     return mast_dict
@@ -265,16 +273,20 @@ async def extract_links_with_name(page, domain_url = ''):
 
     return links
 
-async def process_single_link(page, link, mast_dict, processed_dict, scraped_data, filename, ext, domain_url, domain_routes):
+async def process_single_link(page, link, mast_dict, processed_dict, scraped_data, filename, ext, domain_url, domain_routes, reprocess=False):
     # Strip fragment identifier from the link
     """Process a single link."""
     clean_link = strip_fragment(link)
 
     if not is_allowed_file(clean_link):
         print(f"Skipping processing of skippable file type: {clean_link}")
-        index = mast_dict['links'].index(link)
-        mast_dict["links"].pop(index)
-        url_text = mast_dict["url_text"].pop(index)
+        if reprocess:
+            return False, processed_dict, mast_dict, scraped_data
+        else:
+            index = mast_dict['links'].index(link)
+            mast_dict["links"].pop(index)
+            mast_dict["url_text"].pop(index)
+
         return False, processed_dict, mast_dict, scraped_data
     
     try:
@@ -312,24 +324,53 @@ async def process_single_link(page, link, mast_dict, processed_dict, scraped_dat
             if not is_page_data_exists(scraped_data, clean_link):
                 scraped_data.append(page_data)
 
-            if not link in processed_dict["processed_links"]:
-                index = mast_dict['links'].index(link)
-                mast_dict["links"].pop(index)
-                url_text = mast_dict["url_text"].pop(index)
-                processed_dict["url_text"].append(url_text)
-                processed_dict["processed_links"].append(link)
+            if link not in processed_dict["processed_links"]:
+                if reprocess:
+                    index = mast_dict['flagged_links'].index(link)
+                    mast_dict["flagged_links"].pop(index)
+                    processed_dict["processed_links"].append(link)
+                else:
+                    index = mast_dict['links'].index(link)
+                    mast_dict["links"].pop(index)
+                    url_text = mast_dict["url_text"].pop(index)
+                    processed_dict["processed_links"].append(link)
+                    processed_dict["url_text"].append(url_text)
+            
+            else:
+                if reprocess:
+                    mast_dict["flagged_links"].remove(link)
+                else:
+                    index = mast_dict['links'].index(link)
+                    mast_dict["links"].pop(index)
+                    mast_dict["url_text"].pop(index)
+                
 
         elif response_info and response_info.status == 403:
             if link not in mast_dict['forbidden_links']:
-                mast_dict['forbidden_links'].append(link)
-                index = mast_dict['links'].index(link)
-                mast_dict["links"].pop(index)
-                
+                if reprocess:
+                    mast_dict['flagged_links'].remove(link)
+                    mast_dict['forbidden_links'].append(link)
+                    
+                else:
+                    index = mast_dict['links'].index(link)
+                    mast_dict["links"].pop(index)
+                    mast_dict["url_text"].pop(index)
+                    mast_dict['forbidden_links'].append(link)
+                    
+
 
         elif response_info and response_info.status == 404:
             if link not in mast_dict['error_links']:
-                mast_dict['error_links'].append(link)
-                mast_dict['links'].remove(link)
+                if reprocess:
+                    mast_dict['flagged_links'].remove(link)
+                    mast_dict['error_links'].append(link)
+                    
+                else:
+                    index = mast_dict['links'].index(link)
+                    mast_dict["links"].pop(index)
+                    mast_dict["url_text"].pop(index)
+                    mast_dict['error_links'].append(link)
+
 
         return True, processed_dict, mast_dict, scraped_data  # Successfully processed
 
@@ -353,6 +394,7 @@ async def process_links(page, mast_dict, processed_dict, scraped_data, filename,
                 i += 1  # Move to the next link if failed
 
         else:
+            print(link)
             mast_dict["links"].remove(link)
             i += 1
 
@@ -368,12 +410,16 @@ async def process_links(page, mast_dict, processed_dict, scraped_data, filename,
 
 async def reprocess_flagged_links(page, mast_dict, processed_dict, scraped_data, filename, ext, domain_url, domain_routes):
     """Reprocess the flagged links."""
+
+    i = 0
     new_flagged_links = []
     for link in mast_dict['flagged_links']:
         if link not in processed_dict["processed_links"]:
-            success, processed_dict, mast_dict, scraped_data = await process_single_link(page, link, mast_dict, processed_dict, scraped_data, filename, ext, domain_url, domain_routes)
+            success, processed_dict, mast_dict, scraped_data = await process_single_link(page, link, mast_dict, processed_dict, scraped_data, filename, ext, domain_url, domain_routes, reprocess=True)
             if success:
-                processed_dict['processed_links'].append(link)  # Move back to links if successful
+                url_text = mast_dict["url_text"][i]
+                processed_dict["url_text"].append(url_text)
+                i+=1
             else:
                 new_flagged_links.append(link)
 
@@ -387,7 +433,7 @@ async def reprocess_flagged_links(page, mast_dict, processed_dict, scraped_data,
     with open(f"processed/{filename}_links.{ext}", 'w', encoding='utf-8') as f:
         json.dump(processed_dict, f, ensure_ascii=False, indent=2)
 
-    return mast_dict, scraped_data
+    return mast_dict, scraped_data, processed_dict
 
 async def navigate_and_scrape(root_url, domain_url, filename, ext, domain_routes = None):
     """ Navigates through the provided url to scrape the page
@@ -411,8 +457,9 @@ async def navigate_and_scrape(root_url, domain_url, filename, ext, domain_routes
         # Navigate to the root URL first
         await page.goto(root_url)
         
-        # Extract links from the root URL
-        mast_dict = await extract_links(page, domain_url, mast_dict, filename, ext, domain_routes)
+        if root_url not in processed_dict["processed_links"]:
+                processed_dict["processed_links"].append(root_url)
+                processed_dict["url_text"].append("root_url")
         
         # Get the data from that page
         page_data = {
@@ -427,10 +474,9 @@ async def navigate_and_scrape(root_url, domain_url, filename, ext, domain_routes
         # Add page data if it does not already exist
         if not is_page_data_exists(scraped_data, root_url):
             scraped_data.append(page_data)
-        
-        if not root_url in processed_dict["processed_links"]:
-                processed_dict["url_text"].append("root_url")
-                processed_dict["processed_links"].append(root_url)
+
+        # Extract links from the root URL
+        mast_dict = await extract_links(page, domain_url, mast_dict, filename, ext, domain_routes)
 
         # Process main links
         mast_dict, scraped_data, processed_dict  = await process_links(page, mast_dict, processed_dict, scraped_data, filename, ext, domain_url, domain_routes)
@@ -438,12 +484,12 @@ async def navigate_and_scrape(root_url, domain_url, filename, ext, domain_routes
         # Reprocess flagged links
         if mast_dict['flagged_links']:
             print("Reprocessing flagged links...")
-            mast_dict, scraped_data = await reprocess_flagged_links(page, mast_dict, processed_dict, scraped_data, filename, ext, domain_url, domain_routes)
+            mast_dict, scraped_data, processed_dict = await reprocess_flagged_links(page, mast_dict, processed_dict, scraped_data, filename, ext, domain_url, domain_routes)
 
 
         await browser.close()
 
-        clean_mast_dict = clean_data_points(mast_dict)
+        clean_mast_dict = clean_data_points(mast_dict, processed_dict)
 
         with open(f'mast_dict/{filename}_dict.{ext}', 'w', encoding='utf-8') as f:
             json.dump(clean_mast_dict, f, ensure_ascii=False, indent=2)
@@ -462,11 +508,20 @@ if __name__ == "__main__":
     * file_ext is the extension in which you want the file to be saved in. For example, json.
 
     The final format should be something like this -> (root_url, domain_url, domain_routes, filename, file_ext)
+
+    NOTE:
+    The crawled output will be available in the output folder with the file having the naming convention of filename_crawled.file_ext.
+    You can also monitor the processed links from the processed folder within the file having the naming convention of filename_links.file_ext.
+    The flagged links that were excluded from processing is available to monitor in the mast_dict folder within the file filename_dict.file_ext.
+
     '''
+    for folder_name in ["mast_dict","output","processed"]: 
+        if not os.path.exists(folder_name):
+            os.mkdir(folder_name)
 
     urls = [
     # ("https://www.keisan.nta.go.jp/kyoutu/ky/st/guide/top","https://www.keisan.nta.go.jp","keisan_nta.json"),
-    ("https://www.nta.go.jp/taxes/","https://www.nta.go.jp",["/taxes","/law"],"nta_taxes_law","json")
+    ("https://www.nta.go.jp/taxes/","https://www.nta.go.jp",["/taxes"],"nta_taxes_updated","json")
     # Add more tuples as needed
     ]
 
