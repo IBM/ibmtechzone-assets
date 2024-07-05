@@ -8,7 +8,13 @@ from playwright.async_api import async_playwright, TimeoutError as PlaywrightTim
 def is_allowed_file(link):
     """Check if the link points to a skippable file type."""
     allowed_extensions = ('.html', '.htm')
-    return link.lower().endswith(allowed_extensions)
+    parsed_url = urlparse(link)
+    path = parsed_url.path
+    
+    # Check if the path ends with allowed extensions or has no extension
+    if path.lower().endswith(allowed_extensions) or not any(char in path.split('/')[-1] for char in ['.', '?']):
+        return True
+    return False
 
 def get_path_segment(href):
     """Extract the part of the href after the domain and before the next slash."""
@@ -80,7 +86,6 @@ def clean_data_points(mast_dict, processed_dict):
         dict: cleaned dictionary
     """
     link_indices_to_remove = []
-    text_indices_to_remove = []
 
     for index, url_link in enumerate(mast_dict["links"]):
         if any(url_link in links for links in [mast_dict["error_links"], mast_dict["forbidden_links"], mast_dict["flagged_links"], processed_dict["processed_links"]]):
@@ -88,13 +93,12 @@ def clean_data_points(mast_dict, processed_dict):
     
     for index in sorted(link_indices_to_remove, reverse=True):
         mast_dict["links"].pop(index)
-
-    for index, url_text in enumerate(mast_dict["url_text"]):
-        if url_text in processed_dict["url_text"]:
-            text_indices_to_remove.append(index)
-    
-    for index in sorted(text_indices_to_remove, reverse=True):
         mast_dict["url_text"].pop(index)
+        
+
+    # for url_text in mast_dict["url_text"]:
+    #     mast_dict["url_text"].remove(url_text)
+        
     
     return mast_dict
 
@@ -316,6 +320,7 @@ async def process_single_link(page, link, mast_dict, processed_dict, scraped_dat
                 'title': await page.title(),
                 'text': await page.evaluate("document.body.innerText"),
                 'images': await page.evaluate("Array.from(document.querySelectorAll('img')).map(img => img.src)"),
+                # 'reprocessed_text': Send to LLM 
                 # 'links': await extract_links_with_name(page, domain_url),
                 # 'forms': await page.evaluate("Array.from(document.querySelectorAll('form')).map(form => { let formData = {}; Array.from(form.elements).forEach(input => formData[input.name] = input.value); return formData; })")
             }
@@ -395,7 +400,9 @@ async def process_links(page, mast_dict, processed_dict, scraped_data, filename,
 
         else:
             print(link)
-            mast_dict["links"].remove(link)
+            index = mast_dict['links'].index(link)
+            mast_dict["links"].pop(index)
+            mast_dict["url_text"].pop(index)
             i += 1
 
         # Save the scraped data to a JSON file
@@ -453,13 +460,14 @@ async def navigate_and_scrape(root_url, domain_url, filename, ext, domain_routes
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=False)
         page = await browser.new_page()
-        
+        print(mast_dict)
         # Navigate to the root URL first
         await page.goto(root_url)
         
         if root_url not in processed_dict["processed_links"]:
-                processed_dict["processed_links"].append(root_url)
-                processed_dict["url_text"].append("root_url")
+                mast_dict["links"].append(root_url)
+                mast_dict["url_text"].append("root_url")
+
         
         # Get the data from that page
         page_data = {
@@ -520,11 +528,14 @@ if __name__ == "__main__":
             os.mkdir(folder_name)
 
     urls = [
-    # ("https://www.keisan.nta.go.jp/kyoutu/ky/st/guide/top","https://www.keisan.nta.go.jp","keisan_nta.json"),
-    ("https://www.nta.go.jp/taxes/","https://www.nta.go.jp",["/taxes"],"nta_taxes_updated","json")
+    ("https://www.keisan.nta.go.jp/kyoutu/ky/st/ccw2900","https://www.keisan.nta.go.jp",["/kyoutu"],"keisan_nta_kyoutu","json"),
+    ("https://www.keisan.nta.go.jp/kyoutu/ky/sm/top_web#bsctrl","https://www.keisan.nta.go.jp",["/kyoutu"],"keisan_nta_kyoutu","json"),
+    ("https://www.keisan.nta.go.jp/kyoutu/ky/sm/usedata#bsctrl","https://www.keisan.nta.go.jp",["/kyoutu"],"keisan_nta_kyoutu","json"),
+    ("https://www.keisan.nta.go.jp/kyoutu/ky/sm/top#bsctrl","https://www.keisan.nta.go.jp",["/kyoutu"],"keisan_nta_kyoutu","json"),
+    # ("https://www.nta.go.jp/law/","https://www.nta.go.jp",["/law"],"nta_law_updated","json")
     # Add more tuples as needed
     ]
 
     for root_url, domain_url, domain_routes, filename, file_ext in urls:
         # Navigate and scrape the data
-        mast_dict, scraped_data = asyncio.run(navigate_and_scrape(root_url, domain_url, filename, file_ext, domain_routes))
+        asyncio.run(navigate_and_scrape(root_url, domain_url, filename, file_ext, domain_routes))
