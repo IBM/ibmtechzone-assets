@@ -1,7 +1,7 @@
+import os
+from typing import Optional, Dict
 from elasticsearch import Elasticsearch
 from elasticsearch_llm_cache.elasticsearch_llm_cache import ElasticsearchLLMCache
-from typing import Optional, Dict
-
 
 connection_details = {
     'username' :  os.environ["es_username"],
@@ -85,13 +85,15 @@ try:
     cache_handler = ElasticsearchLLMCacheHandler(connection_details = connection_details, index_name = "llm_cache_test_v1")
     
     # Query the cache
-    print(current_query)
-    cache_response = cache_handler.query_cache(current_query=current_query)
+    cache_response = cache_handler.query_cache(current_query = current_query)
     
     # If no cache hit, add new response to cache
     if not cache_response:
         llm_response = "I'm here to assist you!"  # Assume this response is fetched from LLM
-        cache_handler.add_to_cache(current_query=current_query, llm_response=llm_response)
+        cache_handler.add_to_cache(current_query = current_query, llm_response = llm_response)
+    else:
+      print(current_query)
+      print(cache_response)
 
 except Exception as e:
     print(f"An error occurred: {e}")
