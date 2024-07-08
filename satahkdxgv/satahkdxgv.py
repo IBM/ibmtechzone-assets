@@ -8,7 +8,7 @@ warnings.filterwarnings("ignore")
 
 
 # If True, make sure to have SSL certificate in the same path as this notebook. Else make it False.
-verify_ssl_certificate = True
+verify_ssl_certificate = False
 
 connection_details = {
     'username' :  os.environ["es_username"],
