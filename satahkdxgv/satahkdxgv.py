@@ -27,7 +27,7 @@ current_query = os.environ["current_query"]
 
 # Elasticsearch LLM Response CacheHandler Class
 class ElasticsearchLLMCacheHandler:
-    def __init__(self, connection_details: Dict, index_name: str, es_model_id: str):
+    def __init__(self, connection_details: Dict, es_model_id: str, index_name: str = "llm_cache_index"):
         self.connection_details = connection_details
         self.index_name = index_name
         self.es_model_id = es_model_id
@@ -103,7 +103,7 @@ class ElasticsearchLLMCacheHandler:
             
             
 try:
-    cache_handler = ElasticsearchLLMCacheHandler(connection_details = connection_details, index_name = index_name, es_model_id = es_model_id)
+    cache_handler = ElasticsearchLLMCacheHandler(connection_details = connection_details, es_model_id = es_model_id)
     
     # Query the cache
     cache_response = cache_handler.query_cache(current_query = current_query)
