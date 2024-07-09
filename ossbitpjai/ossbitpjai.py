@@ -523,7 +523,7 @@ class Backend:
   
 def main():
     #load_dotenv()
-    api_key=os.getenv("GENAI_KEY")
+    api_key=os.getenv("genai_key")
     model_id = "meta-llama/llama-3-70b-instruct"
     backend = Backend(model_id=model_id,api_key=api_key)
     task=os.getenv("task")
