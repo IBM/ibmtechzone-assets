@@ -482,7 +482,6 @@ Instruction prompt for the above task:
 class Backend:
     def __init__(self, model_id="google/flan-ul2", params=None,api_key=None):
     # Initialize the backend with credentials from environment variables
-        print(api_key)
         self.credentials = Credentials(api_key=api_key)
         self.client = Client(credentials=self.credentials)
         self.model_id = model_id
