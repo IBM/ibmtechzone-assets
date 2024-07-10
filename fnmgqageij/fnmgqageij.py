@@ -1,62 +1,7 @@
 import re
 import json
 
-def parse_cobol_v1(cobol_code):
-    lines = cobol_code.split('\n')
-    outline = {"name": "PROGRAM", "type": "program", "children": []}
-    current_division = None
-    current_section = None
-    current_function = None
-    indent_level = 0
-
-    for line in lines:
-        stripped_line = line.strip()
-        current_indent = len(line) - len(line.lstrip())
-        
-        # Check for divisions
-        if 'DIVISION' in stripped_line:
-            current_division = {
-                "type": "division",
-                "name": stripped_line.split('.')[0],
-                "children": []
-            }
-            outline["children"].append(current_division)
-            current_section = None
-            current_function = None
-        
-        # Check for sections
-        elif 'SECTION.' in stripped_line:
-            current_section = {
-                "type": "section",
-                "name": stripped_line.split('.')[0],
-                "children": []
-            }
-            if current_division:
-                current_division["children"].append(current_section)
-            current_function = None
-        
-        # Check for functions (top-level paragraphs)
-        elif stripped_line and not stripped_line.startswith('*') and '.' in stripped_line and current_indent == 0:
-            function_name = stripped_line.split('.')[0]
-            current_function = {
-                "type": "function",
-                "name": function_name,
-                "content": []
-            }
-            if current_section:
-                current_section["children"].append(current_function)
-            elif current_division:
-                current_division["children"].append(current_function)
-        
-        # Add other lines as content to the current function
-        elif stripped_line and current_function:
-            if current_indent > 0:
-                current_function["content"].append(stripped_line)
-
-    return outline
-
-
-def parse_cobol_v2(cobol_code):
+def parse_cobol(cobol_code):
     lines = cobol_code.split('\n')
     outline = {"name": "PROGRAM", "type": "program", "children": []}
     current_division = None
@@ -121,10 +66,9 @@ def parse_cobol_v2(cobol_code):
 
 
 def generate_outline(cobol_code):
-    outline = parse_cobol_v2(cobol_code)
+    outline = parse_cobol(cobol_code)
     return outline
-
-
+    
 if __name__ =="__main__":
 
     # Example usage
