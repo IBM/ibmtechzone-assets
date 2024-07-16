@@ -1,0 +1,4 @@
+transformers==4.11.3
+torch==1.10.0
+pymilvus==2.0.0
+sentence-transformers==2.1.0
