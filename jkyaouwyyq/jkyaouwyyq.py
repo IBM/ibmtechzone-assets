@@ -73,7 +73,7 @@ def convert_speech_text(wav_file,audio_type,api_key,url):
     
 def get_transcript(mp4_file, wav_file,audio_type,api_key,url):
     try:
-        # op =  convert_mp4_wav(mp4_file, wav_file)
+        op =  convert_mp4_wav(mp4_file, wav_file)
         op = 1
         # print("op",op)
         if op == 1 :
