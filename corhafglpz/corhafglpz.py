@@ -34,7 +34,6 @@ class WatsonSTTParser:
             speech_recognition_results = self._speech_to_text.recognize(
                 audio=file,
                 model=self._config['MODEL'],
-                language_customization_id= self._config['CUSTOM_ID'],
                 content_type=self._config['CONTENT_TYPE'],
                 speaker_labels=True
             ).get_result()
@@ -48,7 +47,6 @@ class WatsonSTTParser:
             recognition_job = self._speech_to_text.create_job(
                 audio=file,
                 model=self._config['MODEL'],
-                language_customization_id= self._config['CUSTOM_ID'],
                 content_type=self._config['CONTENT_TYPE'],
                 speaker_labels=True
             ).get_result()
@@ -69,7 +67,6 @@ class WatsonSTTParser:
             recognition_job = self._speech_to_text.create_job(
                 audio=temp_file,
                 model=self._config['MODEL'],
-                language_customization_id= self._config['CUSTOM_ID'],
                 content_type=self._config['CONTENT_TYPE'],
                 speaker_labels=True
             ).get_result()
