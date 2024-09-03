@@ -6,6 +6,11 @@ from pymilvus import (
 import os
 from pymilvus import model
 
+MILVUS_HOST = os.environ("MILVUS_HOST"))
+MILVUS_PORT = os.environ("MILVUS_PORT"))
+MILVUS_PASSWORD = os.environ("MILVUS_PASSWORD"))
+file_path = os.environ("File_Path")
+User_query = os.environ("User_Query")
 
 def read_chunk_data(file):
     loader_mu = PyMuPDFLoader(file)
@@ -19,10 +24,8 @@ def read_chunk_data(file):
     return docs
 
 
-def connects_to_milvus_db(file):
-    MILVUS_HOST = str(os.environ.get("MILVUS_HOST"))
-    MILVUS_PORT = str(os.environ.get("MILVUS_PORT"))
-    MILVUS_PASSWORD = str(os.environ.get("MILVUS_PASSWORD"))
+def connects_to_milvus_db(MILVUS_HOST,MILVUS_PORT,MILVUS_PASSWORD,file,User_query):
+    
     client = connections.connect("default", host=MILVUS_HOST, 
 										port=MILVUS_PORT, 
 										secure=True, 
@@ -63,7 +66,7 @@ def connects_to_milvus_db(file):
     ids = [i for i in range(len(docs))]
     entities =[ids,docs_embeddings] 
     collection.insert(entities)
-    query = "Type your query"
+    query = User_query
     query_vector = splade_ef.encode_queries(query)
     search_params = {
 		"metric_type": "IP",
@@ -80,6 +83,8 @@ def connects_to_milvus_db(file):
         for hit in hits:
                print(f"hit: {hit}")
     return search_res
+    
+print(connects_to_milvus_db(MILVUS_HOST,MILVUS_PORT,MILVUS_PASSWORD,file_path,User_query))
         
                   
 
