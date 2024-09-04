@@ -6,8 +6,8 @@ from ibm_watsonx_ai.foundation_models import Model
 def get_credentials():
 	return {
         #Setting the environment credentials : "IBM_CLOUD_URL" & "IBM_CLOUD_API_KEY" from .env file
-		"url" : os.environ["ibm_cloud_url"),
-		"apikey" : os.environ("ibm_cloud_api_key")
+		"url" : os.environ["ibm_cloud_url"],
+		"apikey" : os.environ["ibm_cloud_api_key"]
 	}
 
 def javaCodeGen():
@@ -15,7 +15,7 @@ def javaCodeGen():
     load_dotenv()
 
     #Project ID Configuration  
-    project_id = os.environ("project_id")
+    project_id = os.environ["project_id"]
     
     #LLM model Configuration 
     model_mistral_large='mistralai/mistral-large'
