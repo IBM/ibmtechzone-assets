@@ -38,7 +38,7 @@ def javaCodeGen():
   	project_id = project_id
     )
     
-    Code_Specific_Condition = os.environ["code_specific_condition"]
+    Code_Specific_Condition = os.environ["code_specific_conditions"]
     
     Embedded_Condition = os.environ["embedded_Condition"]
     
@@ -89,7 +89,7 @@ def javaCodeGen():
     {Older_version_Java_Code}
 
     Input New version Pseudocode: 
-    {New_version_Pseudocode_001}
+    {New_version_Pseudocode}
 
     FORMAT: 
     1. Strictly follow that you should print the new version java code inside this grave accent symbol.
