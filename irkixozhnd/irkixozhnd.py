@@ -40,15 +40,15 @@ def javaCodeGen():
     
     Code_Specific_Condition = os.environ["code_specific_conditions"]
     
-    Embedded_Condition = os.environ["embedded_Condition"]
+    Embedded_Condition = os.environ["embedded_conditions"]
     
-    Variable_Names_Datatypes = os.environ["variable_names_datatypes"]
+    Variable_Names_Datatypes = os.environ["variable_name_datatypes"]
     
     Older_version_Pseudocode = os.environ["older_version_pseudocode"]
     
-    Older_version_Java_Code = os.environ["older_version_javaCode"]
+    Older_version_Java_Code = os.environ["older_version_javacode"]
     
-    New_version_Pseudocode = os.environ["new_version_pseudocode"]
+    New_version_Pseudocode = os.environ["newer_version_pseudocode"]
     
     prompt_input_base = f"""     
     ROLE: You are an excellent agent focused on creating accurate and efficient Java code. 
