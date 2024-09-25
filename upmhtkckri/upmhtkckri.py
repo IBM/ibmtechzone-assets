@@ -9,32 +9,12 @@ def query_milvus_multimodal(query, sub_product_group, num_results, img_weight=0.
             secure=True,
             user="ibmlhapikey",
             password=password)
-    category_mapping = {
-        "Armchair": ["Armchair", "Chairs"],
-        "Beds": ["Beds"],
-        "Chairs": ["Chairs", "Armchair"],
-        "Mirrors": ["Mirrors", "Furniture Other"],
-        "Sofa": ["Sofa"],
-        "Storage": ["Storage", "Tables"],
-        "Furniture other": ["Everything"],
-        "Garden furniture": ["Garden furniture", "Tables", "Chairs"]
-    }
-
+    
 
     print("Predicted sub group:", sub_product_group, file=sys.stdout)
 
-    
-    if sub_product_group is not None and sub_product_group != "Furniture other":
-        if sub_product_group in category_mapping:
-            additional_categories = category_mapping[sub_product_group]
-            additional_categories += [sub_product_group]
-            sub_product_group = list(set(additional_categories)) # remove duplicates
-        else:
-            sub_product_group = [sub_product_group]
-
-        expr = f'SubProductGroup in {json.dumps(sub_product_group)}'
-    else:
-        expr = None        
+    expr = f'SubProductGroup in {json.dumps(sub_product_group)}'
+         
     model = SentenceTransformer('intfloat/multilingual-e5-large')  # 384 dim model
     text_model_clip = SentenceTransformer('sentence-transformers/clip-ViT-B-32-multilingual-v1')
     
