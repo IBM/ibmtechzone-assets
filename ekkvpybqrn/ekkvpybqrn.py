@@ -1,14 +1,66 @@
-#!/usr/bin/env python
-# coding: utf-8
+'''Flow of the code - uses watson studio for a text classification problem
 
-# @hidden_cell
-# The project token is an authorization token that is used to access project resources like data sources, connections, and used by platform APIs.
-from project_lib import Project
-project = Project(project_id='PRJ-ID', project_access_token='TOKEN')
-pc = project.project_context
+1. Importing Libraries:
+    Load the necessary packages, including watson_nlp, pandas, tqdm, and others for handling NLP tasks, file operations, and parallel processing.
 
-from ibm_watson_studio_lib import access_project_or_space
-wslib = access_project_or_space({'token':'ACCESS-TOKEN'})
+2. Setting API Key:
+    Use os.environ to store your Watsonx API key securely for accessing IBM Watson services.
+
+3. Function: train_model
+
+    Define parameters: Set batch_size and epochs for training.
+    Create a data stream using DataStreamResolver.
+    Load a pre-trained model using watson_nlp.
+    Train the model on the provided dataset for epochs number of iterations.
+    Save the trained model to a specified file.
+
+4. Function: clean_text
+    Remove unwanted non-alphanumeric characters from text.
+    Replace multiple spaces with a single space for cleaner text.
+    
+5. Function: generate_response
+    Set the generation parameters, including decoding method and max tokens.
+    Use WatsonxLLM to invoke the model with a prompt and receive a response.
+    
+6. Function: oversample_data
+
+    Create a detailed prompt with instructions to generate new complaints.
+    Use the LLM to receive responses that are rephrased and paraphrased versions of original complaints.
+    
+7. Function: generate_new_samples
+    Extract text data for a specific class from the DataFrame.
+    Generate new complaints using oversample_data for every 8 samples.
+    Concatenate the new samples with the original data and return the updated DataFrame.
+
+8. Function: worker
+    Use generate_new_samples for parallel processing of oversampling across different classes.
+    
+9. Loading Data:
+    Download the training and test files, and load them into pandas DataFrames.
+    Clean the text data by applying the clean_text function.
+    
+10. Handling Class Distribution:
+    Calculate the class distribution from the training data.
+    Identify classes with samples below the median and prepare for oversampling.
+
+11. Oversampling with Parallel Processing:
+    Use multiprocessing to oversample the classes with fewer samples in parallel.
+    Concatenate the oversampled data with the original data for balanced class distribution.
+
+12. Saving Oversampled Data:
+    Save the newly oversampled data to a CSV file and upload it.
+
+13.  Train Model:
+    Use the train_model function to train the model on the oversampled data.
+    Save and compress the trained model.
+
+14. Prepare Test Data: 
+Exclude specific classes from the test set and reset the index.
+
+15. Evaluations: 
+    For each test sample, use the trained model to predict and calculate the top-1, top-3, and top-5 accuracy.
+'''
+
 
 import watson_nlp
 import pandas as pd
@@ -65,7 +117,6 @@ def generate_response(prompt):
     project_id='PROJECT-ID',
     params=parameters
     )
-
     response = watsonx_llm.invoke(prompt)
     return response
 
@@ -114,10 +165,10 @@ def oversample_data(text):
     response = generate_response(prompt)
     return response
 
-def generate_new_samples(df, class_name):
+def generate_new_samples(df, target_column, class_name):
     final_list = []
-    original_df = df[df.COMPO_CODE==class_name]
-    new_df = df[df.COMPO_CODE==class_name].sample(frac = 1).reset_index()
+    original_df = df[df[target_column]==class_name]
+    new_df = df[df[target_column]==class_name].sample(frac = 1).reset_index()
 #     print(f'Class samples before - {class_name}',new_df.shape)
     new_complaints = []
     for i in range(0, len(new_df), 8):
@@ -140,22 +191,24 @@ def generate_new_samples(df, class_name):
 
     new_class_list = [class_name]*len(final_list)
     text_list = new_df.TEXT.to_list()
-    class_list = new_df.COMPO_CODE.to_list()
+    class_list = new_df[target_column].to_list()
     
     text_list += final_list
     class_list += new_class_list
     
     new_df = pd.DataFrame()
     new_df['TEXT'] = text_list
-    new_df['COMPO_CODE'] = class_list
+    new_df[target_column] = class_list
     new_df = pd.concat([original_df, new_df])
 #     print(f'Class samples after - {class_name}', new_df.shape)
     return new_df
 
 def worker(class_name):
-    return generate_new_samples(train_set, class_name)
+    return generate_new_samples(train_set,target_column, class_name)
 
+# Inputing files 
 files = ['COMPO_CODE_TRAIN_EN_Large.csv', 'COMPO_CODE_TEST_EN.csv']
+target_column = 'COMPO_CODE'
 
 df = pd.DataFrame()
 for file in files:
@@ -163,7 +216,7 @@ for file in files:
     
 # Reading trainset
 df_train = pd.read_csv(files[0])
-train_set = df_train[df_train.COMPO_CODE!='     '].reset_index(drop=True)
+train_set = df_train[df_train[target_column]!='     '].reset_index(drop=True)
 train_set.TEXT = [text.lower() for text in train_set.TEXT]
 print(train_set.shape)
 
@@ -175,7 +228,7 @@ for text in tqdm(train_set.TEXT):
 train_set.TEXT = list_of_cleaned_text
 
 # Oversampling only those classes whose num of samples<median num of samples
-class_distribution = dict(train_set.COMPO_CODE.value_counts())
+class_distribution = dict(train_set[target_column].value_counts())
 median_value = np.median(np.array(list(class_distribution.values())))
 classes_less_than_median = [class_name for class_name in class_distribution if class_distribution[class_name]<median_value]
 print(len(classes_less_than_median))
@@ -193,8 +246,8 @@ print(oversampled_df.shape)
 
 # Concatenating oversampled data
 oversampled_df = oversampled_df.reset_index(drop=True)
-oversampled_df = pd.concat([train_set[~train_set.COMPO_CODE.isin(classes_less_than_median)], oversampled_df]).reset_index(drop=True)
-oversampled_df = oversampled_df[['TEXT', 'COMPO_CODE']]
+oversampled_df = pd.concat([train_set[~train_set[target_column].isin(classes_less_than_median)], oversampled_df]).reset_index(drop=True)
+oversampled_df = oversampled_df[['TEXT', target_column]]
 print(oversampled_df.shape)
 
 # Saving oversampled files
@@ -203,7 +256,7 @@ wslib.upload_file('compo_code_oversampled_data.csv', overwrite=True)
 
 file_name = 'compo_code_oversampled_data.csv'
 model_name = 'model_compo_code_en'
-model = train_model(file_name, model_name, 'COMPO_CODE')
+model = train_model(file_name, model_name, target_column)
 get_ipython().system('zip -r model_compo_code_en.zip model_compo_code_en')
 wslib.upload_file(model_name+'.zip', overwrite=True)
 
@@ -212,8 +265,8 @@ df_test = pd.read_csv(files[1])
 print(df_test.shape)
 
 # Excluding specific classes
-exclude_classes = set(df_test.COMPO_CODE).difference(set(oversampled_df.COMPO_CODE))
-df_test = df_test[~df_test.COMPO_CODE.isin(exclude_classes)].reset_index(drop=True)
+exclude_classes = set(df_test[target_column]).difference(set(oversampled_df[target_column]))
+df_test = df_test[~df_test[target_column].isin(exclude_classes)].reset_index(drop=True)
 
 # Evaluations - Calculating top 1, 3 and 5 accuracy
 results = []
@@ -232,19 +285,19 @@ for i in tqdm.tqdm(range(len(df_test.index))):
     }
     results.append(result_dict)
     
-    if result["classes"][0]["class_name"] == df_test.iloc[i]["COMPO_CODE"]:
+    if result["classes"][0]["class_name"] == df_test.iloc[i][target_column]:
         top_1_sum += 1
         top_3_sum += 1
         top_5_sum += 1
-    elif result["classes"][1]["class_name"] == df_test.iloc[i]["COMPO_CODE"]:
+    elif result["classes"][1]["class_name"] == df_test.iloc[i][target_column]:
         top_3_sum += 1
         top_5_sum += 1
-    elif result["classes"][2]["class_name"] == df_test.iloc[i]["COMPO_CODE"]:
+    elif result["classes"][2]["class_name"] == df_test.iloc[i][target_column]:
         top_3_sum += 1
         top_5_sum += 1
-    elif result["classes"][3]["class_name"] == df_test.iloc[i]["COMPO_CODE"]:
+    elif result["classes"][3]["class_name"] == df_test.iloc[i][target_column]:
         top_5_sum += 1
-    elif result["classes"][4]["class_name"] == df_test.iloc[i]["COMPO_CODE"]:
+    elif result["classes"][4]["class_name"] == df_test.iloc[i][target_column]:
         top_5_sum += 1
 
 print("Top1 Accuracy: {0}".format(top_1_sum/len(df_test.index)))
