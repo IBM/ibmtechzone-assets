@@ -2,6 +2,7 @@ from langchain_ibm import WatsonxLLM
 import os
 
 os.environ["WATSONX_APIKEY"] = 'YOUR API KEY'
+
 lang_detection_prompt = '''
 {header}
 <system>
@@ -106,8 +107,7 @@ def lang_translate(lang_from_list, lang_to_list, input_value_list, model):
     translated_output = generate_response(lang_translation_prompt.format(header=header, lang_from_list=lang_from_list, lang_to_list = lang_to_list ,text_list=input_value_list, footer=footer), model)
     return translated_output
 
-"""### Single Response"""
-
+# Single Response
 # Detecting language from text
 multilingual_models = ['ibm/granite-20b-multilingual', 'mistralai/mistral-large', 'meta-llama/llama-3-70b-instruct']
 input_value = 'Eu amo meu país'
@@ -123,8 +123,7 @@ print('Detected language: ', lang_from)
 lang_to = 'Spanish'
 print('Translated text :', lang_translate(lang_from, lang_to, input_value, multilingual_models[1]))
 
-"""### Batch Response"""
-
+# Batch Response
 # Detecting language from file
 input_value_list = ['Service to others is the rent you pay for your room here on earth!', 'La gloire d’hier ne garantit jamais le succès de demain.']
 
