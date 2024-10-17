@@ -327,7 +327,8 @@ def main():
             with zipfile.ZipFile(file, 'r') as zip_ref:
                 zip_ref.extractall(CWD)
                 
-
+    colour = os.environ["colour"]
+                
     lower_bound, upper_bound = set_marker_colour(colour)
                 
     extracted_file = get_extracted_region(file_path, lower_bound, upper_bound)
