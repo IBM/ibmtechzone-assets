@@ -58,7 +58,7 @@ def get_extracted_region(file_name, lower_bound, upper_bound):
 
     # Convert the image to HSV color space since it's easier to detect the contours in this
     hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
-    cv2.imshow("display", hsv)
+    # cv2.imshow("display", hsv)
 
 
     # Threshold the HSV image to get only specified colors
@@ -119,16 +119,16 @@ def get_extracted_region(file_name, lower_bound, upper_bound):
 
         # Extract the region of interest (ROI) from the original image
         roi = image[y:y+h, x:x+w]
-        extracted_output_directory = file_name.rsplit('/',2)[0] + '/output/'
+        extracted_output_directory = file_name.rsplit('/',2)[0] + '/data/'
         extracted_output_filename = file_name.rsplit('/',1)[1].rsplit('.')[0] + '-extracted.png'
         extracted_filename = extracted_output_directory + extracted_output_filename
 
         cv2.imwrite(extracted_filename, roi)
 
         # Display the ROI
-        cv2.imshow('ROI', roi)
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
+        # cv2.imshow('ROI', roi)
+        # cv2.waitKey(0)
+        # cv2.destroyAllWindows()
     else:
         print("No red circle found.")
         raise Exception(" There is no region found")
@@ -327,14 +327,14 @@ def main():
             with zipfile.ZipFile(file, 'r') as zip_ref:
                 zip_ref.extractall(CWD)
                 
-    colour = os.environ["colour"]
+
     lower_bound, upper_bound = set_marker_colour(colour)
                 
     extracted_file = get_extracted_region(file_path, lower_bound, upper_bound)
     
     final_json_object = extract_text_from_roi(extracted_file)
     
-    print(final_json_object, "json objectttt")
+    print(final_json_object, "json object")
     
 if __name__ == "__main__":
     main()
