@@ -6,8 +6,7 @@ import subprocess
 
 def augment_api_request_body(user_query, image):
     body = {
-            "messages": [{"role":"system","content":system_prompt}, 
-                         {"role":"user","content":[{"type":"text","text":user_query},
+            "messages": [{"role":"user","content":[{"type":"text","text":user_query},
                          {"type":"image_url","image_url":{"url": f"data:image/jpeg;base64,{image}"}}]}],
             "project_id": credentials.get("project_id"),
             "model_id": "meta-llama/llama-3-2-90b-vision-instruct",
