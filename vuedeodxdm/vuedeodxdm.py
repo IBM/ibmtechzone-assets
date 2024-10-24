@@ -2,10 +2,10 @@ from dotenv import load_dotenv
 from elasticsearch import Elasticsearch
 from langchain.storage import LocalFileStore
 from langchain.storage._lc_store import create_kv_docstore
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain.retrievers import ParentDocumentRetriever
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.vectorstores.elasticsearch import ElasticsearchStore
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_elasticsearch import ElasticsearchStore
 import os
 load_dotenv()
 
@@ -59,17 +59,17 @@ class ContextRetriever:
     def add_documents(self, docs):
         self._retriever.add_documents(docs)
     
-    def get_relevant_docs(self, query, file_name="", num_chunks=4):
-        if file_name != "":
-            self._retriever.search_kwargs = {"k": num_chunks, "filter":[{"term": {"metadata.file_name.keyword": file_name}}]}
+    def get_relevant_docs(self, query, metadata_filter_key="", metadata_filter_value="", num_chunks=4):
+        if metadata_filter_key != "":
+            self._retriever.search_kwargs = {"k": num_chunks, "filter":[{"term": {f"metadata.{metadata_filter_key}.keyword": metadata_filter_value}}]}
         else:
             self._retriever.search_kwargs = {"k": num_chunks}
-        relevant_docs = self._retriever.get_relevant_documents(query)
+        relevant_docs = self._retriever.invoke(query)
         return relevant_docs
     
-    def get_relevant_docs_with_similarity(self, query, file_name="", num_chunks=4):
-        if file_name != "":
-            search_kwargs = {"k": num_chunks, "filter":[{"term": {"metadata.file_name.keyword": file_name}}]}
+    def get_relevant_docs_with_similarity(self, query, metadata_filter_key="", metadata_filter_value="", num_chunks=4):
+        if metadata_filter_key != "":
+            search_kwargs = {"k": num_chunks, "filter":[{"term": {f"metadata.{metadata_filter_key}.keyword": metadata_filter_value}}]}
         else:
             search_kwargs = {"k": num_chunks}
         sub_docs = self._elasticsearch_store.similarity_search_with_score(query, **search_kwargs)
@@ -80,5 +80,5 @@ class ContextRetriever:
                 ids.append(d.metadata["doc_id"])
                 scores.append(score)
         docs = self._docstore.mget(ids)
-        docs_score = list(zip(ids, docs, scores))
+        docs_score = list(zip(docs, scores))
         return [d for d in docs_score if d is not None]
